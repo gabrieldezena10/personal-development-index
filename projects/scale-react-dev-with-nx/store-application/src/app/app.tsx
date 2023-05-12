@@ -1,19 +1,29 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import styles from './app.module.scss';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Switch, Typography } from '@mui/material';
 import { getAllGames } from './fake-api';
-import { Header } from '../../ui-shared/src/lib/header/header'
-import { formatRating } from '@scale-react-dev-with-nx/store-application/util-formatters'
+import { Header } from '../../../libs/store-application/ui-shared/src/index'
+import { formatRating } from '../../../libs/store-application/util-formatters/src/index'
+
+import { Route, Routes, useNavigate } from 'react-router-dom';
+
+import { StoreApplicationFeatureGameDetails } from '../../../libs/store-application/feature-game-details/src/index';
 
 export function App() {
+  const navigate = useNavigate();
+
   return (
     <>
     <Header />
       <div className={styles.container}>
         <div className={styles.gamesLayout}>
           {getAllGames().map((x) => (
-            <Card key={x.id} className={styles.gameCard}>
+            <Card 
+              key={x.id} 
+              className={styles.gameCard}
+              onClick={() => navigate(`/game/${x.id}`)}
+            >
               <CardActionArea>
                 <CardMedia
                   className={styles.gameCardMedia}
@@ -45,6 +55,9 @@ export function App() {
           ))}
         </div>
       </div>
+      <Routes>
+        <Route path="/game/:id" element={<StoreApplicationFeatureGameDetails />} />
+      </Routes>
     </>
   );
 }

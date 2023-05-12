@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@scale-react-dev-with-nx/store-application/feature-game-details": [
+        "store-application/feature-game-details/src/index.ts"
+      ],
       "@scale-react-dev-with-nx/store-application/ui-shared": [
         "store-application/ui-shared/src/index.ts"
       ],

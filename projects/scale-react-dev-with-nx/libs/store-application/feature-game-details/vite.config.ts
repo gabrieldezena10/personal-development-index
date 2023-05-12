@@ -6,7 +6,8 @@ import dts from 'vite-plugin-dts';
 import { join } from 'path';
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite/store-application-ui-shared',
+  cacheDir:
+    '../../../node_modules/.vite/store-application-feature-game-details',
 
   plugins: [
     dts({
@@ -16,7 +17,7 @@ export default defineConfig({
     }),
     react(),
     viteTsConfigPaths({
-      root: '../../',
+      root: '../../../',
     }),
   ],
 
@@ -24,7 +25,7 @@ export default defineConfig({
   // worker: {
   //  plugins: [
   //    viteTsConfigPaths({
-  //      root: '../../',
+  //      root: '../../../',
   //    }),
   //  ],
   // },
@@ -35,7 +36,7 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
-      name: 'store-application-ui-shared',
+      name: 'store-application-feature-game-details',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forgot to update your package.json as well.

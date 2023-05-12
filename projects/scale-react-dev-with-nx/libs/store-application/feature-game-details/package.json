@@ -1,5 +1,5 @@
 {
-  "name": "@scale-react-dev-with-nx/store-application/ui-shared",
+  "name": "@scale-react-dev-with-nx/store-application/feature-game-details",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
