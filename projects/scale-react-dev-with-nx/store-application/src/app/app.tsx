@@ -49,7 +49,7 @@ export function App() {
 
   return (
     <>
-    <Header />
+    <Header title="Board Game Hoard"/>
       <div className={styles.container}>
         <div className={styles.gamesLayout}>
           {state.loadingState === 'loading'
