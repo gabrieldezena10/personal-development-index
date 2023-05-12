@@ -9,7 +9,7 @@ export const StoreApplicationFeatureGameDetails = () => {
   const { id } = useParams<{id: string}>()
 
   const [state, setState] = useState<{
-    data: Game || null,
+    data: Game | null,
     loadingState: 'success' | 'error' | 'loading';
   }>({
     data: null,
