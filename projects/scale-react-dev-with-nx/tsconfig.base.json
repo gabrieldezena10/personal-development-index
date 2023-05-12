@@ -13,7 +13,12 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@scale-react-dev-with-nx/store-application/ui-shared": [
+        "store-application/ui-shared/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

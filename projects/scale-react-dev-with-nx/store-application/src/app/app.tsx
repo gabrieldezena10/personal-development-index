@@ -3,11 +3,12 @@ import React from 'react'
 import styles from './app.module.scss';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import { getAllGames } from './fake-api';
-
+import { Header } from '../../ui-shared/src/lib/header/header'
 
 export function App() {
   return (
     <>
+    <Header />
       <div className={styles.container}>
         <div className={styles.gamesLayout}>
           {getAllGames().map((x) => (
