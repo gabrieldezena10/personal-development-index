@@ -8,13 +8,13 @@ import { getAllGames } from './fake-api';
 export function App() {
   return (
     <>
-      <div className="container">
-        <div className="games-layout">
+      <div className={styles.container}>
+        <div className={styles.gamesLayout}>
           {getAllGames().map((x) => (
-            <Card key={x.id} className="game-card">
+            <Card key={x.id} className={styles.gameCard}>
               <CardActionArea>
                 <CardMedia
-                  className="game-card-media"
+                  className={styles.gameCardMedia}
                   image={x.image}
                   title={x.name}
                 />
