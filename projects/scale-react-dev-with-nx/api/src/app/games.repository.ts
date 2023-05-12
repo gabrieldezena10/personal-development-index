@@ -1,4 +1,6 @@
-const games = [
+import { Game } from '@scale-react-dev-with-nx/api/util-interfaces'
+
+const games: Game[] = [
     {
       id: 'settlers-in-the-can',
       name: 'Settlers in the Can',

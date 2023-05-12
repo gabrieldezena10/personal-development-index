@@ -9,11 +9,13 @@ import { formatRating } from '../../../libs/store-application/util-formatters/sr
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { StoreApplicationFeatureGameDetails } from '../../../libs/store-application/feature-game-details/src/index';
+import { Game } from '@scale-react-dev-with-nx/api/util-interfaces'
+
 
 export function App() {
   const navigate = useNavigate();
   const [state, setState] = useState<{
-    data: any[],
+    data: Game[],
     loadingState: 'success' | 'error' | 'loading';
   }>({
     data: [],
