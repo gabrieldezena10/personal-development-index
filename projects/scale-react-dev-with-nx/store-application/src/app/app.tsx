@@ -4,6 +4,7 @@ import styles from './app.module.scss';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import { getAllGames } from './fake-api';
 import { Header } from '../../ui-shared/src/lib/header/header'
+import { formatRating } from '@scale-react-dev-with-nx/store-application/util-formatters'
 
 export function App() {
   return (
@@ -36,7 +37,7 @@ export function App() {
                     component="p"
                     className="game-rating"
                   >
-                    <strong>Rating:</strong> {x.rating}
+                    <strong>Rating:</strong> {formatRating(x.rating)}
                   </Typography>
                 </CardContent>
               </CardActionArea>
