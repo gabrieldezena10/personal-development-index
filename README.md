@@ -209,14 +209,14 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://egghead.io/courses/scale-react-development-with-nx-4038">[Course] Scale React Development with Nx</a> (0%)
+        <a href="https://egghead.io/courses/scale-react-development-with-nx-4038">[Course] Scale React Development with Nx</a> (100%)
       </summary>
       <ul>
         <li>
-          Started: 
+          Started: 11/05/2023
         </li>
         <li>
-          Finished:
+          Finished: 15/05/2023
         </li>
       </ul>
       </details>
