@@ -19,13 +19,13 @@
         "libs/api/util-interfaces/src/index.ts"
       ],
       "@scale-react-dev-with-nx/store-application/feature-game-details": [
-        "store-application/feature-game-details/src/index.ts"
+        "libs/store-application/feature-game-details/src/index.ts"
       ],
       "@scale-react-dev-with-nx/store-application/ui-shared": [
-        "store-application/ui-shared/src/index.ts"
+        "libs/store-application/ui-shared/src/index.ts"
       ],
       "@scale-react-dev-with-nx/store-application/util-formatters": [
-        "store-application/util-formatters/src/index.ts"
+        "libs/store-application/util-formatters/src/index.ts"
       ]
     }
   },

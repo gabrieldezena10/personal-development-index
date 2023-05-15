@@ -1,14 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useState } from 'react'
 import styles from './app.module.scss';
-import { Card, CardActionArea, CardContent, CardMedia, Switch, Typography } from '@mui/material';
-import { getAllGames } from './fake-api';
-import { Header } from '../../../libs/store-application/ui-shared/src/index'
-import { formatRating } from '../../../libs/store-application/util-formatters/src/index'
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { formatRating } from '@scale-react-dev-with-nx/store-application/util-formatters'
+import { Header } from '@scale-react-dev-with-nx/store-application/ui-shared'
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
-import { StoreApplicationFeatureGameDetails } from '../../../libs/store-application/feature-game-details/src/index';
+import { StoreApplicationFeatureGameDetails } from '@scale-react-dev-with-nx/store-application/feature-game-details';
 import { Game } from '@scale-react-dev-with-nx/api/util-interfaces'
 
 
