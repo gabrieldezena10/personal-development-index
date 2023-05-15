@@ -55,7 +55,7 @@ export function App() {
           {state.loadingState === 'loading'
             ? 'Loading...'
             : state.loadingState === 'error'
-            ? '<div>Error retrieving data</div>'
+            ? <div>Error retrieving data</div>
             : state.data.map((x) => (
             <Card 
               key={x.id} 
