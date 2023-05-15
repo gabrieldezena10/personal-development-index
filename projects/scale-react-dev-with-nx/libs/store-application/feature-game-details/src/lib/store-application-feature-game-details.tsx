@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams  } from 'react-router-dom';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import styles from './store-application-feature-game-details.module.scss';
-import { formatRating } from '../../../util-formatters/src/index'
+import { formatRating } from '@scale-react-dev-with-nx/store-application/util-formatters'
 import { Game } from '@scale-react-dev-with-nx/api/util-interfaces'
 
 export const StoreApplicationFeatureGameDetails = () => {
