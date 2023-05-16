@@ -269,14 +269,14 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://learn.cypress.io/">[Course] Real World Testing with Cypress</a> (0%)
+        <a href="https://learn.cypress.io/">[Course] Real World Testing with Cypress</a> (100%)
       </summary>
       <ul>
         <li>
-          Started: 
+          Started: 15/05/2023
         </li>
         <li>
-          Finished:
+          Finished:16/05/2023
         </li>
       </ul>
       </details>
@@ -294,7 +294,7 @@ This is a simple document that aims to list and index evidences of personal deve
 - [Adriano Junior](https://github.com/adrianodev97/personal-development-index)
 - [Calil Amaral](https://github.com/amaralc/courses-and-bootcamps)
 - [Carlos Flach](https://github.com/carlosaflach/personal-development-index)
+- [Gabriel Dezena](https://github.com/gabrieldezena10/personal-development-index)
 - [Guilherme Irie](https://github.com/GuilhermeIrie/personal-development-evolution)
 - [Ítalo Amaral](https://github.com/ItaloRAmaral/personal-development-index)
 - [Luana Vefago](https://github.com/luanavfg/personal-development-index)
-- [Gabriel Dezena](https://github.com/gabrieldezena10/personal-development-index)
