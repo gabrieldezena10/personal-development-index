@@ -207,9 +207,57 @@ This is a simple document that aims to list and index evidences of personal deve
 <h1>2023</h1>
 <ul>
   <li>
+      <details> 
+    <summary>
+      <a href="https://egghead.io/courses/confidently-testing-redux-applications-with-jest-typescript-16e17d9b">[Course] </a> <a href=""> Confidently Testing Redux Applications with Jest & TypeScript<a> (0%)  
+    </summary>
+    <ul>
+      <li>
+        Started: 
+      </li>
+      <li>
+        Finished:
+      </li>
+    </ul>
+    </details>
+  </li>
+        
+  <li>
     <details> 
       <summary>
-        <a href="https://egghead.io/courses/scale-react-development-with-nx-4038">[Course] Scale React Development with Nx</a> (100%)
+        <a href=""> [Book] Testes Funcionais de Software </a> (0%) 
+      </summary>
+      <ul>
+        <li>
+          Started: 01/03/2023
+        </li>
+        <li>
+          Finished: 29/05/2023
+        </li>
+      </ul>
+      </details>
+  </li> 
+        
+  <li>
+    <details> 
+      <summary>
+        <a href="https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8">[Course] Modern Redux with Redux Toolkit (RTK) and TypeScript</a> (0%)
+      </summary>
+      <ul>
+        <li>
+          Started: 
+        </li>
+        <li>
+          Finished:
+        </li>
+      </ul>
+      </details>
+  </li>     
+        
+  <li>
+    <details> 
+      <summary>
+        <a href="https://egghead.io/courses/scale-react-development-with-nx-4038">[Course]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course-scale-react-dev-with-nx">Scale React Development with Nx</a> (100%) ✔️
       </summary>
       <ul>
         <li>
@@ -221,6 +269,39 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li>
+        
+  <li>
+    <details> 
+      <summary>
+        <a href="https://learn.cypress.io/">[Course] </a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course/real-world-testing-with-cypress">Real World Testing with Cypress</a> (100%) ✔️
+      </summary>
+      <ul>
+        <li>
+          Started: 15/05/2023
+        </li>
+        <li>
+          Finished:16/05/2023
+        </li>
+      </ul>
+      </details>
+  </li>   
+  
+   <li>
+    <details> 
+      <summary>
+        <a href="https://www.totaltypescript.com/tutorials/beginners-typescript">[Tutorial]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course/beginners-typescript">Beginners TypeScript</a> (28%)
+      </summary>
+      <ul>
+        <li>
+          Started: 16/05/2023
+        </li>
+        <li>
+          Finished:
+        </li>
+      </ul>
+      </details>
+  </li>
+        
   <li>
     <details> 
       <summary>
@@ -236,51 +317,7 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li>
-  <li>
-    <details> 
-      <summary>
-        <a href="https://www.totaltypescript.com/tutorials/beginners-typescript">[Tutorial] Beginners TypeScript</a> (0%)
-      </summary>
-      <ul>
-        <li>
-          Started: 
-        </li>
-        <li>
-          Finished:
-        </li>
-      </ul>
-      </details>
-  </li>
-  <li>
-    <details> 
-      <summary>
-        <a href="https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8">[Course] Modern Redux with Redux Toolkit (RTK) and TypeScript</a> (0%)
-      </summary>
-      <ul>
-        <li>
-          Started: 
-        </li>
-        <li>
-          Finished:
-        </li>
-      </ul>
-      </details>
-  </li>
-  <li>
-    <details> 
-      <summary>
-        <a href="https://learn.cypress.io/">[Course] Real World Testing with Cypress</a> (100%)
-      </summary>
-      <ul>
-        <li>
-          Started: 15/05/2023
-        </li>
-        <li>
-          Finished:16/05/2023
-        </li>
-      </ul>
-      </details>
-  </li>
+
 </ul>
 </br>
 
