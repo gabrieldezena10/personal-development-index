@@ -65,7 +65,7 @@ export function Cart() {
               <td>
                 <button
                   onClick={() => dispatch(removeFromCart(id))}
-                  aria-label={`Remove ${products[id].name} from Shopping Cart`}
+                  title={`Remove ${products[id].name} from Shopping Cart`}
                 >
                   X
                 </button>
