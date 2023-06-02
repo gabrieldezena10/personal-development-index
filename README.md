@@ -209,11 +209,11 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
       <details> 
     <summary>
-      <a href="https://egghead.io/courses/confidently-testing-redux-applications-with-jest-typescript-16e17d9b">[Course] </a> <a href=""> Confidently Testing Redux Applications with Jest & TypeScript<a> (0%)  
+      <a href="https://egghead.io/courses/confidently-testing-redux-applications-with-jest-typescript-16e17d9b">[Course] </a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course/confidently-testing-redux-app-with-jest-and-ts"> Confidently Testing Redux Applications with Jest & TypeScript<a> (0%)  
     </summary>
     <ul>
       <li>
-        Started: 
+        Started: 02/06/2023
       </li>
       <li>
         Finished:
