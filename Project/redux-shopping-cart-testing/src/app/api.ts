@@ -8,6 +8,7 @@ export interface Product {
   imageCredit: string;
 }
 
+
 export async function getProducts(): Promise<Product[]> {
   const results = await fetch("/products.json");
   const products = results.json();
