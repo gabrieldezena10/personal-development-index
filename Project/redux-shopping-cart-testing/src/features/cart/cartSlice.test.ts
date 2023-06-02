@@ -8,7 +8,7 @@ import cartReducer, {
     getTotalPrice,
     checkoutCart,
   } from "./cartSlice";
-  import type { RootState } from "../../app/store";
+  import { RootState, getStoreWithState } from "../../app/store";
   import products from "../../../public/products.json";
   import * as api from "../../app/api";
   import configureStore from "redux-mock-store";
@@ -91,6 +91,28 @@ import cartReducer, {
         expect(actions[1].type).toEqual("cart/checkout/rejected");
         expect(actions[1].payload).toEqual(undefined);
         expect(actions[1].error.message).toEqual('Must include cart items');
+      });
+
+    describe("checkoutCart w/full redux store", () => {
+      it("should checkout with items", async () => {
+        const state = getStateWithItems({ testItem: 3 });
+        const store = getStoreWithState(state);
+        await store.dispatch(checkoutCart());
+        expect(store.getState().cart).toEqual({
+          items: {},
+          errorMessage: "",
+          checkoutState: "READY"
+        })
+      });
+      it("should fail with no items", async () => {
+        const state = getStateWithItems({});
+        const store = getStoreWithState(state);
+        await store.dispatch(checkoutCart());
+        expect(store.getState().cart).toEqual({
+          items: {},
+          checkoutState: "ERROR",
+          errorMessage: "Must include cart items"
+        })
       });
     });
   });
@@ -337,3 +359,14 @@ import cartReducer, {
       });
     });
   });
+
+
+});
+
+function getStateWithItems(items: Record<string, number>): RootState {
+  const state: RootState = {
+    products: { products: {} },
+    cart: { errorMessage: "", checkoutState: "READY", items }
+  }
+  return state
+}
