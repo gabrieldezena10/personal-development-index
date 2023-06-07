@@ -33,8 +33,7 @@ This is a simple document that aims to list and index evidences of personal deve
         <li>
           Finished:
         </li>
-      </ul>
-      </details>
+      </ul>f
   </li>
   <li>
     <details> 
@@ -210,14 +209,14 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href=""> [Book] Testes Funcionais de Software </a> (0%) 
+        <a href=""> [Book] Testes Funcionais de Software </a> (15%) 
       </summary>
       <ul>
         <li>
-          Started: 01/03/2023
+          Started: 30/05/2023
         </li>
         <li>
-          Finished: 29/05/2023
+          Finished: 
         </li>
       </ul>
       </details>
