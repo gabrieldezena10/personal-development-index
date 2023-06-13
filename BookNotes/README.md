@@ -50,27 +50,50 @@ Tudo aquilo que uma aplicação se propõe a realizar, em termos de caracterísi
 ### Verdades do Planejamento de testes
 
 O planejamento de testes facilita/melhora a:
-1. Organização
-2. Objetividade
-3. Previsibilidade
-4. Gerenciamento do processo de testes
+1. Organização;
+2. Objetividade;
+3. Previsibilidade;
+4. Gerenciamento do processo de testes.
 
 O planejamento de testes tem como obstáculos:
-1. O perfil do elaborador de  testes ou de quem planejará os testes
-2. A limitação do prazo força uma limitação do escopo
-3. A fragilidade dos requerimentos de testes pode implicar a redefinição de metas de teste
+1. O perfil do elaborador de  testes ou de quem planejará os testes;
+2. A limitação do prazo força uma limitação do escopo;
+3. A fragilidade dos requerimentos de testes pode implicar a redefinição de metas de teste.
 
 
 ### Problemas do Planejamento de Testes
-1. Indefinição dos requerimentos
-2. Prazo apertado
-3. Planejamento falho por fraco conhecimento de testes ou pouco conhecimento do negócio
-4. Planejamento pouco abrangente
-5. Planejamento com baixo acoplamento com os requisitos por estes estarem errados ou mudando constantemente de forma radical
-6. Planejamento de risco alto onde os requisitos a serem testados são por demais estratégicos, tendo também um alto risco associado. Neste caso, qualquer bug descoberto será de alta prioridade
+1. Indefinição dos requerimentos;
+2. Prazo apertado;
+3. Planejamento falho por fraco conhecimento de testes ou pouco conhecimento do negócio;
+4. Planejamento pouco abrangente;
+5. Planejamento com baixo acoplamento com os requisitos por estes estarem errados ou mudando constantemente de forma radical;
+6. Planejamento de risco alto onde os requisitos a serem testados são por demais estratégicos, tendo também um alto risco associado. Neste caso, qualquer bug descoberto será de alta prioridade.
 
 ## 4. Entendendo os Testes Funcionais
 
 ### Visão Intermediária
 
 Os testes funcionais tem como objetivo testar as funções de software ou de um componente de sotware. Ele é o tipo de teste que visa medir a qualidade funcional de componentes de um sistema.
+
+- Como elaborar os testes?
+Executar cada caso ou função e seus fluxox de uso, mediante a elaboração de casos e cenários de teste, utilizando dados válidos e inválidos para verificar se os resultados esperandos (comportamento e resposta de aplicação) ocorrem quando dados válidos (e inválidos) são usados. Deve-se verificar se as mensagens de erro apropriadas são indicadas quando dados ou ações inválidas são usados. Portanto, deve-se verificar se cada regra de negócio é corretamente aplicada.
+
+### Importância de Testes Funcionais
+
+Um sistema não testado corretamente, quando dá problemas em função do que foi projetado para funcionar, prejudica todas as partes envolvidas (tanto quem financiou o sistema, como quem o desenvolveu ou quem o testou).
+
+Em um processo você define fases/etapas, responsabilidades, papéis, ações permitidas e não permitidas, produtos de entrada e saída, etc. Definir um processo é um trabalho puro e simples de LÓGICA.
+
+Em qualidade de software usamos lógica de forma indireta (ou subjetiva) em:
+- Levantamento e mapeamento de requisitos;
+- Definição de cenários de teste e de casos de teste;
+- Definição de processos que suportam as gerências de requisitos, testes e gerẽncia de configuração;
+- Definição das ações dos itens de configuração suportados por um objeto;
+
+#### Lógica Dedutiva
+Se começarmos com um argumento válido, então, independente das premissas que forem acrescentadas, teremos um fim ou conclusão válida.
+
+#### Lógica Indutiva
+Se começarmos com um argumento forte ou válido, o mesmo pode se tornar inválido ou fraco a medida em que acrescentarmos premissas fracas.
+
+**Criar casos de teste trabalha com dedução, detalhamento e entendimento, portanto com lógica.**
