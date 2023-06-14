@@ -97,3 +97,22 @@ Se começarmos com um argumento válido, então, independente das premissas que 
 Se começarmos com um argumento forte ou válido, o mesmo pode se tornar inválido ou fraco a medida em que acrescentarmos premissas fracas.
 
 **Criar casos de teste trabalha com dedução, detalhamento e entendimento, portanto com lógica.**
+
+## 5. Como escrever Requisitos e Casos de Testes
+
+### 5.2 Como levantar e escrever requisitos de testes
+
+Existe uma diferença entre requisitos e casos de teste, isso depende diretamente do do grau de profundidade do plano de teste gerado.
+
+1. De onde levantar os requisitos de teste
+De documentos formais, especificações de usuários, necessidades de sistema, casos de uso (se estiver usando UML - Unified Modeling Language, ou Linguagem Unificada de Modelagem é, como o nome indica, uma linguagem de notação utilizada para modelar e documentar as diversas fases do desenvolvimento de sistemas orientados a objetos ), etc.
+
+2. Como escrever requisitos de testes?
+Ele deve ser escrito de forma clara, simples e objetiva. Ex: Teste de login de sistema, Teste de consulta XYZ, Teste de defeitos, Teste do defeito ABC123, Teste de inclusão de usuário
+
+Quanto mais eu detalho um requisito, mais eu me aproximo dos casos de testes. Em termos formais, a estrutura de requisito de teste é composta pelas seguitnes informações:
+**- Identificação do requisito de teste:** É um número ou identificador único do requisito de teste;
+**- Descrição:** Resumido e detalhado;
+**- Status:** É a posição atual no ciclo de vida de um requisito de teste (ex: criado, atualizado, finalizado, aprovado, implementado, fechado, etc);
+**- Relacionamento e dependências:** Relacionamentos e dependências para com requisitos e casos de teste;
+
