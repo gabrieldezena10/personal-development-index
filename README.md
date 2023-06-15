@@ -307,14 +307,15 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
+        <a href="https://learn.cypress.io/">[Course] Real World Testing with Cypress</a> (100%)
         <a href="https://egghead.io/courses/architect-an-extensible-digital-garden-with-next-js-tailwind-and-nx-53f7628f">[Course] Architect an Extensible Digital Garden with Next.js, Tailwind, and Nx</a> (0%)
       </summary>
       <ul>
         <li>
-          Started: 
+          Started: 15/03/2023
         </li>
         <li>
-          Finished:
+          Finished: 16/05/2023
         </li>
       </ul>
       </details>
