@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@scale-react-dev-with-nx/api/util-interfaces": [
+        "libs/api/util-interfaces/src/index.ts"
+      ],
+      "@scale-react-dev-with-nx/store-application/feature-game-details": [
+        "libs/store-application/feature-game-details/src/index.ts"
+      ],
+      "@scale-react-dev-with-nx/store-application/ui-shared": [
+        "libs/store-application/ui-shared/src/index.ts"
+      ],
+      "@scale-react-dev-with-nx/store-application/util-formatters": [
+        "libs/store-application/util-formatters/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
