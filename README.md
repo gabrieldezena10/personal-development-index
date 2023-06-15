@@ -147,7 +147,7 @@ This is a simple document that aims to list and index evidences of personal deve
     </summary>
     <ul>
       <li>
-        Started: 2022-11-02
+        Started: 
       </li>
       <li>
         Finished:
@@ -162,7 +162,7 @@ This is a simple document that aims to list and index evidences of personal deve
     </summary>
     <ul>
       <li>
-        Started: 2022-10-13
+        Started: 
       </li>
       <li>
         Finished:
@@ -177,10 +177,10 @@ This is a simple document that aims to list and index evidences of personal deve
     </summary>
     <ul>
       <li>
-        Started: 2022-12-13
+        Started: 
       </li>
       <li>
-        Finished: 2022-12-15
+        Finished: 
       </li>
     </ul>
     </details>
@@ -192,10 +192,10 @@ This is a simple document that aims to list and index evidences of personal deve
     </summary>
     <ul>
       <li>
-        Started: 2022-02-22
+        Started: 
       </li>
       <li>
-        Finished: 2022-10-28
+        Finished: 
       </li>
     </ul>
     </details>
@@ -205,6 +205,21 @@ This is a simple document that aims to list and index evidences of personal deve
 
 <h1>2023</h1>
 <ul>
+  <li>
+      <details> 
+    <summary>
+      <a href="https://egghead.io/courses/confidently-testing-redux-applications-with-jest-typescript-16e17d9b">[Course] </a> <a href=""> Confidently Testing Redux Applications with Jest & TypeScript<a> (100%)  ✔️
+    </summary>
+    <ul>
+      <li>
+        Started: 02/06/2023
+      </li>
+      <li>
+        Finished: 02/06/2023
+      </li>
+    </ul>
+    </details>
+  </li>
         
   <li>
     <details> 
