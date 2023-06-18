@@ -8,7 +8,6 @@ const tryCatchDemo = (state: "fail" | "succeed") => {
   } catch (e) {
     if (e instanceof Error) {
       return e.message;
-
     }
   }
 };
