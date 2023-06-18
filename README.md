@@ -240,14 +240,14 @@ This is a simple document that aims to list and index evidences of personal deve
    <li>
     <details> 
       <summary>
-        <a href="https://www.totaltypescript.com/tutorials/beginners-typescript">[Tutorial]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course/beginners-typescript">Beginners TypeScript</a> (28%)
+        <a href="https://www.totaltypescript.com/tutorials/beginners-typescript">[Tutorial]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course/beginners-typescript">Beginners TypeScript</a> (100%) ✔️
       </summary>
       <ul>
         <li>
           Started: 16/05/2023
         </li>
         <li>
-          Finished:
+          Finished: 18/06/2023
         </li>
       </ul>
       </details>
