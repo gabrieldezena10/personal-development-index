@@ -252,6 +252,22 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li>
+
+  <li>
+      <details> 
+    <summary>
+      <a href="https://github.com/gabrieldezena10/nlw-rocketseat">[Workshop] NLW Spacetime Rocketseat - 2023</a> (100%)  ✔️
+    </summary>
+    <ul>
+      <li>
+        Started: 16/05/2023
+      </li>
+      <li>
+        Finished: 18/06/2023
+      </li>
+    </ul>
+    </details>
+  </li>
   
   <li>
       <details> 
