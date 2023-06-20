@@ -190,15 +190,14 @@ This is a simple document that aims to list and index evidences of personal deve
 
 <h1>2023</h1>
 <ul>
-       
   <li>
     <details> 
       <summary>
-        <a href=""> [Book] Testes Funcionais de Software </a> (15%) 
+        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> (8%) 
       </summary>
       <ul>
         <li>
-          Started: 30/05/2023
+          Started: 20/06/2023
         </li>
         <li>
           Finished: 
@@ -332,6 +331,22 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li>
+
+  <li>
+    <details> 
+      <summary>
+        <a href=""> [Book] Testes Funcionais de Software </a> (15%) 
+      </summary>
+      <ul>
+        <li>
+          Started: 30/05/2023
+        </li>
+        <li>
+          Finished: 
+        </li>
+      </ul>
+      </details>
+  </li> 
 
 </ul>
 </br>
