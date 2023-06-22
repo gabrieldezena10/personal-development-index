@@ -60,20 +60,47 @@ Teams equipped with a robust automated test suite can confidently release new ve
 
 Incorporating a strong testing culture yields tangible benefits for developer productivity, code quality, and the overall success of software projects. By investing time and effort into writing tests, organizations can significantly improve their development process, enhance software reliability, and enable rapid iteration and deployment.
 
+### Designing a Test Suite
+There are two distinct dimensions for every test case: size and scope. S
+- **Size** refers to the resources that are required to run a test case: things like memory, processes, and time.
+- **Scope** refers to the specific code paths we are verifying.
 
-### Testing Overview
+### Test Size
+In brief, small tests run in a single process, medium tests run on a single machine, and large tests run wherever they want
 
-> Our experience suggests that as you approach 1% flakiness, the tests begin to lose value.  
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/df3b9946-345f-436a-b256-5a33566b93df)
+
+Placing restrictions on small tests makes speed and determinism much easier to achieve. As test sizes grow, many of the restrictions are relaxed. 
+- Small tests, regardless of the scope, are almost always faster and more deterministic than tests that involve more infrastructure or consume more resources.
+- Medium tests have more flexibility but also more risk of nondeterminism.
+- Larger tests are saved for only the most complex and difficult testing scenarios. 
 
 At Google, they have three sizes of tests:
 - **Small Tests**:
     - Must run in a **single process**.
-    - At Google, they restrict this even further to say that the small tests must run on a **single thread**.
-    - They aren’t allowed to sleep, **perform I/O operations** or make any other blocking calls.
+    - At Google, they restrict this even further to say that the small tests must run on a **single thread**. This means that the code performing the test must run in the same process as the
+code being tested. You can’t run a server and have a separate test process connect to it. It also means that you can’t run a third-party program such as a database as part of your test.
+    - They aren’t allowed to sleep, **perform I/O operations** or make any other blocking calls. This means that small tests aren’t allowed to access the network or disk. Testing code that
+relies on these sorts of operations requires the use of test doubles (see Chapter 13) to replace the heavyweight dependency with a lightweight,in-process dependency.
 - **Medium Tests**:
-    - Can span **multiple processes**, use threads and **can make blocking calls**, including **network calls**, to localhost.
+    - Can span **multiple processes**, use threads and **can make blocking calls**, including **network calls**, to localhost. The only remaining restriction is that medium tests aren’t allowed to make network calls to any system other than localhost . In other words, the test must be contained within a single machine.
+    - The ability to run multiple processes opens up a lot of possibilities. For example, you could run a database instance to validate that the code you’re testing integrates correctly in a more realistic setting. Or you could test a combination of web UI and server code.
+    - Unfortunately, with increased flexibility comes increased potential for tests to become slow and nondeterministic. Tests that span processes or are allowed to make blocking calls are dependent on the operating system and third-party processes to be fast and deterministic, which isn’t something we can guarantee in general
 - **Large Tests**:
-    - Large tests **remove the localhost restriction** imposed on medium tests, allowing the test and the system being tested to span across multiple machines.  
+    - Large tests **remove the localhost restriction** imposed on medium tests, allowing the test and the system being tested to span across multiple machines. We mostly reserve large tests for full-system end-to-end tests that are more about validating configuration than pieces of code, and for tests of legacy components for which it is impossible to use test doubles.
+    - Teams at Google will frequently isolate their large tests from their small or medium tests, running them only during the build and release process so as not to impact developer workflow.
+
+#### Properties commom to all test sizes
+Tests should assume as little as possible about the outside environment, such as the order in which the tests are run. For example, they should not rely on a shared database.
+A test should contain only the information required to exercise the behavior in question. Keeping tests clear and simple aids reviewers in verifying that the code does what it says it does.
+
+__**Test sizes in practice**__
+Having precise definitions of test sizes has allowed us to create tools to enforce them. Enforcement enables us to scale our test suites and still make certain guarantees about speed, resource utilization, and stability. The extent to which these definitions are enforced at Google varies by language. For example, we run all Java tests using a custom security manager that will cause all tests tagged as small to fail if they attempt to do something prohibited, such as establish a network connection.
+
+### Test Scope
+continuar...
+
+### Testing Overview
 
 Placing restrictions on small tests makes **speed** and **determinism** much easier to achieve.  
 
