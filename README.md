@@ -193,7 +193,7 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> (8%) 
+        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> (25%) 
       </summary>
       <ul>
         <li>
