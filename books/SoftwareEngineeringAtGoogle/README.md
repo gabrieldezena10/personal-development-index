@@ -152,22 +152,42 @@ When poorly written, automated tests can make it more difficult to make those ch
 - Once an issue is discovered through exploratory testing, automated tests should be added to prevent future regressions.
 - Automated testing can cover well-understood behaviors, allowing human testers to focus on areas where they can provide the most value and avoid repetitive tasks.
 
-### Testing Overview
+ ## Chapter 12 - Unit Testing
+**To recap, size refers to the resources consumed by a test and what it is allowed to do, and scope refers to how much code a test is intended to validate.**
 
-### Unit Testing  
 Unit tests are usually **small** in size, but this isn’t always the case.  
 
 After preventing bugs, the most important purpose of a test is to **improve productivity**.  
 
-They tend to be **easy to write** at the same time as the code they’re testing.  
+- Small tests are **fast and deterministic**, allowing developers to get immediate feedback
+- They tend to be **easy to write** at the same time as the code they’re testing.  
+- They tend to make it **easy to understand** what’s wrong when they fail.  
 
-They tend to make it **easy to understand** what’s wrong when they fail.  
+Google puts a lot of focus on test maintainability. Maintainable tests are ones that “just work”: after writing them, engineers don’t need to think about them again until they
+fail, and those failures indicate real bugs with clear causes.
+
+### The Importance of Maintainability
+
+It is a helpfull thing when developers sets patterns and practices to alleviate the struggle of writing tests.
+
+Imagine this scenario: Mary wants to add a simple new feature to the product and is able to implement it quickly, perhaps requiring only a couple dozen lines of code. But when she goes to check in her change, she gets a screen full of errors back from the automated testing system. She spends the rest of the day going through those failures one by one.
+
+Broadly speaking, the issues encountered fall into two categories. 
+- First, the tests she was working with were **brittle**: they broke in response to a harmless and unrelated change that introduced no real bugs.
+- Second, the tests were **unclear**: after they were failing, it was difficult to determine what was wrong, how to fix it, and what those tests were supposed to be doing in the first place.
+
+
 
 > A  test is complete when its body contains all of the information a reader needs in order to **understand** how it arrives at its result.
 
 > A test is concise when it contains **no other distracting or irrelevant information**.
 
 It can often be worth violating the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle if it leads to **clearer tests**.  
+
+
+
+### Testing Overview
+
 
 **Test Behaviors, Not Methods**:
 - Rather than writing a test for each method, **write a test for each behavior**.
