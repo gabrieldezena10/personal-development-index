@@ -97,27 +97,62 @@ A test should contain only the information required to exercise the behavior in 
 __**Test sizes in practice**__
 Having precise definitions of test sizes has allowed us to create tools to enforce them. Enforcement enables us to scale our test suites and still make certain guarantees about speed, resource utilization, and stability. The extent to which these definitions are enforced at Google varies by language. For example, we run all Java tests using a custom security manager that will cause all tests tagged as small to fail if they attempt to do something prohibited, such as establish a network connection.
 
-### Test Scope
-continuar...
-
-### Testing Overview
 
 Placing restrictions on small tests makes **speed** and **determinism** much easier to achieve.  
 
 Larger tests are saved for only the most **complex** and **difficult** testing scenarios.  
 
+### Test Scope
+Test scope refers to how much code is being validated by a given test. 
+- **Narrow-scoped** tests (commonly called “unit tests”) are designed to validate the logic in a small, focused part of the codebase, like an individual class or method.
+- **Medium-scoped** tests (commonly called integration tests) are designed to verify interactions between a small number of components; for example, between a server and its database.
+- **Large-scoped** tests (commonly referred to by names like functional tests, end-to-end tests, or system tests) are designed to validate the interaction of several distinct parts of the system, or emergent behaviors that aren’t expressed in a single class or method.
+
 At Google, they tend to aim to have a mix of around:
 - 80% of small tests
 - 15% of medium tests
-- 5% of large tests  
+- 5% of large tests
+  
+Unit tests form an excellent base because they are fast, stable, and dramatically narrow the scope and reduce the cognitive load required to identify all the possible behaviors a class or function has.
+
+Favoring unit tests gives us high confidence quickly, and early in the development process. Larger tests act as sanity checks as the product develops; they should not be viewed as a primary method for catching bugs. 
+
+If you emphasize integration testing, you might discover that your test suites take longer to run but catch more issues between components. When you emphasize unit tests, your test suites can complete very quickly, and you will catch many common logic bugs. But, unit tests cannot verify the interactions between components
 
 **The Beyoncé Rule**: *“If you liked it, then you shoulda put a test on it.”*  
 
+### A Note on code Coverage
 **Code coverage** is a measure of which lines of feature code are exercised by which tests.  
 
 If you have 100 lines of code and your tests execute 90 of them, you have 90% code coverage.  
 
 Code coverage only measures that a line was invoked, **not what happened as a result**.  
+
+### Testing at Google Scale
+The development environment at Google consists that most of Google’s code is kept in a single monolithic repository (monorepo).
+
+### The Pitfalls of a Large Test Suite
+When poorly written, automated tests can make it more difficult to make those changes. Brittle tests—those which over-specify expected outcomes or rely on extensive and complicated boilerplate—can actually resist change. These poorly written tests can fail even when unrelated changes are made.
+
+## History of Testing at Google
+- Google's approach to testing underwent a revolution from 2005 to 2006, driven by the success of the GWS project and the recognition of the power of automated testing.
+- Orientation Classes were introduced during new hire orientation, educating engineers about the value and practices of automated testing.
+- The Test Certified program provided a clear path for teams to improve their testing processes, with five levels of certification and concrete actions to achieve each level.
+- Testing on the Toilet (TotT) was a unique initiative to raise awareness about testing by posting one-page flyers in restroom stalls, covering various testing topics.
+- Testing culture at Google today is deeply embedded in the developer workflow, with every code change expected to include tests and undergo code review.
+- Project Health (pH) is a tool that gathers metrics on project health, including test coverage and latency, to provide continuous feedback and improvement opportunities.
+- Google emphasizes training, mentorship, and creating a clear expectation that testing is everyone's job, rather than mandating it through senior leadership.
+- The focus has been on demonstrating the success of testing practices, allowing engineers to embrace the idea voluntarily and continue doing the right thing.
+
+## The Limits of Automated Testing
+- Automated testing may not be suitable for all testing tasks, such as evaluating the quality of search results or assessing audio and video performance.
+- Human judgement is often necessary for evaluating nuances in audio and video quality, especially for telephony or video-calling systems.
+- Humans excel in creative assessments, such as searching for complex security vulnerabilities, which can be added to automated security testing systems after discovery.
+- Exploratory Testing is a creative approach where the application under test is treated as a puzzle, uncovering unknown problems through probing overlooked code paths or unusual responses.
+- Once an issue is discovered through exploratory testing, automated tests should be added to prevent future regressions.
+- Automated testing can cover well-understood behaviors, allowing human testers to focus on areas where they can provide the most value and avoid repetitive tasks.
+
+### Testing Overview
 
 ### Unit Testing  
 Unit tests are usually **small** in size, but this isn’t always the case.  
