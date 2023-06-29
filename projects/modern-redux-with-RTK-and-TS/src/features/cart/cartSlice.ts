@@ -5,14 +5,16 @@ import { CartItems, checkout } from "../../app/api";
 type CheckoutState = "LOADING" | "READY" | "ERROR";
 export interface CartState {
     items: {
-        [productID: string]: number
+        [productID: string]: number;
     }
-    checkoutState: CheckoutState
+    checkoutState: CheckoutState;
+    errorMessage: string;
 }
 
 const initialState: CartState = {
     items: {},
-    checkoutState: "READY"
+    checkoutState: "READY",
+    errorMessage: ""
 }
 
 export const checkoutCart = createAsyncThunk("cart/checkout", async (items: CartItems)=> {
@@ -41,14 +43,15 @@ const cartSlice = createSlice({
         }
     },
     extraReducers: function(builder) {
-        builder.addCase(checkoutCart.pending, (state, action) => {
-            state.checkoutState = "LOADING"
+        builder.addCase(checkoutCart.pending, (state) => {
+            state.checkoutState = "LOADING";
         }),
-        builder.addCase(checkoutCart.fulfilled, (state, action) => {
-            state.checkoutState = "READY"
+        builder.addCase(checkoutCart.fulfilled, (state,) => {
+            state.checkoutState = "READY";
         }),
         builder.addCase(checkoutCart.rejected, (state, action) => {
-            state.checkoutState = "ERROR"
+            state.checkoutState = "ERROR";
+            state.errorMessage = action.error.message || "";
         })
     }
 });
