@@ -205,23 +205,8 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li> 
-        
+            
   <li>
-    <details> 
-      <summary>
-        <a href="https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8">[Course] Modern Redux with Redux Toolkit (RTK) and TypeScript</a> (0%)
-      </summary>
-      <ul>
-        <li>
-          Started: 
-        </li>
-        <li>
-          Finished:
-        </li>
-      </ul>
-      </details>
-  </li>     
-    <li>
     <details> 
       <summary>
         <a href="https://www.totaltypescript.com/tips">[Workshop] TypeScript Tips</a> (0%)
@@ -236,6 +221,23 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li>
+
+  <li>
+    <details> 
+      <summary>
+        <a href="https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8">[Course] Modern Redux with Redux Toolkit (RTK) and TypeScript</a> (100%) ✔️
+      </summary>
+      <ul>
+        <li>
+          Started: 27/06/2023
+        </li>
+        <li>
+          Finished: 29/06/2023
+        </li>
+      </ul>
+      </details>
+  </li> 
+
    <li>
     <details> 
       <summary>
