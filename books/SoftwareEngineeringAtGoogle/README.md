@@ -176,17 +176,24 @@ Broadly speaking, the issues encountered fall into two categories.
 - First, the tests she was working with were **brittle**: they broke in response to a harmless and unrelated change that introduced no real bugs.
 - Second, the tests were **unclear**: after they were failing, it was difficult to determine what was wrong, how to fix it, and what those tests were supposed to be doing in the first place.
 
+#### Preventing Brittle Tests
 
+The ideal test is unchanging, requiring minimal updates unless the system's requirements change. Four types of changes engineers make to production code and how tests should respond:
+1. **Pure refactorings**: Internal changes without modifying the system's interface shouldn't affect tests.
+2. **New features**: Existing behaviors should remain unaffected, and new tests should cover the new features.
+3. **Bug fixes**: Fixing a bug includes adding missing test cases, but existing tests usually don't need updates.
+4. **Behavior changes**: Changing existing behavior requires updates to existing tests and coordination with users.
+   
+Changes to tests in the first three cases indicate unintended consequences or inappropriate test design. Behavior changes are more expensive as they break explicit contracts with users, while the previous cases break unintended contracts.
+
+#### Writing Clear Tests
+Test failures happen for one of two reasons:
+- The system under test has a problem or is incomplete. This result is exactly what tests are designed for: alerting you of bugs so that you can fix them.
+- The test itself is flawed. In this case, nothing is wrong with the system under test, but the test was specified incorrectly. If this was an existing test rather than one that you just wrote, this means that the test is brittle. The previous section discussed how to avoid brittle tests, but it’s rarely possible to eliminate them entirely.
 
 > A  test is complete when its body contains all of the information a reader needs in order to **understand** how it arrives at its result.
 
 > A test is concise when it contains **no other distracting or irrelevant information**.
-
-It can often be worth violating the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle if it leads to **clearer tests**.  
-
-
-
-### Testing Overview
 
 
 **Test Behaviors, Not Methods**:
@@ -195,7 +202,11 @@ It can often be worth violating the [DRY](https://en.wikipedia.org/wiki/Don%27t_
     - *“**Given** that a bank  account is empty, **when** attempting to withdraw money from it, **then** the transaction is rejected."*
 
 - The mapping between methods and behaviors is **many-to-many**:
-    - Most nontrivial methods implement **multiple behaviors**, and some behaviors rely on the interaction of **multiple methods**.  
+    - Most nontrivial methods implement **multiple behaviors**, and some behaviors rely on the interaction of **multiple methods**.
+      
+It can often be worth violating the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle if it leads to **clearer tests**.  
+
+### Testing Overview
 
 **Don't put logic in tests**  
 
