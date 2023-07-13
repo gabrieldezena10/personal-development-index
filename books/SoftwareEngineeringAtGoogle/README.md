@@ -206,6 +206,43 @@ Test failures happen for one of two reasons:
       
 It can often be worth violating the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle if it leads to **clearer tests**.  
 
+Behavior-driven tests tend to be clearer than method-oriented tests for several reasons. First, they read more like natural language, allowing them to be naturally understood rather than requiring laborious mental parsing. Second, they more clearly express cause and effect because each test is more limited in scope.
+Finally, the fact that each test is short and descriptive makes it easier to see what functionality is already tested and encourages engineers to add new streamlined test methods instead of piling onto existing methods.
+
+**Structure Tests to emphasize Behaviors**:
+Remember that every behavior has three parts: 
+- a “given” component that defines how the system is set up;
+- a “when” component that defines the action to be taken on the system;
+- a “then” component that validates the result.
+
+Example:
+```java
+@Test
+public void transferFundsShouldMoveMoneyBetweenAccounts() {
+
+// Given two accounts with initial balances of $150 and $20
+        Account account1 = newAccountWithBalance(usd(150));
+        Account account2 = newAccountWithBalance(usd(20));
+
+// When transferring $100 from the first to the second account
+        bank.transferFunds(account1, account2, usd(100));
+
+// Then the new account balances should reflect the transfer
+        assertThat(account1.getBalance()).isEqualTo(usd(50));
+        assertThat(account2.getBalance()).isEqualTo(usd(120));
+}
+```
+
+**Name Tests After the Behavior Being Tested**  
+Method-oriented tests are usually named after the method being tested (e.g., a test for the updateBalance method is usually called testUpdateBalance ). With more focused behavior-driven tests, we have a lot more flexibility and the chance to convey useful information in the test’s name.
+A test’s name should summarize the behavior it is testing. A good name describes both the actions that are being taken on a system and the expected outcome.
+
+- If you need to use the word “and” in a test name, there’s a good chance that you’re actually testing multiple behaviors and should be writing multiple tests!
+
+**Don’t Put Logic in Tests**
+Continue here
+
+
 ### Testing Overview
 
 **Don't put logic in tests**  
