@@ -196,7 +196,35 @@ Test failures happen for one of two reasons:
 > A test is concise when it contains **no other distracting or irrelevant information**.
 
 
-**Test Behaviors, Not Methods**:
+#### Test Behaviors, Not Methods:
+For example, consider the snippet of code in the example below, which displays the results of a transaction
+
+```java
+public void displayTransactionResults(User user, Transaction transaction) {
+ ui.showMessage("You bought a " + transaction.getItemName());
+ if (user.getBalance() < LOW_BALANCE_THRESHOLD) {
+ ui.showMessage("Warning: your balance is low!");
+ }
+}
+```
+It wouldn’t be uncommon to find a test covering both of the messages that might be shown by the method,
+
+```java
+// a method-driven test
+@Test
+public void testDisplayTransactionResults() {
+
+ transactionProcessor.displayTransactionResults( newUserWithBalance( LOW_BALANCE_THRESHOLD.plus(dollars(2))),
+ new Transaction("Some Item", dollars(3)));
+
+ assertThat(ui.getText()).contains("You bought a Some Item");
+ assertThat(ui.getText()).contains("your balance is low");
+}
+```
+With such tests, it’s likely that the test started out covering only the first method. Later, an engineer expanded the test when the second message was
+added (violating the idea of unchanging tests that we discussed earlier). This modification sets a bad precedent: as the method under test becomes more
+complex and implements more functionality, its unit test will become increasingly convoluted and grow more and more difficult to work with.
+
 - Rather than writing a test for each method, **write a test for each behavior**.
 - Behaviors can often be expressed using the words **"given,"** **"when,"** and **"then"**:
     - *“**Given** that a bank  account is empty, **when** attempting to withdraw money from it, **then** the transaction is rejected."*
@@ -206,10 +234,27 @@ Test failures happen for one of two reasons:
       
 It can often be worth violating the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle if it leads to **clearer tests**.  
 
+The previous example can be rewritten using behavior-driven tests, as presented below:
+```java
+//A behavior-driven test
+@Test
+public void displayTransactionResults_showsItemName() {
+ transactionProcessor.displayTransactionResults(new User(), new Transaction("Some Item"));
+ assertThat(ui.getText()).contains("You bought a Some Item");
+}
+
+@Test
+public void displayTransactionResults_showsLowBalanceWarning() {
+ transactionProcessor.displayTransactionResults(newUserWithBalance(LOW_BALANCE_THRESHOLD.plus(dollars(2))),
+ new Transaction("Some Item", dollars(3)));
+ assertThat(ui.getText()).contains("your balance is low");
+}
+```
+
 Behavior-driven tests tend to be clearer than method-oriented tests for several reasons. First, they read more like natural language, allowing them to be naturally understood rather than requiring laborious mental parsing. Second, they more clearly express cause and effect because each test is more limited in scope.
 Finally, the fact that each test is short and descriptive makes it easier to see what functionality is already tested and encourages engineers to add new streamlined test methods instead of piling onto existing methods.
 
-**Structure Tests to emphasize Behaviors**:
+#### Structure Tests to emphasize Behaviors:
 Remember that every behavior has three parts: 
 - a “given” component that defines how the system is set up;
 - a “when” component that defines the action to be taken on the system;
@@ -233,19 +278,70 @@ public void transferFundsShouldMoveMoneyBetweenAccounts() {
 }
 ```
 
-**Name Tests After the Behavior Being Tested**  
+#### Name Tests After the Behavior Being Tested
 Method-oriented tests are usually named after the method being tested (e.g., a test for the updateBalance method is usually called testUpdateBalance ). With more focused behavior-driven tests, we have a lot more flexibility and the chance to convey useful information in the test’s name.
 A test’s name should summarize the behavior it is testing. A good name describes both the actions that are being taken on a system and the expected outcome.
 
 - If you need to use the word “and” in a test name, there’s a good chance that you’re actually testing multiple behaviors and should be writing multiple tests!
 
-**Don’t Put Logic in Tests**
-Continue here
+#### Don’t Put Logic in Tests
+Clear tests are trivially correct upon inspection; that is, it is obvious that a test is doing the correct thing just from glancing at it.
+Complexity is most often introduced in the form of logic. Logic is defined via the imperative parts of programming languages such as operators, loops, and conditionals. When a piece of code contains logic, you need to do a bit of mental computation to determine its result instead of just reading it off of the
+screen.
 
+#### Write Clear Failure Messages
+A good failure message contains much the same information as the test’s name: it should clearly express the desired outcome, the actual outcome, and any relevant parameters.
+- Here’s an example of a bad failure message: __Test failed: account is closed__
+- A better failure message clearly distinguishes the expected from the actual state and gives more context about the result: __Expected an account in state CLOSED, but got account <{name: "my-account", state: "OPEN"}__
+
+### Tests and Code Sharing: DAMP, Not DRY
+
+**1. DRY Principle in Software Development**<br>
+DRY stands for "Don't Repeat Yourself". It's a principle that encourages reducing code duplication and maintaining each concept in a single, canonical place.
+DRY is beneficial in making software easier to maintain and change, as updates only need to be made in one place.
+However, DRY can sometimes make code unclear, as it may require following chains of references to understand what the code is doing.
+
+**2. DRY vs DAMP in Test Code**<br>
+The cost/benefit analysis of DRY plays out differently in test code. Tests are designed to be stable and should break when the system being tested changes, so DRY doesn't have as much benefit in this context.
+Test code should often strive to be DAMP, promoting "Descriptive And Meaningful Phrases". A bit of duplication is acceptable in tests if it makes the test simpler and clearer.
+
+**3. DAMP is Complementary to DRY** <br>
+DAMP is not a replacement for DRY; it is complementary to it. Helper methods and test infrastructure can still help make tests clearer by making them more concise, factoring out repetitive steps whose details aren’t relevant to the particular behavior being tested.
+Refactoring should be done with an eye toward making tests more descriptive and meaningful, and not solely in the name of reducing repetition.
+
+#### Shared Values in Tests
+Many tests are structured by defining a set of shared values to be used by tests and then by defining the tests that cover various cases for how these values interact.
+Using shared constants can make tests concise, but it can cause problems as the test suite grows. It can be difficult to understand why a particular value was chosen for a test.
+A better way to accomplish this goal is to construct data using helper methods that require the test author to specify only values they care about, and setting reasonable defaults for all other values.
+
+**1. Helper Methods for Constructing Test Data**<br>
+Helper methods can be used to construct test data, allowing each test to create the exact values it needs without having to worry about specifying irrelevant information or conflicting with other tests.
+These methods can wrap a constructor by defining arbitrary defaults for each of its parameters. Tests call the helper, specifying values for only the parameters that they care about.
+
+#### Shared Setup
+Many test frameworks allow engineers to **define methods to execute before each test in a suite is run**. These setup methods can make tests clearer and more concise by removing the need to repeat initialization logic.
+However, if tests begin to depend on the particular values used in setup, it can lead to unclear tests. Tests that explicitly care about particular values should state those values directly, overriding the default defined in the setup method if necessary.
+
+#### Shared Helpers and Validation in Tests
+Helper methods can be a useful way for concisely constructing test values. However, other types of helper methods, such as those performing a common set of assertions against a system under test, can be dangerous as they make tests less behavior-driven and harder to understand.
+- The extreme example is a **validate** method called at the end of every test method, which performs a set of fixed checks against the system under test. Such a validation strategy can be a bad habit to get into because tests using this approach are less behavior driven. 
+
+More focused validation methods that assert a single conceptual fact about their inputs can be useful. These methods are particularly helpful when the condition they are validating is conceptually simple but requires complex logic to implement.
+
+#### Defining Test Infrastructure
+Test infrastructure refers to code shared across multiple test suites. It can make unit tests much easier to write in some circumstances.
+Test infrastructure must be approached carefully as it can have many callers that depend on it and can be difficult to change without introducing breakages. It needs to be treated as its own separate product and must always have its own tests.
+Most of the test infrastructure that engineers use comes in the form of well-known third-party libraries like JUnit. Standardizing on these libraries within an organization should happen as early and universally as possible.
+
+### Conclusion
+- Unit tests are powerful tools for ensuring that systems continue to work over time in the face of unanticipated changes.
+- Careless use of unit testing can result in a system that requires much more effort to maintain and doesn't actually improve confidence in the system.
+<br>
+
+## Chapter 13. Test Doubles
+Continue here...
 
 ### Testing Overview
-
-**Don't put logic in tests**  
 
 ### Test Doubles
 A test double is an object or function that can **stand in for a real implementation in a test**, similar to how a stunt double can stand in for an actor in a movie.  
