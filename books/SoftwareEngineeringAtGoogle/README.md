@@ -339,19 +339,320 @@ Most of the test infrastructure that engineers use comes in the form of well-kno
 <br>
 
 ## Chapter 13. Test Doubles
-Continue here...
+
+__Test doubles are essential objects or functions used in place of actual implementations during testing. They are useful when real implementations would introduce complexity or unpredictability, such as in scenarios involving external servers or databases.__
+
+Test Doubles and Mocks are both types of test objects used in unit testing, but they serve different purposes and have distinct characteristics:
+
+**Test Doubles:**
+
+- Test Doubles is a general term that encompasses various types of objects used to replace real dependencies in unit tests. It includes Mocks, Stubs, Fakes, and other types of objects that simulate the behavior of real dependencies without actually implementing their full functionality.
+- Test Doubles are used to isolate the code under test and create controlled environments for testing specific scenarios. They help in avoiding side effects, improving test reliability, and making tests faster by removing external dependencies.
+- Test Doubles do not enforce any expectations on how they are used; they are simply objects that behave similarly to the real dependencies.
+
+**Mocks:**
+- Mocks are a specific type of test doubles that are pre-programmed with expectations about the interactions they should have with the code under test. They are used for interaction testing, which involves verifying that specific methods are called with specific arguments during the test execution.
+- Mocks allow the tester to set expectations on method calls and verify whether these expectations are met at the end of the test. If an expected method call is not made, the test using the mock will fail, indicating a deviation from the expected behavior.
+- Mocking frameworks are often used to create mock objects quickly and easily, making it more convenient to define the expected behavior.
+  
+> In summary, while Test Doubles is a broad term covering various objects used in unit testing, Mocks are a specific type of Test Doubles that have pre-defined expectations about the interactions with the code under test. Mocks are particularly useful for interaction testing to ensure that specific methods are called with expected arguments during the test execution.
+
+**The previous two chapters introduced the concept of small tests and discussed why they should comprise the majority of tests in a test suite. However, production code often doesn’t fit within the constraints of small tests due to communication across multiple processes or machines. Test doubles can be much more lightweight than real implementations, allowing you to write many small tests that execute quickly and are not flaky.**
+
+#### The Need for Test Doubles<br>
+Real-world systems often interact with external elements, such as servers or databases, which can complicate testing. Test doubles help overcome these challenges by standing in for real implementations, making tests easier to run and more reliable.
+
+#### Types of Test Doubles<br>
+Test doubles come in various forms, ranging from simple substitutes (like in-memory databases) to more sophisticated doubles capable of mimicking complex system behaviors.
+
+#### The Impact of Test Doubles<br>
+While test doubles can significantly boost engineering speed, their misuse can lead to brittle and ineffective tests. Key considerations include:
+
+- Testability: Codebases must be designed to swap real implementations with test doubles, which often requires thoughtful design and potential refactoring.
+- Applicability: Test doubles aren't always suitable, and sometimes using real implementations is preferable.
+- Fidelity: The behavior of a test double should closely resemble that of the real implementation, but perfect fidelity may not always be feasible or necessary.
+
+#### Seams and Testable Code<br>
+A seam is a way to make code testable by allowing for the use of test doubles—it makes it possible to use different dependencies for the system under test rather than the dependencies used in a production environment. Dependency injection is a common technique for introducing seams.
+
+Dependency injection is a common technique for introducing seams. In short, when a class utilizes dependency injection, any classes it needs to use (i.e.,
+the class’s dependencies) are passed to it rather than instantiated directly, making it possible for these dependencies to be substituted in tests.
+
+Dependency injection is a technique used to make code more flexible and testable by allowing the dependencies of a class to be provided externally, rather than being created internally in the class. This makes it easier to perform testing, as it is possible to inject simulated (fake) dependencies during testing, rather than relying on the actual implementations. However, in dynamically typed languages such as Python or JavaScript, the ability to dynamically override functions or methods makes it easier to create tests without the need to explicitly apply dependency injection.
+
+```js
+class Calculadora {
+    somar(a, b) {
+        return a + b;
+    }
+}
+```
+We can create a test for this class and dynamically replace the "somar" method with a different implementation just for the test:
+
+```js
+const calculadora = new Calculadora();
+
+console.log(calculadora.somar(2, 3)); // Saída: 5
+
+// Substituir dinamicamente o método "somar" por uma implementação diferente para o teste
+calculadora.somar = function(a, b) {
+    return a * b;
+};
+
+console.log(calculadora.somar(2, 3)); // Saída: 6 (resultado diferente da implementação original)
+```
+
+This flexibility of dynamically typed languages makes dependency injection less crucial, as we can easily override specific parts of a class just for testing purposes, without having to take a more formal approach to dependency injection. However, dependency injection can still be useful in more complex scenarios or when the structure of the code requires greater separation between dependencies and class logic.
+
+#### Mocking Frameworks<br>
+A mocking framework is a software library that makes it easier to create test doubles within tests; it allows you to replace an object with a mock, which is a test double whose behavior is specified inline in a test. While they reduce boilerplate code, overuse of these frameworks can complicate codebase maintenance.
+
+This summary highlights the importance of using test doubles effectively in unit testing and the considerations involved, including the trade-offs between testability, applicability, and fidelity.
+
+### Techniques for Using Test Doubles
+
+Test doubles are used to replace real parts of the system with controlled replacements to isolate the code under test. These include various techniques like Faking, Stubbing, and Interaction Testing.
+These techniques are used for isolating the code under test from its dependencies.
+
+**1. Faking:**
+Faking is a technique where a lightweight implementation of an API is created that behaves similarly to the actual implementation but isn't suitable for production.
+Example: An in-memory database used during testing as a substitute for a real database.
+Fakes are often faster to set up and can make tests run faster.
+However, creating a fake can be challenging as it needs to mimic the real implementation’s behavior.
+
+First, let's define the Database class that we want to fake.
+```js
+class Database {
+  saveUser(user) {
+    // Code that connects to a database and saves the user.
+  }
+
+  getUser(id) {
+    // Code that connects to a database and fetches the user.
+  }
+}
+```
+Now, we'll create a FakeDatabase for our tests.
+
+```js
+class FakeDatabase {
+  constructor() {
+    this.users = {};
+  }
+
+  saveUser(user) {
+    this.users[user.id] = user;
+  }
+
+  getUser(id) {
+    return this.users[id] || null;
+  }
+}
+
+// And then we can use the `FakeDatabase` in our tests:
+
+test('should save and retrieve a user', () => {
+  const fakeDatabase = new FakeDatabase();
+  const userService = new UserService(fakeDatabase);
+
+  const user = { id: 1, name: 'John' };
+  userService.saveUser(user);
+  const retrievedUser = userService.getUser(1);
+
+  expect(retrievedUser).toEqual(user);
+});
+```
+
+
+**2. Stubbing:**
+Stubbing involves specifying the exact return values of a function that otherwise has no behavior of its own.
+Stubs are typically created using mocking frameworks, reducing the boilerplate code that would be necessary for creating new classes to hardcode return values.
+Limitations include over-specified tests, where the test knows too much about the inner workings of the function under test, leading to brittle tests.
+
+Continuing with the example:
+We can stub the getUser method of the Database class in our test:
+
+```js
+test('should return the user data', () => {
+  const database = new Database();
+  const userService = new UserService(database);
+
+  const user = { id: 1, name: 'John' };
+
+  // Stub the `getUser` method
+  database.getUser = jest.fn().mockReturnValue(user);
+
+  const retrievedUser = userService.getUser(1);
+
+  expect(retrievedUser).toEqual(user);
+  expect(database.getUser).toHaveBeenCalledWith(1);
+});
+```
+
+**3. Interaction Testing:**
+Interaction testing validates how a function is called without actually executing the implementation. This is used to check if a function is called the right way, i.e., correct number of times, with the correct arguments.
+Mocking frameworks are often used for interaction testing, reducing boilerplate code and improving readability.
+The term "interaction testing" is preferred over "mocking" to avoid confusion with mocking frameworks, which can be used for stubbing as well.
+Overuse can result in brittle tests that break with minor changes in implementation.
+Note that these are all techniques for using test doubles, and the appropriate technique to use depends on the situation and the specific needs of the test.
+
+Continuing with the example:
+We'll test if the saveUser method is called correctly:
+
+```js
+test('should save the user data', () => {
+  const database = new Database();
+  const userService = new UserService(database);
+
+  const user = { id: 1, name: 'John' };
+
+  // Stub the `saveUser` method
+  database.saveUser = jest.fn();
+
+  userService.saveUser(user);
+
+  // Check if `saveUser` was called correctly
+  expect(database.saveUser).toHaveBeenCalledWith(user);
+});
+```
+> In these examples, the UserService is using a Database (or a fake/stubbed version of it) to save and retrieve users. The tests then verify that this interaction is happening as expected. Note that in a real-world scenario, the Database class would be doing more complex work, and the fake/stubbed versions would need to mimic this behavior more closely.
+
+Below is a basic conceptual diagram of these techniques:
+ ```
+                            |Test Doubles|
+              -----------------------------------
+             |                |                  |
+           Faking           Stubbing      Interaction Testing
+        (Lightweight     (Specifies return   (Checks how a
+      Implementation)      values of a         function is 
+                            function)          called)
+
+```
+
+### Real Implementations
+Although test doubles can be invaluable testing tools. At Google, **the first choice for tests is to use the real implementations of the system under test’s dependencies; that is, the same implementations that are used in production code.** Tests have higher fidelity when they execute code as it will be executed in production, and using real implementations helps accomplish this.
+
+### 1 - Faking
+If using a real implementation is not feasible within a test, the best option is often to use a fake in its place. A fake is preferred over other test double
+techniques because it behaves similarly to the real implementation: the system under test shouldn’t even be able to tell whether it is interacting with a real implementation or a fake.
+
+#### Why Are Fakes Important?
+- Fakes can be a powerful tool for testing: they execute quickly and allow you to effectively test your code without the drawbacks of using real implementations.
+- They provide an enormous boost to engineering velocity across a software organization.
+
+#### When Should Fakes Be Written?
+- A fake requires effort and domain experience to create, as it needs to behave similarly to the real implementation.
+- Maintenance is required whenever the behavior of the real implementation changes.
+- The team responsible for the real implementation should write and maintain the fake.
+- The decision to create a fake depends on the trade-off between productivity improvements and the costs of creating and maintaining it.
+
+#### The Fidelity of Fakes
+- Fidelity refers to how closely the behavior of a fake matches the real implementation.
+- Perfect fidelity is not always feasible, but a fake should maintain fidelity to the API contracts of the real implementation.
+- A fake might not need to have 100% functionality if not required by most tests, but it should fail fast in such cases to communicate its limitations.
+
+#### Fakes Should Be Tested
+- A fake must have its own tests to ensure it conforms to the API of its corresponding real implementation.
+- Contract tests can be written against the API's public interface and run against both the real implementation and the fake.
+
+#### What to Do If a Fake Is Not Available
+- Request the API owners to create a fake if it is not available.
+- If the owners are unwilling or unable to create a fake, consider writing a partial fake by wrapping calls to the API in a class that doesn't communicate with the API.
+- Alternatively, use real implementations or other test double techniques as substitutes.
+
+> In some cases, a fake can be seen as an optimization to speed up slow tests using a real implementation, but it's essential to weigh the benefits against the effort required to create and maintain the fake.
+
+### 2 - Stubbing
+Stubbing is a way for a test to hardcode behavior for a function that otherwise has no behavior on its own. It's a quick and easy way to replace a real implementation in a test.
+
+Example of Using Stubbing to Simulate Responses:
+```js
+test('getTransactionCount', () => {
+  const transactionCounter = new TransactionCounter(mockCreditCardServer);
+  // Use stubbing to return three transactions.
+  jest
+    .spyOn(mockCreditCardServer, 'getTransactions')
+    .mockReturnValue([TRANSACTION_1, TRANSACTION_2, TRANSACTION_3]);
+
+  expect(transactionCounter.getTransactionCount()).toEqual(3);
+});
+```
+
+#### The Dangers of Overusing Stubbing
+- Tests become unclear: Stubbing involves extra code that can be difficult to understand and detracts from the test's intent.
+- Tests become brittle: Stubbing exposes implementation details, requiring updates when the production code changes.
+- Tests become less effective: Stubbing cannot guarantee that the function behaves like the real implementation, affecting the test's fidelity.such as in a statement like that shown in the following snippet that hardcodes part of the contract of the add() method (“If 1 and 2 are passed in, 3 will be returned”):
+when(stubCalculator.add(1, 2)).thenReturn(3);
+
+- Stubbing is a poor choice if the system under test depends on the real implementation’s contract, because you will be forced to duplicate the details of the contract, and there is no way to guarantee that the contract is correct (i.e., that the stubbed function has fidelity to the real implementation).
+- Additionally, with stubbing there is no way to store state, which can make it difficult to test certain aspects of your code. For example, if you call database.save(item) on either a real implementation or a fake, you might be able to retrieve the item by calling database.get(item.id()) given that both of these calls are accessing internal state, but with stubbing there is no way to do this.
+
+An Example of Overusing Stubbing:
+```js
+test('creditCardIsCharged', () => {
+  // Set up stubbing for test doubles created by a mocking framework.
+  // ...
+  // Call the system under test and verify the pay() method was called.
+  expect(mockCreditCardServer.pay).toHaveBeenCalledWith(transaction, creditCard, 500);
+});
+```
+
+Refactoring to Avoid Stubbing:
+```js
+test('creditCardIsCharged', () => {
+  const paymentProcessor = new PaymentProcessor(creditCardServer, transactionProcessor);
+  // Call the system under test.
+  paymentProcessor.processPayment(creditCard, Money.dollars(500));
+  // Query the credit card server state to see if the payment went through.
+  expect(creditCardServer.getMostRecentCharge(creditCard)).toEqual(500);
+});
+```
+
+#### When Is Stubbing Appropriate?
+- Stubbing is appropriate when you need a function to return a specific value to get the system under test into a certain state.
+- Each stubbed function should have a direct relationship with the test's assertions.
+- Real implementations or fakes are preferred over stubbing because they provide more guarantees about the correctness of the code. However, stubbing can be used when necessary, as long as its usage is constrained to avoid overly complex tests.
+
+### 3 - Interaction Testing
+
+Interaction testing validates how a function is called without executing the actual implementation.
+State testing, where you validate the output or system state, is preferred over interaction testing.
+
+#### Advantages of State Testing
+- State testing provides clearer and more resilient tests.
+- Validates actual behavior by calling the system under test and checking the output or state changes.
+
+#### Downsides of Interaction Testing
+- Interaction testing can't guarantee that the system under test is working correctly.
+- Relies on assumptions about the behavior of the code, making tests less reliable.
+- Tests become brittle as they expose implementation details and fail with any code change.
+
+#### When to Use Interaction Testing
+- Use interaction testing when state testing is not feasible, like when a real implementation or a fake is unavailable.
+- Also useful when you need to ensure specific function calls occur, e.g., to verify a caching feature.
+
+#### Best Practices for Interaction Testing
+- Focus on state-changing functions for interaction testing; avoid testing non-state-changing functions.
+- Overspecifying interaction tests leads to brittleness; keep tests concise and clear.
+- Split tests to validate specific behaviors, avoiding multiple behaviors in a single test.
+
+## Conclusion
+- Interaction testing has its place, but state testing is preferred for clear, reliable, and maintainable tests.
+- Larger-scoped tests may also be necessary to supplement unit tests with state testing for risk mitigation.
+
+### Chapter conclusion
+- Test doubles are essential for engineering velocity, as they enable comprehensive testing and faster test execution.
+- Misusing test doubles can lead to unclear, brittle, and less effective tests, causing a drain on productivity.
+- Engineers should understand best practices for effectively applying test doubles to avoid potential pitfalls.
+- While test doubles are useful for handling difficult dependencies in tests, larger-scope testing should also be considered to maximize code confidence.
+- Choosing between real implementations and test doubles, as well as selecting the appropriate test double technique, may require trade-offs based on specific use cases.
+
+## Chapter 14. Larger Testing
+
 
 ### Testing Overview
 
 ### Test Doubles
-A test double is an object or function that can **stand in for a real implementation in a test**, similar to how a stunt double can stand in for an actor in a movie.  
-
-For example: An in-memory database.  
-
-Techniques for using test doubles:
-- *Faking* (for example, an in-memory database)
-- *Stubbing* (the process of giving behavior to a function that otherwise has no behavior on its own)
-- *Interacting Testing* (how a function is called without actually calling the implementation of the function)  
 
 A fake is often the ideal solution if a real implementation can’t be used in a test.  
 
