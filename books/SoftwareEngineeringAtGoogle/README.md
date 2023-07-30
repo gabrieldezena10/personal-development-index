@@ -649,16 +649,164 @@ State testing, where you validate the output or system state, is preferred over 
 
 ## Chapter 14. Larger Testing
 
+#### Test Size at Google
+- Small tests: Restricted to one thread, one process, one machine.
+- Larger tests: Not restricted by the same constraints as small tests.
 
-### Testing Overview
+#### Test Scope at Google
+- Unit tests: Smaller in scope compared to integration tests.
+- Largest-scoped tests: Involve several real dependencies and fewer test doubles.
 
-### Test Doubles
+#### Characteristics of Larger Tests
+- They may be slow.
+- They may be nonhermetic (share resources with other tests and traffic).
+- They may be nondeterministic. If a large test is nonhermetic it is almost impossible to guarantee determinism: other tests or user state may interfere with it.
 
-A fake is often the ideal solution if a real implementation can’t be used in a test.  
+#### Importance of Larger Tests
+- Larger tests provide confidence that the overall system works as intended.
+- They address fidelity, reflecting the real behavior of the system under test (SUT).
+- Fidelity is crucial for accurate testing.
 
-### Larger Testing
-Large tests provide more confidence that the **overall system** works as intended.  
+### Fidelity 
+The primary reason larger tests exist is to address fidelity. Fidelity is the property by which a test is reflective of the real behavior of the system under test (SUT).
+- Production environment offers the highest fidelity.
+- Larger tests aim to find the proper balance between fidelity, cost, and risk.
 
-- They may be **slow** (Google have tests that run for multiple hours or even days).
-- They may be **nonhermetic**.
-- They may be **nondeterministic**.  
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/7f1e89d9-aa77-45f1-93dd-3c3f33a44add)
+
+### Test Content and Realism
+Tests can also be measured in terms of how faithful the test content is to reality
+- Hand-crafted large tests may be dismissed if the test data looks unrealistic.
+- Test data copied from production is more faithful to reality.
+- Creating realistic test traffic, especially in AI, can be challenging due to intrinsic bias in seed data.
+
+### Fidelity Gap
+- Most data for unit tests is handcrafted and may not cover all scenarios.
+- Uncovered scenarios represent a fidelity gap in the tests.
+
+### Common Gaps in Unit Tests
+
+#### Unfaithful Doubles
+- Unit tests use test doubles to replace heavyweight or hard-to-test dependencies.
+- Test doubles (e.g., mocks) may not accurately represent the actual behavior of the replaced dependencies.
+- Misunderstanding the behavioral contract between the unit under test and the dependencies can lead to invalid tests.
+- Mocks can become stale if not updated alongside changes in the real implementation.
+
+#### Configuration Issues
+- Unit tests cover code within a binary but may not verify compatibility with deployment configurations or production instances.
+- Configuration changes can cause major user issues, and failures in this area have led to significant outages at Google.
+- Configuration should be version controlled to identify the source of bugs and integrate into larger tests.
+
+#### Issues Under Load
+- Unit tests are designed to be small and fast, making it difficult to test performance, load, and stress scenarios.
+- Large volumes of traffic, such as thousands or millions of queries per second, are challenging to simulate in typical unit tests.
+
+#### Unanticipated Behaviors, Inputs, and Side Effects
+- Unit tests can only test for anticipated behaviors and inputs.
+- Issues found by users are often unanticipated, requiring different testing techniques to identify such behaviors.
+- The user contract applies to all visible behaviors, not just those specified in the public API.
+
+#### Emergent Behaviors and the "Vacuum Effect"
+- Unit tests have limited scope, especially when using test doubles, and may miss behavior changes outside of that scope.
+- They deliberately eliminate real-world chaos like dependencies, network, and data, which may lead to missing certain defect categories.
+
+### Why Not Have Larger Tests?
+
+#### Constraints of Developer-Friendly Tests
+- Reliable: Must not be flaky and should provide a clear pass/fail signal.
+- Fast: Shouldn't interrupt the developer workflow.
+- Scalable: Able to run efficiently for presubmits and postsubmits.
+
+#### Challenges with Larger Tests
+- Flakiness: Larger tests are often flakier due to increased infrastructure usage.
+- Slower: Take longer to set up and run compared to small unit tests.
+- Scalability Issues: Resource and time requirements, as well as lack of isolation, can lead to collisions.
+- Ownership Challenge: Larger tests span multiple units, making it unclear who is responsible for maintenance and issue diagnosis.
+- Lack of Standardization: Larger tests suffer from a lack of standardization in infrastructure, process, and implementation.
+- Impact on Large-Scale Changes: The variety of ways larger tests are run can lead to skipping them during significant changes.
+- Integration Challenges: Tests that involve multiple teams require unifying incompatible infrastructures.
+- Difficulty in Teaching: Lack of standardization makes it challenging to teach a single approach to new engineers.
+
+### Structure of a Large Test
+
+Large tests usually consist of a workflow with the following phases: 
+1. Obtain a System Under Test
+2. Seed Necessary Test Data
+3. Perform Actions Using the System Under Test
+4. Verify Behaviors
+
+#### The System Under Test (SUT)
+- In large tests, the System Under Test (SUT) is a key component.
+- Unlike unit tests that focus on one class or module in the same process, larger tests often involve one or more separate processes with test code (usually in its own process).
+
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/8ca56398-0609-4b31-a1d8-849f0ab69cc8)
+
+### Types of SUTs (System Under Test) and Their Impact on Large Tests
+
+#### Primary Factors for Judging SUTs
+- Hermeticity: Isolation from interactions with sources other than the test.
+- Fidelity: Accuracy in reflecting the production system being tested.
+
+**Examples of SUTs:**
+
+1. Single-process SUT:
+   - Entire system under test packaged into a single binary.
+   - Least faithful to production topology and configuration.
+
+2. Single-machine SUT:
+   - System under test consists of one or more separate binaries running on one machine.
+   - Used for "medium" tests with increased fidelity using production launch configurations.
+
+3. Multimachine SUT:
+   - System under test distributed across multiple machines, similar to production cloud deployment.
+   - Higher fidelity but can introduce network and machine flakiness in "large" tests.
+
+4. Shared Environments (Staging and Production):
+   - Test uses shared environments, low cost, but may conflict with other simultaneous uses.
+   - Testing in production increases the risk of end-user impact.
+
+5. Hybrids:
+   - Mix of SUTs, may run some components explicitly but have them interact with shared environments.
+
+#### Benefits of Hermetic SUTs
+- Hermetic SUTs can minimize unreliability and long turnaround time in large tests.
+- Production tests using the actual production system deployment are popular but have limitations in blocking code release.
+- Creating a giant shared staging environment can help but still limits test execution to code availability.
+- Cloud-isolated or machine-hermetic SUTs improve the situation by avoiding conflicts and reservation requirements for code release.
+
+### Risks and Techniques in Large Test Design
+
+#### Reducing SUT Size at Problem Boundaries
+- Frontend and backend tests can become painful due to UI changes and asynchronous behaviors.
+- Splitting tests at the UI/API boundary using public APIs is recommended for easier maintenance.
+- Be cautious with third-party dependencies, as they may lack shared environments for testing.
+
+#### Record-Replay Proxies
+- Consumer-driven contract tests define a contract for both the client and provider of a service to drive automated tests.
+- At Google, a common approach is to use larger tests to generate traffic logs, which are replayed during smaller tests.
+- Requests must be matched using matchers for response replay, similar to stubs and mocks.
+- New tests or significant client behavior changes may require running the test in Record mode to generate new traffic.
+
+### Test Data in Large Tests
+
+#### Two Kinds of Data in Large Tests
+1. Seeded data: Data preinitialized into the system under test reflecting its state at the inception of the test.
+2. Test traffic: Data sent to the system under test by the test itself during its execution.
+
+#### Complexity of Seeding the SUT State
+- Seeding the SUT state in large tests is more complex than setup work in unit tests due to the larger and separate SUT.
+- Domain data and a realistic baseline might be needed for accurate and realistic testing.
+
+#### Data Generation Methods
+- Handcrafted data: Test data created manually for larger tests, which may require significant setup work.
+- Copied data: Data copied, typically from production, to provide a baseline for testing changes.
+- Sampled data: A reduced volume of copied data to reduce test time and improve manageability.
+
+#### Verification of SUT Behavior
+- Manual Verification: Humans interact with the SUT to determine if it functions correctly, either through regression or exploratory testing.
+- Assertions: Explicit checks about the intended behavior of the system.
+- A/B Comparison (Differential Testing): Running two copies of the SUT, sending the same data, and comparing the output to identify unintended changes.
+
+
+
+ 
