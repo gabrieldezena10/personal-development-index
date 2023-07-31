@@ -9,21 +9,6 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">[Article] The Clean Architecture</a> (0%)
-      </summary>
-      <ul>
-        <li>
-          Started: 
-        </li>
-        <li>
-          Finished: 
-        </li>
-      </ul>
-    </details>
-  </li>
-  <li>
-    <details> 
-      <summary>
         <a href="https://www.totaltypescript.com/tutorials/zod">[Tutorial] Zod</a> (0%)
       </summary>
       <ul>
@@ -205,6 +190,21 @@ This is a simple document that aims to list and index evidences of personal deve
 
 <h1>2023</h1>
 <ul>
+   <li>
+    <details> 
+      <summary>
+        <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">[Article] The Clean Architecture</a> (0%)
+      </summary>
+      <ul>
+        <li>
+          Started: 
+        </li>
+        <li>
+          Finished: 
+        </li>
+      </ul>
+    </details>
+  </li>
   <li>
     <details> 
       <summary>
@@ -220,21 +220,6 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
     </details>
   </li>
-  <li>
-    <details> 
-      <summary>
-        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> (25%) 
-      </summary>
-      <ul>
-        <li>
-          Started: 20/06/2023
-        </li>
-        <li>
-          Finished: 
-        </li>
-      </ul>
-      </details>
-  </li> 
             
   <li>
     <details> 
@@ -251,6 +236,22 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
       </details>
   </li>
+  
+  <li>
+    <details> 
+      <summary>
+        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> (100%) ✔️
+      </summary>
+      <ul>
+        <li>
+          Started: 20/06/2023
+        </li>
+        <li>
+          Finished: 31/07/2023
+        </li>
+      </ul>
+      </details>
+  </li> 
 
   <li>
     <details> 
