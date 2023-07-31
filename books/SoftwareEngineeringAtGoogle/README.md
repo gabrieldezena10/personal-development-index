@@ -781,13 +781,7 @@ Large tests usually consist of a workflow with the following phases:
 - Splitting tests at the UI/API boundary using public APIs is recommended for easier maintenance.
 - Be cautious with third-party dependencies, as they may lack shared environments for testing.
 
-#### Record-Replay Proxies
-- Consumer-driven contract tests define a contract for both the client and provider of a service to drive automated tests.
-- At Google, a common approach is to use larger tests to generate traffic logs, which are replayed during smaller tests.
-- Requests must be matched using matchers for response replay, similar to stubs and mocks.
-- New tests or significant client behavior changes may require running the test in Record mode to generate new traffic.
-
-### Test Data in Large Tests
+### Test Data
 
 #### Two Kinds of Data in Large Tests
 1. Seeded data: Data preinitialized into the system under test reflecting its state at the inception of the test.
@@ -807,6 +801,32 @@ Large tests usually consist of a workflow with the following phases:
 - Assertions: Explicit checks about the intended behavior of the system.
 - A/B Comparison (Differential Testing): Running two copies of the SUT, sending the same data, and comparing the output to identify unintended changes.
 
+### Large Tests and the Developer Workflow
 
+#### Integrating Large Tests into the Developer Workflow
+- Large tests should be integrated into the developer workflow with automated mechanisms for presubmit and postsubmit execution.
+- At Google, large tests are often run separately from unit tests, with separate post-submit continuous builds.
+- Presubmit execution provides feedback directly to the author, but some large tests may run postsubmit or as part of the release process due to their size or complexity.
 
+#### Authoring Large Tests
+- Clear libraries, documentation, and examples are essential for creating large tests.
+- Large tests are more expensive to maintain, but not all tests are created equal; A/B diff tests have less human cost in verification.
+- Balancing the cost of maintaining the infrastructure and code with the benefits of test coverage is crucial.
+
+#### Running Large Tests
+- Large tests may require alternate continuous builds and presubmits, separate from unit tests.
+- Engineers need familiar ways to run nonstandard tests and iterate on them.
+- Techniques to speed up tests include reducing scope, splitting tests into smaller ones, and optimizing test build time.
+
+#### Driving Out Flakiness
+- Flakiness can make larger tests unusable, so removing it is a high priority.
+- Reducing scope can help, but other flakiness issues can be mitigated through test design and implementation.
+- Balancing test speed and tolerable system behavior for end users is crucial to handling flakiness.
+
+#### Making Tests Understandable
+- Tests must provide clear pass/fail signals and meaningful error output.
+- For tests that require human investigation, like A/B diff tests, special handling is needed to ensure meaningful results.
+- Tests should minimize the effort required to identify the root cause of failures and provide support and contact information for assistance.
+
+## END
  
