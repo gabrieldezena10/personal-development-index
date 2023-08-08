@@ -220,22 +220,6 @@ This is a simple document that aims to list and index evidences of personal deve
       </ul>
     </details>
   </li>
-            
-  <li>
-    <details> 
-      <summary>
-        <a href="https://www.totaltypescript.com/tips">[Workshop] TypeScript Tips</a> (0%)
-      </summary>
-      <ul>
-        <li>
-          Started: 
-        </li>
-        <li>
-          Finished:
-        </li>
-      </ul>
-      </details>
-  </li>
   
   <li>
     <details> 
@@ -344,6 +328,22 @@ This is a simple document that aims to list and index evidences of personal deve
         </li>
         <li>
           Finished: 15/05/2023
+        </li>
+      </ul>
+      </details>
+  </li>
+  
+  <li>
+    <details> 
+      <summary>
+        <a href="https://www.totaltypescript.com/tips">[Workshop] TypeScript Tips</a> (0%)
+      </summary>
+      <ul>
+        <li>
+          Started: 
+        </li>
+        <li>
+          Finished:
         </li>
       </ul>
       </details>
