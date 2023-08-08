@@ -208,11 +208,11 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://alistair.cockburn.us/hexagonal-architecture/">[Article] Hexagonal Architecture</a> (0%) 
+        <a href="https://alistair.cockburn.us/hexagonal-architecture/">[Article] Hexagonal Architecture</a> (10%) 
       </summary>
       <ul>
         <li>
-          Started:
+          Started: 08/08/2023
         </li>
         <li>
           Finished:
