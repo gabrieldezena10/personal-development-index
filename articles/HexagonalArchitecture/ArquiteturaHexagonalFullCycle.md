@@ -84,6 +84,34 @@ The speaker believes that hexagonal architecture is more about software design d
 
 Hexagonal architecture creates "ports and adapters" to access the application. This approach is likened to having electrical devices connected to outlets rather than directly to conduits. Adapters serve as the connectors, and if you want to change devices, you change the adapter, leaving the application unchanged. The speaker encourages viewers to see software in this light, distinguishing between the application's core problem and the technical complexities it interacts with. The goal is to create adapters that access the application without altering its core, allowing easy adaptation without modifying the application itself.
 
+![Hexagonal architecture basic](image.png)
+
 The architecture consists of a central application enclosed within a hexagon. Outside the hexagon, there are adapters connected to various external objects or entities. These adapters serve as intermediaries, allowing different components, such as users or other applications, to interact with the central application. The complexity of the application lies within the hexagon, while the technical complexities related to accessing and persisting data or integrating with external systems are handled by the adapters.
 
 The distinction between the complexity of the business logic and the technical complexities is crucial. By separating them, developers can better manage the software's overall complexity. Unfortunately, in traditional approaches, these complexities often become intertwined, leading to confusion and challenges in maintenance and evolution.
+
+## Architecture Dynamics
+
+- Definition of bounderies and protection of the application rules
+- Componentization and decoupling
+  - Logs
+  - Cache
+  - Upload
+  - Database
+  - Comandos
+  - Filas
+  - HTTP/APIs/GraphQL
+- Ease of breakdown for microservices
+  
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/b2da2732-39ba-4780-9a6c-9a89c79fd0ee)
+
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/e4c76fb8-7c50-4df5-9ac2-1d02b48fb443)
+
+## Hexagonal vs Clean vs Onion
+
+The differences between hexagonal architecture, clean architecture, and onion architecture are discussed. While these architectures share the principle of separating the core application from external components, they have distinct characteristics.
+
+- Hexagonal architecture focuses on separating the core application from external connections, without prescribing specific folder structures or layering. It offers flexibility in code organization.
+- Clean architecture and onion architecture provide more explicit guidelines on layering and organization. They define specific layers such as infrastructure, UI, and persistence.
+
+It's important to understand that these architectures are not interchangeable. While they share the same underlying principle, they differ in their implementation details.
