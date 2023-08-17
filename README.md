@@ -197,7 +197,7 @@ This is a simple document that aims to list and index evidences of personal deve
       </summary>
       <ul>
         <li>
-          Started: 
+          Started: 17/08/2023
         </li>
         <li>
           Finished: 
