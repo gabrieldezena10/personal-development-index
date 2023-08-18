@@ -81,3 +81,96 @@ Summarized:
 - Entities: In Clean Architecture, entities house business rules.
 - Differentiation: Use Cases and business rules differ – Use Cases manage the application of business rules, which reside in entities. In Domain Driven Design, business rules overlap with the domain, entities, and Enterprise Business Rules.
 - In essence, Use Cases are responsible for structured execution of business logic, utilizing rules outlined by entities. They stand as a cornerstone in Clean Architecture, guiding software automation and intent.
+
+## 1.6 Architectural Limits
+
+![architectural limits](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/22b789ac-6444-48fd-904f-b40a91881322)
+
+Architectural Boundaries in Clean Architecture: Architectural boundaries play a crucial role in Clean Architecture. The main concept is to keep anything that doesn't directly affect the business rules separate within its own boundary. For instance, picking a database (like MySQL or MongoDB) or designing the frontend shouldn't alter a business rule, such as interest calculation.
+
+Effective Boundary Separation: Properly dividing architectural boundaries isolates business rules from external factors, leading to a more efficient and robust software behavior. Elements that don't have a direct impact on business rules should reside in distinct architectural boundaries, promoting clear responsibilities and easy code maintenance.
+
+Database Interaction Example: Consider your business rules needing to interact with a database. Instead of directly linking them to the database, you'd establish a connection through an abstract interface. This demonstrates inversion of control and aligns with the SOLID principle, advocating for reliance on abstractions, not specific implementations.
+
+Advantages of This Approach: By applying this approach, your business rules remain unaffected by database specifics, thus clarifying architectural boundaries. Clean architecture visualizes these boundaries using circles, each representing a different boundary.
+
+Layer Breakdown: The innermost layer holds the domain (entities), where business rules reside. Above that, you find the use cases, which manage how business rules are employed. Controllers and presenters follow, overseeing user-software interaction. The outermost boundary features gateways and outer implementations.
+
+Maintaining a Clean Architecture: The secret to upholding clean architecture is to ensure that each piece of code stays within its designated boundary. This practice thwarts "leakage" of code across layers, fostering an intelligible and maintainable software structure.
+
+![clean architectural schema](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/ee11810b-d3e8-4627-b742-6d2bbb710162)
+
+## 1.7 Input vs Output
+Data Flow in Clean Architecture: Every application involves data coming in (input), traveling through various layers, undergoing operations and use cases, and ultimately producing an output.
+
+Versatile Input and Output: Input can originate from diverse sources like APIs, GraphQL, GRPC, or even a command line interface. Similarly, output can be sent back as a response to a web server, GRPC, GraphQL, or a Command Line Interface.
+
+Clean Architecture Interaction Cycle: Working with Clean Architecture creates a cycle defined by this interplay between input and output. Crucially, when data arrives from a web server, it doesn't directly access the entity. Instead, it's routed through a system that directs it to a controller. This controller doesn't directly communicate with the entity or repository; it reaches out to the Use Case, which is tasked with fulfilling the software's intention.
+
+Role of the Use Case: The Use Case bears the responsibility of realizing the software's intent. It understands the rules it needs to apply and passes the input to the business rules. The business rules generate an output, which the Use Case accepts and channels back to the controller, which then produces a response.
+
+Use Case Interactor: Within this setup, the Use Case interactor handles the processing of the Use Case. The Use Case returns output to the caller, usually the controller. However, this output should ideally be presented in a suitable format. For instance, the output going to a command line interface differs from that intended for the web. This adaptation of output format is performed by the Presenter.
+
+Summarized Approach: In Clean Architecture, the process involves taking input, generating output, and adapting that output to match the desired format, depending on the requester. This fluid movement of input, processing, and output stands as a fundamental Clean Architecture principle.
+
+In essence, Clean Architecture centers around this input-output cycle, ensuring output presentation aligns with requester needs. This cyclical interaction underpins the architecture's core concepts.
+
+## 1.8 DTOs (Data Transfer Objects)
+Data Transfer Objects (DTOs) in Clean Architecture: DTOs play a vital role in seamlessly moving data across the layers of a software architecture.
+
+Simple Data Carriers: DTOs are uncomplicated entities that lack any inherent behaviors; they're simply vessels for transporting data from one point to another. In Clean Architecture, DTOs take center stage for shuttling data across application layers.
+
+Data, Not Logic: DTOs are void of business rules or application logic. They're "anemic" objects that solely exist to convey data.
+
+DTOs: Adaptation for Varying Structures: DTOs come into play when input data's structure doesn't match that of the output data. Tailoring a specific DTO for each use case and action (like creating or modifying an object) becomes quite valuable.
+
+Unique DTOs for Each Use Case: It's common for each use case to possess its own input and output DTOs. This practice avoids unnecessary duplication and ensures that each DTO can flow differently based on the system's intent.
+
+DTO Workflow: In practice, DTOs function like this: When a user forwards data via an API, the controller receives it. This controller crafts an input DTO using the relevant data and passes it to the corresponding use case. The use case executes its tasks and assembles an output DTO with outcomes, which is then routed back to the controller. The controller transforms this output DTO into a response, dispatched through the API to the user.
+
+Vital Understanding: Grasping the essence and utility of DTOs is crucial for skillfully employing Clean Architecture. Proficiency in this approach significantly streamlines data manipulation between diverse layers of an application.
+
+In summary, DTOs serve as data carriers within Clean Architecture, facilitating smooth data transfer across different layers. This technique enhances data manipulation efficiency between application layers and underscores the essence of Clean Architecture.
+
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/95e2fc08-9331-4820-8ffd-a194a451ee52)
+
+## 1.9 Presenters
+Presenters in Clean Architecture: Presenters serve as transformation agents within the context of Clean Architecture. Their primary mission is to mold the output DTO into the appropriate structure for delivering results. In essence, they convert data into a format that clients can easily digest. This transformation proves critical since systems often necessitate displaying the same data in various formats (like JSON, XML, Protobuf, CLI, GraphQL, etc.), depending on customer preferences or API specifications.
+
+Example of Transformation: Imagine an output DTO object (e.g., containing category details). We could leverage the presenter to convert this object into a JSON or XML representation. This process involves data serialization and is executed by the presenter after obtaining the output, which initially exists as a DTO.
+
+```js
+// Controller 
+input = new CategoryInputDTO("category name")
+
+// Controller -> UseCase
+output = new CreateCategoryUseCase(input)
+
+// JSON
+jsonResult = CategoryPresenter(output).toJson();
+
+// XML
+xmlResult = CategoryPresenter(output).toXML();
+```
+
+Unified Customer Interface: Presenters empower the creation of a uniform interface for clients, regardless of the original data format or manipulation methods within the system. Moreover, they fortify the segregation of duties within the system. While presenters manage data transformation, other components can focus on their core functions.
+
+Vital Data Adaptation: Presenters assume a pivotal role in ensuring data is appropriately adapted for final delivery. They facilitate the accurate conversion of output DTOs, aligning with their core task of transformation.
+
+In summary, presenters are integral to Clean Architecture as they mediate data transformation, allowing for the optimal conversion of output DTOs for ultimate delivery. Their function aids in creating a consistent user interface and upholding system responsibilities division.
+
+## 1.10 Entities vs DDD (Domain Driven Design)
+Entities in Clean Architecture and Domain Driven Design (DDD): Entities in Clean Architecture and DDD hold distinct meanings. In Clean Architecture, entities encompass a layer housing unwavering business rules that gradually solidify. Meanwhile, DDD views entities as representations of distinct elements within the application, typically forming aggregates.
+Entities in Clean Architecture: Within the realm of Clean Architecture, entities symbolize the bedrock "Enterprise Business Rules." These rules are at the core of application behavior and remain resistant to swift alteration. While Clean Architecture doesn't explicitly detail entity creation, it underscores the importance of having all business rules within this layer.
+
+Harmonizing DDD with Clean Architecture: Despite conceptual differences, DDD principles can enhance the crafting of the entity layer within Clean Architecture. DDD's established norms aid in structuring this layer, encompassing aggregates, value objects, contracts, and more.
+
+Entities as Product of Aggregates and Domain Services in DDD: In practice, entities in Clean Architecture can be equated to the outcomes of aggregates and domain services in DDD. This alignment facilitates smoother cross-pollination of ideas between the two approaches.
+
+Alignment with Use Cases: The outer Use Case layer in Clean Architecture mirrors DDD's application service closely. Use Cases encapsulate application rules, processes, and strategies. Notably, Entities house pivotal, unchanging application rules, in contrast to Use Cases, which may vary based on circumstances.
+
+Data Entry Channels: Various avenues, such as the web, devices, databases, external interfaces, and UI, enable data to reach entities, thereby generating business value. This diverse entry points underscore the versatility of entities in absorbing valuable data.
+
+To encapsulate, the definitions of entities diverge between Clean Architecture and DDD. Nevertheless, principles from both can harmonize, enriching the entity layer's construction in Clean Architecture. This synergy enhances the encapsulation of core business rules and underscores the interplay of these concepts within distinct architectural paradigms.
+
+### Link: https://github.com/devfullcycle/fc-clean-architecture/tree/main
