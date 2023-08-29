@@ -193,14 +193,14 @@ This is a simple document that aims to list and index evidences of personal deve
    <li>
     <details> 
       <summary>
-        <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">[Article] The Clean Architecture</a> (0%)
+        <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">[Article]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/article/clean-architecture/articles/CleanArchitecture">The Clean Architecture</a> (100%) ✔️
       </summary>
       <ul>
         <li>
-          Started: 
+          Started: 15/08/2023
         </li>
         <li>
-          Finished: 
+          Finished: 29/08/2023
         </li>
       </ul>
     </details>
@@ -208,7 +208,7 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://alistair.cockburn.us/hexagonal-architecture/">[Article] Hexagonal Architecture</a> (10%) 
+        <a href="https://alistair.cockburn.us/hexagonal-architecture/">[Article] Hexagonal Architecture</a> (40%) 
       </summary>
       <ul>
         <li>
