@@ -170,6 +170,11 @@ This is a simple document that aims to list and index evidences of personal deve
     </ul>
     </details>
   </li>
+</ul>
+</br>
+
+<h1>2023</h1>
+<ul>
   <li>
     <details> 
     <summary>
@@ -185,11 +190,7 @@ This is a simple document that aims to list and index evidences of personal deve
     </ul>
     </details>
   </li>
-</ul>
-</br>
-
-<h1>2023</h1>
-<ul>
+  
    <li>
     <details> 
       <summary>
@@ -208,14 +209,14 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://alistair.cockburn.us/hexagonal-architecture/">[Article] Hexagonal Architecture</a> (40%) 
+        <a href="https://alistair.cockburn.us/hexagonal-architecture/">[Article]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/article/hexagonal-architecture/articles/HexagonalArchitecture">Hexagonal Architecture</a> (100%) ✔️
       </summary>
       <ul>
         <li>
           Started: 08/08/2023
         </li>
         <li>
-          Finished:
+          Finished: 31/08/2023
         </li>
       </ul>
     </details>
@@ -240,7 +241,7 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8">[Course] Modern Redux with Redux Toolkit (RTK) and TypeScript</a> (100%) ✔️
+        <a href="https://egghead.io/courses/modern-redux-with-redux-toolkit-rtk-and-typescript-64f243c8">[Course]</a> <a href="https://github.com/gabrieldezena10/personal-development-index/tree/course/modern-redux-with-RTK-and-TS/projects/modern-redux-with-RTK-and-TS">Modern Redux with Redux Toolkit (RTK) and TypeScript</a> (100%) ✔️
       </summary>
       <ul>
         <li>
