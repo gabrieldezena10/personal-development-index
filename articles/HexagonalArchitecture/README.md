@@ -113,3 +113,35 @@ Hexagonal Architecture addresses entanglement between business logic and interac
 - External items treated as identical from the application's perspective.
 
 Hexagonal Architecture separates business logic from external interactions, promoting flexibility, testability, and modularity in software design.
+
+## Structure
+
+- Ports and adapters are used to design software.
+- Two main types: "primary" and "secondary."
+- Primary parts drive the software, secondary parts are interacted with.
+- FIT is used for primary parts, mocks for secondary parts.
+- Arrange primary parts on the left (or top) and secondary parts on the right (or bottom).
+
+### Use Cases and Application Boundary
+
+- Use cases should focus on what the software does, not technical details.
+- Write use cases at the application boundary for clarity and maintainability.
+
+### Number of Ports
+
+- You can have different numbers of ports.
+- Suggested: Two, three, or four ports is a good starting point.
+- The right number depends on your specific project.
+
+## Known Uses
+
+![Hezagonal architecture complex example](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/af9334f4-c7f6-4f99-9cd4-f067d0df60bb)
+
+The image above shows an application with four ports and several adapters at each port. This was derived from an application that listened for alerts from the national weather service about earthquakes, tornadoes, fires and floods, and notified people on their telephones or telephone answering machines. At the time we discussed this system, the system’s interfaces were identified and discussed by ‘’technology, linked to purpose’’. There was an interface for trigger-data arriving over a wire feed, one for notification data to be sent to answering machines, an administrative interface implemented in a GUI, and a database interface to get their subscriber data.
+
+The people were struggling because they needed to add an http interface from the weather service, an email interface to their subscribers, and they had to find a way to bundle and unbundle their growing application suite for different customer purchasing preferences. They feared they were staring at a maintenance and testing nightmare as they had to implement, test and maintain separate versions for all combinations and permutations.
+
+Their shift in design was to architect the system’s interfaces ‘’by purpose’’ rather than by technology, and to have the technologies be substitutable (on all sides) by adapters. They immediately picked up the ability to include the http feed and the email notification (the new adapters are shown in the drawing with dashed lines). By making each application executable in headless mode through APIs, they could add an app-to-add adapter and unbundle the application suite, connecting the sub-applications on demand. Finally, by making each application executable completely in isolation, with test and mock adapters in place, they gained the ability to regression test their applications with stand-alone automated test scripts.
+
+
+
