@@ -51,7 +51,7 @@ XP devotes several ptractices to improving teamwork
 
 Write a test that fails. Write code that pass the test. Check that the test passes. Refactor the code. Automate your tests. Use failing tests to prompt your code. This cycle produces a natural rhythm of rapid feedback
 
-**A feature is finished when all of its tests pass. Untestet features do not exist**
+**A feature is finished when all of its tests pass. Untested features do not exist**
 
 - Run your test at every opportunity, its easier to find a bug along with the changes.
 - Use a good test framework.
@@ -63,5 +63,24 @@ Tests fall into two categories:
 - **Acceptance tests (or customer tests)** verify that the requested features match the business requirements and expectations of the customer.
 
   If you're fixing a bug, write a test that exposes the bug before you fix it. Exercice the proper behavior of the feature.
+  1. The test must fail to validate that the test CAN fail.
+  2. Write the simplest code that could possibly pass the test.
+  3. Run the test, when the test passes, refactor
+ 
+**The tight test-driven cycles creates a natural rhythm of feedback loops, producing a comprehensive test suite that explores the essential behavior of the code.**
 
-  ...page 27
+Every unique and identifiable piece of system deserves its own test case, they can serve as guide for future changes. Test-driven development forces you to work in small steps.
+
+- Isolated test has a drawback, however. While individual units may pass all of their tests, the complete system may fail when run as a whole. Integration tests can fill in the gap by checking to see if all of the pieces fit together well.
+
+**Tests are a safety net. They provide you immediate feedback about the project. They assume that the current code is sufficient to implement the required features. They allow refactoring and changes without fear.**
+
+### 2.2 Practice Pair Programming
+**Goal: to spread knowledge, experience and ideas**
+
+Pairs generally work together for just one task, perhaps and entire afternoon, and then form other pairs with new partners. The person with the keyboard - *the driver* - focuses on the details of the task. The other person - *the navigator* - keeps the entire project in mind, ensuring that the task fits into the project as a whole.
+
+Pair programming produces code through conversation, reinforcing good programming habits, with each partner exerting positive peer pressure on the other. It tends to produce fewer bugs, leadiing to cleaner code that fit the team coding standards.
+
+Working in pairs and keeping the coding standards in mind also lessens the temptation to rewrite code for its own sake, it is an investment in continual training.
+
