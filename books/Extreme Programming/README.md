@@ -84,3 +84,13 @@ Pair programming produces code through conversation, reinforcing good programmin
 
 Working in pairs and keeping the coding standards in mind also lessens the temptation to rewrite code for its own sake, it is an investment in continual training.
 
+### 2.3 Adopt Collective Code Ownership
+**Goal: to spread the responsability for the code to the whole team**
+
+Adopt collective code ownership where the entire codebase belongs to the whole team. Any developer is free to change any piece of code as needed to complete a task
+
+The alternative to collective code ownership is individual code ownership, where individual developers have complete responsability for certain subsystems. To make a change in one piece , you must ask permission of its owner. She may be the only person who understands that code. Collective code ownership gives you the power to make necessary changes yourself, wherever they are needed.
+
+Collective code ownership requires teamwork. Pair programming makes two people responsible for each line of code in the system, increasing the sense if team ownership. Coding standards provide a vocabulary of coding idioms.
+
+
