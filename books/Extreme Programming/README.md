@@ -93,4 +93,26 @@ The alternative to collective code ownership is individual code ownership, where
 
 Collective code ownership requires teamwork. Pair programming makes two people responsible for each line of code in the system, increasing the sense if team ownership. Coding standards provide a vocabulary of coding idioms.
 
+### 2.4 Integrate Continually
+**Goal: to reduce impact of adding new features**
 
+Integrate continually, merging new tasks and tests into the main source code repository as soon as they're comleted. Run the tests to verify that the new code fits well into the system. Fix any errors.
+
+By keeping tasks small, pairs can integrate their work after a few minutes or few hours - everyone can work on the freshest possible working code. 
+
+- Integration must be simple. Just run the test suites, merge, and commit the code. It must be quick and painless. Automate as much as you can.
+- Developer machines should also be stateless. Any code or artifact necessary for integrating or building should be in source control. You should be able to switch to a different computer, checks out the latest code, and start a new task
+
+## 3. Business Practices
+
+- The customer has finite time limits
+- You have finite resources
+
+  Exceding either or both increases the chance of failure. **Quality is also up to the customer**, but the developers should make the technical risks of reducing quality clear. The custumer must decide if having a good-enoughfeature by a certain date is more important than having a perfect software later.
+
+  XP is designed to minimize risk. Including the customer in the team improves communication between customer and developers. It's easier to ask the customer what she wants directly instead of making guesses.
+
+### 3.1 Add a Customer to the Team
+**Goal: to address business concerns accurately and directly**
+
+...
