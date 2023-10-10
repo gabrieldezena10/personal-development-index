@@ -124,4 +124,88 @@ XP uses the phrase Planning Game to describe the give and take process of decidi
 
 XP schedules are based around the iteration. An iteration is a snapshot of the entire development cycle. The customer requests features. The team plans them. They're implemented, tested and delivered.
 
-The planning game taked place at the start of each release 
+The planning game takes place at the start of each release The customer requests features by writing story cards. A story card is an index card that contains a short feature request.
+
+Developers next produce task cards from the story cards. Each task card represents a development task necessary to implement the story. Every story will have at least one task card. Tasks should be sufficiently detailed that you can start the test-code-refactor cycle to gauge when the task is finished
+
+
+### 3.3 Release Regularly
+**Goal: Ensure a consistent return on the customer's investment.**
+
+- Release software after each short iteration (1-4 weeks) when it passes acceptance tests.
+- Benefits:
+  - Quick adaptation to customer needs.
+  - Efficient bug fixes with immediate critical fixes and scheduled minor ones.
+  - Smoother transitions with small, regular releases.
+  - Frequent evaluations for adjusting priorities.
+  - Option for the customer to end the project when their investment is recouped.
+
+### 3.4 Work at a Sustainable Pace
+**Goal: Maintain productivity without exhaustion.**
+
+- Everyone has limited physical, mental, and creative energy.
+- Overtime can inflate velocity, but it's counterproductive.
+- Adjust scope if tasks exceed available time; don't overcommit.
+- Keep working hours and iteration length constant.
+- Regular releases and customer schedule adjustments ensure value.
+- Avoid constant overtime; reevaluate practices for change.
+- Sustainable pace leads to high productivity and quality work.
+- Regular breaks, standard workdays, and weekends enhance productivity.
+- High morale for teams when work can wait and obstacles are removed.
+
+- ## 4. Iteration Planning
+- Iteration planning adapts the project to evolving customer values.
+- The customer prioritizes features presented as story cards.
+- Developers estimate task durations based on customer-defined stories.
+- Adjust and refine stories and tasks as the project progresses.
+
+## 5. The Iteration
+
+- Customer uses stories and iterations to create schedules.
+- Developers have their own velocities, measured in ideal hours.
+- Tackle important and risky tasks first for smoother iteration completion.
+- Teams may choose various approaches for task assignment.
+- Frequent stand-up meetings and progress tracking are crucial.
+
+## 6. Releasing
+
+- Releasing software is a special phase, allowing retrospection and celebration.
+- The customer has options to deploy software based on project needs.
+- Short iterations lead to smaller, manageable changes for migrations.
+- Frequent releases facilitate learning and adaptation.
+- Regular releases offer feedback loops for users and project improvements.
+
+## 7. Story Cards
+
+- Story cards describe desired features in a sentence or two.
+- Customer communicates business information through story cards.
+- Developers estimate work for each story card.
+- Customer schedules stories based on estimates.
+- Customer holds complete responsibility for scheduled features.
+- Developers may suggest stories and identify technical risks.
+- Every story must provide identifiable business value.
+- Stories should be kept small and independent.
+- Story cards may be imperfect, but communication is key.
+
+## 8. Task Cards
+
+- Task cards answer "how should it be done" for developer tasks.
+- Task cards relate to story cards and prompt developer work.
+- Developers write tasks during iteration planning.
+- Tasks represent developer responsibilities and contain design details.
+- Tasks should be small and specific.
+- Every story needs at least one task card for writing acceptance tests.
+- Task estimates help track progress during an iteration.
+
+## 9. The Bullpen
+
+- Effective teamwork requires a conducive working environment.
+- XP recommends a wide-open room known as the bullpen.
+- The bullpen should have open space, tables, whiteboards, and bulletin boards.
+- Isolation from external noise is important, but communication is encouraged.
+- The customer should sit with the development team.
+- Good lighting, wall space, and powerful machines are essential.
+- Reworking facilities can significantly aid XP adoption.
+- Roles in Extreme Programming divide work between developers and customers.
+
+
