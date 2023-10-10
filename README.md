@@ -175,14 +175,14 @@ This is a simple document that aims to list and index evidences of personal deve
 
 <h1>2023</h1>
 <ul>
-  <li>
+ <li>
     <details> 
     <summary>
-      <a href="https://docs.google.com/document/d/11H4p8mdh9XqysuJRMCgnANQ6WLe_93aPJqMJi-tC13E/edit?usp=share_link">[Book] Extreme Programming Explained</a> (0%)
+      <a href="https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path">[Course] MongoDB Node.js Developer Path </a> (15%)
     </summary>
     <ul>
       <li>
-        Started: 
+        Started: 04/10/2023
       </li>
       <li>
         Finished: 
@@ -190,18 +190,18 @@ This is a simple document that aims to list and index evidences of personal deve
     </ul>
     </details>
   </li>
-
+  
   <li>
     <details> 
     <summary>
-      <a href="https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path">[Course] MongoDB Node.js Developer Path </a> (0%)
+      <a href="https://docs.google.com/document/d/11H4p8mdh9XqysuJRMCgnANQ6WLe_93aPJqMJi-tC13E/edit?usp=share_link">[Book] Extreme Programming Explained</a> (100%) ✔️
     </summary>
     <ul>
       <li>
-        Started: 
+        Started: 13/09/2023
       </li>
       <li>
-        Finished: 
+        Finished: 10/10/2023
       </li>
     </ul>
     </details>
