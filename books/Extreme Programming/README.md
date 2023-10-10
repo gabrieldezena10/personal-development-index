@@ -115,4 +115,13 @@ By keeping tasks small, pairs can integrate their work after a few minutes or fe
 ### 3.1 Add a Customer to the Team
 **Goal: to address business concerns accurately and directly**
 
-...
+Add a customer to the team. XP call this the WHOLE TEAM. The customer provides a business perspective as an actual user of the software. Regular, reliable, and rapid communication between technical and business people improves confidence, reduces guesswork and misunderstandings, and produces the desired results more quickly
+
+### 3.2 Play the Planning Game
+**Goal: to schedule the most important work**
+
+XP uses the phrase Planning Game to describe the give and take process of deciding which features to implement in what order. The goal of the planning game is to maximize the value of features produces.
+
+XP schedules are based around the iteration. An iteration is a snapshot of the entire development cycle. The customer requests features. The team plans them. They're implemented, tested and delivered.
+
+The planning game taked place at the start of each release 
