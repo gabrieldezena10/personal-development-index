@@ -178,14 +178,14 @@ This is a simple document that aims to list and index evidences of personal deve
  <li>
     <details> 
     <summary>
-      <a href="https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path">[Course] MongoDB Node.js Developer Path </a> (15%)
+      <a href="https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path">[Course] MongoDB Node.js Developer Path </a> (100%) ✔️
     </summary>
     <ul>
       <li>
         Started: 04/10/2023
       </li>
       <li>
-        Finished: 
+        Finished: 05/12/20123
       </li>
     </ul>
     </details>
