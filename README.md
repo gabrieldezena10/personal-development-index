@@ -173,6 +173,25 @@ This is a simple document that aims to list and index evidences of personal deve
 </ul>
 </br>
 
+<h1>2024</h1>
+<ul>
+  <li>
+    <details>
+      <summary>
+              <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/clean-code/books/Clean%20Code#clean-code---a-handbook-of-agile-software-craftsmanship">[Book] Clean Code </a> (5%) 
+      </summary>
+      <ul>
+        <li>
+          Started: 04/01/2024
+        </li>
+        <li>
+          Finished:
+        </li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
 <h1>2023</h1>
 <ul>
  <li>
