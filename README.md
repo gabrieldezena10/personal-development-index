@@ -194,7 +194,7 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
     <summary>
-      <a href="https://docs.google.com/document/d/11H4p8mdh9XqysuJRMCgnANQ6WLe_93aPJqMJi-tC13E/edit?usp=share_link">[Book] Extreme Programming Explained</a> (100%) ✔️
+      <a href="https://docs.google.com/document/d/11H4p8mdh9XqysuJRMCgnANQ6WLe_93aPJqMJi-tC13E/edit?usp=share_link">[Pocket Guide] Extreme Programming Explained</a> (100%) ✔️
     </summary>
     <ul>
       <li>
@@ -241,7 +241,7 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details> 
       <summary>
-        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> (100%) ✔️
+        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book - Test chapters] Software Egineering at Google (O'Reilly)</a> (100%) ✔️
       </summary>
       <ul>
         <li>
