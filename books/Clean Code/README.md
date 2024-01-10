@@ -62,3 +62,19 @@ It can include an intention-revealing function (call it isFlagged) to hide the m
  }
 ```
 With these simple name changes, it’s not difficult to understand what’s going on. This is the power of choosing good names.
+
+#### Avoid Disinformation
+
+Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning.
+
+Do not refer to a grouping of accounts as an accountList unless it’s actually a List. The word list means something speciﬁc to programmers. If the container holding the accounts is not actually a List , it may lead to false conclusions. 1 So accountGroup or bunchOfAccounts or just plain accounts would be better.
+
+Beware of using names which vary in small ways. How long does it take to spot the subtle difference between a XYZControllerForEfficientHandlingOfStrings in one module and, somewhere a little more distant, XYZControllerForEfficientStorageOfStrings ? The words have frightfully similar shapes. Spelling similar concepts similarly is information. Using inconsistent spellings is disinformation.
+
+#### Make Meaningfull Distinctions
+
+Noise words are another meaningless distinction. Imagine that you have a Product class. If you have another called ProductInfo or ProductData , you have made the names different without making them mean anything different.
+
+Noise words are redundant. The word variable should never appear in a variable name. The word table should never appear in a table name. How is NameString better than Name ? Would a Name ever be a ﬂoating point number? If so, it breaks an earlier rule about disinformation. Imagine ﬁnding one class named Customer and another named CustomerObject . What should you understand as the distinction? Which one will represent the best path to a customer’s payment history?
+
+In the absence of speciﬁc conventions, the variable moneyAmount is indistinguishable from money , customerInfo is indistinguishable from customer , accountData is indistinguishable from account , and theMessage is indistinguishable from message . Distinguish names in such a way that the reader knows what the differences offer.
