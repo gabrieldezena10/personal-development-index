@@ -1,21 +1,22 @@
 # Clean Code - A handbook of agile software craftsmanship
 
-## 2. Meaningful Names
+## 2. Nomes com significado
 
-#### Use Intention-revaling names
+#### Usar nomes que revelem a intenção
 
-The name of a variable, function, or class, should answer all the big questions. It should tell you why it exists, what it does, and how it is used. If a name requires a comment, then the name does not reveal its intent. 
+O nome de uma variável, função ou classe deve responder a todas as grandes questões. Ele deve dizer por que ele existe, o que ele faz e como ele é usado. Se um nome requer um comentário, então o nome não revela a sua intenção. 
+
 ```
 int d; // elapsed time in days
 ```
-The name d reveals nothing. It does not evoke a sense of elapsed time, nor of days. We should choose a name that specifies what is being measured and the unit of that measurement:
+O nome d não revela nada. Não evoca um sentido de tempo decorrido, nem de dias. Devemos escolher um nome que especifique o que está a ser medido e a unidade dessa medida:
 ```
 int elapsedTimeInDays;
 int daysSinceCreation;
 int daysSinceModification;
 int fileAgeInDays;
 ```
-Choosing names that reveal intent can make it much easier to understand and change code. What is the purpose of this code?
+A escolha de nomes que revelem a intenção pode facilitar muito a compreensão e a alteração do código. Qual é o objetivo deste código?
 ```
  public List<int[]> getThem() {
  List<int[]> list1 = new ArrayList<int[]>();
@@ -25,20 +26,18 @@ Choosing names that reveal intent can make it much easier to understand and chan
  return list1;
  }
 ```
-Why is it hard to tell what this code is doing? There are no complex expressions.
-Spacing and indentation are reasonable. There are only three variables and two constants mentioned. There aren’t even any fancy classes or polymorphic methods, just a list of arrays (or so it seems).
-The problem isn’t the simplicity of the code but the implicity of the code (to coin a phrase): the degree to which the context is not explicit in the code itself. The code implicitly requires that we know the answers to questions such as:
+Porque é que é difícil dizer o que este código está a fazer? Não existem expressões complexas.
+O espaçamento e a indentação são razoáveis. Há apenas três variáveis e duas constantes mencionadas. Nem sequer há classes sofisticadas ou métodos polimórficos, apenas uma lista de arrays (ou assim parece).
+O problema não é a simplicidade do código, mas a implicidade do código (para usar uma frase): o grau em que o contexto não está explícito no próprio código. O código exige implicitamente que saibamos as respostas a perguntas como:
 
-1. What kinds of things are in theList?
-2. What is the significance of the zeroth subscript of an item in theList?
-3. What is the significance of the value 4?
-4. How would I use the list being returned?
+1. Que tipos de coisas estão na Lista?
+2. Qual é o significado do subscrito zero de um item naLista?
+3. Qual é o significado do valor 4?
+4. Como é que eu utilizaria a lista devolvida?
 
-Avoid Disinformation 
-The answers to these questions are not present in the code sample, but they could have been. Say that we’re working in a mine sweeper game. We find that the board is a list of
-cells called theList. Let’s rename that to gameBoard.
-Each cell on the board is represented by a simple array. We further find that the zeroth subscript is the location of a status value and that a status value of 4 means “flagged.” Just
-by giving these concepts names we can improve the code considerably:
+Evitar a desinformação 
+As respostas a estas perguntas não estão presentes na amostra de código, mas poderiam estar. Digamos que estamos a trabalhar num jogo de varredura de minas. Descobrimos que o tabuleiro é uma lista de células chamada theList. Vamos mudar o nome para gameBoard.
+Cada célula do tabuleiro é representada por uma matriz simples. Descobrimos ainda que o subscrito zero é a localização de um valor de estado e que um valor de estado 4 significa "marcado". Apenas Só dando nomes a estes conceitos podemos melhorar consideravelmente o código:
 ```
  public List<int[]> getFlaggedCells() {
  List<int[]> flaggedCells = new ArrayList<int[]>();
@@ -48,10 +47,10 @@ by giving these concepts names we can improve the code considerably:
  return flaggedCells;
  }
 ```
-Notice that the simplicity of the code has not changed. It still has exactly the same number of operators and constants, with exactly the same number of nesting levels. But the code
-has become much more explicit.
-We can go further and write a simple class for cells instead of using an array of ints.
-It can include an intention-revealing function (call it isFlagged) to hide the magic numbers. It results in a new version of the function:
+Repare que a simplicidade do código não se alterou. Continua a ter exatamente o mesmo número de operadores e constantes, com exatamente o mesmo número de níveis de encaixe. Mas o código
+tornou-se muito mais explícito.
+Podemos ir mais longe e escrever uma classe simples para células em vez de utilizar uma matriz de ints.
+Esta pode incluir uma função que revela a intenção (chamemos-lhe isFlagged) para esconder os números mágicos. O resultado é uma nova versão da função:
 ```
  public List<Cell> getFlaggedCells() {
  List<Cell> flaggedCells = new ArrayList<Cell>();
@@ -61,20 +60,21 @@ It can include an intention-revealing function (call it isFlagged) to hide the m
  return flaggedCells;
  }
 ```
-With these simple name changes, it’s not difficult to understand what’s going on. This is the power of choosing good names.
+Com estas simples mudanças de nome, não é difícil perceber o que se está a passar. Este é o poder de escolher bons nomes.
 
-#### Avoid Disinformation
+#### Evitar a desinformação
 
-Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning.
+Os programadores devem evitar deixar pistas falsas que obscureçam o significado do código. Devemos evitar palavras cujos significados arraigados variem do significado pretendido.
 
-Do not refer to a grouping of accounts as an accountList unless it’s actually a List. The word list means something speciﬁc to programmers. If the container holding the accounts is not actually a List , it may lead to false conclusions. 1 So accountGroup or bunchOfAccounts or just plain accounts would be better.
+Não se refira a um agrupamento de contas como uma lista de contas, a menos que seja realmente uma lista. A palavra lista significa algo específico para programadores. Se o contentor que contém as contas não for de facto uma lista, pode levar a falsas conclusões. 1 Assim, seria melhor usar accountGroup ou bunchOfAccounts ou simplesmente accounts.
 
-Beware of using names which vary in small ways. How long does it take to spot the subtle difference between a XYZControllerForEfficientHandlingOfStrings in one module and, somewhere a little more distant, XYZControllerForEfficientStorageOfStrings ? The words have frightfully similar shapes. Spelling similar concepts similarly is information. Using inconsistent spellings is disinformation.
+Cuidado com a utilização de nomes que variam pouco. Quanto tempo demora a detetar a diferença subtil entre um XYZControllerForEfficientHandlingOfStrings em um módulo e, em algum lugar um pouco mais distante, XYZControllerForEfficientStorageOfStrings ? As palavras têm formas assustadoramente semelhantes. Escrever conceitos semelhantes de forma semelhante é informação. Utilizar grafias inconsistentes é desinformação.
 
-#### Make Meaningfull Distinctions
 
-Noise words are another meaningless distinction. Imagine that you have a Product class. If you have another called ProductInfo or ProductData , you have made the names different without making them mean anything different.
+#### Fazer distinções com sentido
 
-Noise words are redundant. The word variable should never appear in a variable name. The word table should never appear in a table name. How is NameString better than Name ? Would a Name ever be a ﬂoating point number? If so, it breaks an earlier rule about disinformation. Imagine ﬁnding one class named Customer and another named CustomerObject . What should you understand as the distinction? Which one will represent the best path to a customer’s payment history?
+As palavras com ruído são outra distinção sem significado. Imagine que tem uma classe Produto. Se tiver outra classe chamada ProductInfo ou ProductData, os nomes são diferentes sem que tenham um significado diferente.
 
-In the absence of speciﬁc conventions, the variable moneyAmount is indistinguishable from money , customerInfo is indistinguishable from customer , accountData is indistinguishable from account , and theMessage is indistinguishable from message . Distinguish names in such a way that the reader knows what the differences offer.
+As palavras ruidosas são redundantes. A palavra variável nunca deve aparecer no nome de uma variável. A palavra table nunca deve aparecer num nome de tabela. Como é que NameString é melhor do que Name? Um Name seria alguma vez um número de ponto flutuante? Se sim, isso quebra uma regra anterior sobre desinformação. Imagine encontrar uma classe chamada Customer e outra chamada CustomerObject . O que você deve entender como a distinção? Qual delas representará o melhor caminho para o histórico de pagamentos de um cliente?
+
+Na ausência de convenções específicas, a variável moneyAmount é indistinguível de money , customerInfo é indistinguível de customer , accountData é indistinguível de account , e theMessage é indistinguível de message . Distinguir os nomes de forma a que o leitor saiba quais são as diferenças.
