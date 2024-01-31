@@ -70,11 +70,60 @@ Não se refira a um agrupamento de contas como uma lista de contas, a menos que 
 
 Cuidado com a utilização de nomes que variam pouco. Quanto tempo demora a detetar a diferença subtil entre um XYZControllerForEfficientHandlingOfStrings em um módulo e, em algum lugar um pouco mais distante, XYZControllerForEfficientStorageOfStrings ? As palavras têm formas assustadoramente semelhantes. Escrever conceitos semelhantes de forma semelhante é informação. Utilizar grafias inconsistentes é desinformação.
 
-
 #### Fazer distinções com sentido
 
 As palavras com ruído são outra distinção sem significado. Imagine que tem uma classe Produto. Se tiver outra classe chamada ProductInfo ou ProductData, os nomes são diferentes sem que tenham um significado diferente.
 
-As palavras ruidosas são redundantes. A palavra variável nunca deve aparecer no nome de uma variável. A palavra table nunca deve aparecer num nome de tabela. Como é que NameString é melhor do que Name? Um Name seria alguma vez um número de ponto flutuante? Se sim, isso quebra uma regra anterior sobre desinformação. Imagine encontrar uma classe chamada Customer e outra chamada CustomerObject . O que você deve entender como a distinção? Qual delas representará o melhor caminho para o histórico de pagamentos de um cliente?
+As palavras muito são redundantes. A palavra variável nunca deve aparecer no nome de uma variável. A palavra table nunca deve aparecer num nome de tabela. Como é que NameString é melhor do que Name? Um Name seria alguma vez um número de ponto flutuante? Se sim, isso quebra uma regra anterior sobre desinformação. Imagine encontrar uma classe chamada Customer e outra chamada CustomerObject . O que você deve entender como a distinção? Qual delas representará o melhor caminho para o histórico de pagamentos de um cliente?
 
 Na ausência de convenções específicas, a variável moneyAmount é indistinguível de money , customerInfo é indistinguível de customer , accountData é indistinguível de account , e theMessage é indistinguível de message . Distinguir os nomes de forma a que o leitor saiba quais são as diferenças.
+
+#### Use nomes pronunciáveis
+
+Exmplo: variável chamada genymdhms (generation date, year, month, day, hour, minute, and second) sendo que a pronúncia fica "gen why emm dee aich emm ess". Observe a difereça que ocorre na refatoração abaixo:
+```
+class DtaRcrd102 {
+private Date genymdhms;
+private Date modymdhms;
+private final String pszqint = "102";
+/* ... */
+};
+```
+para
+```
+class Customer {
+private Date generationTimestamp;
+private Date modificationTimestamp;;
+private final String recordId = "102";
+/* ... */
+};
+```
+
+#### Utilizar nomes pesquisáveis
+Os nomes de uma só letra e as constantes numéricas têm um problema particular que é o facto de não serem não são fáceis de localizar num corpo de texto.
+É fácil procurar por MAX_CLASSES_PER_STUDENT , mas o número 7 pode ser mais problemático. As pesquisas podem encontrar o dígito como parte do nomes de arquivos, outras definições de constantes e em várias expressões onde o valor é utilizado com diferentes intenções. É ainda pior quando uma constante é um número longo e alguém pode ter transposto os dígitos, criando assim um bug e, ao mesmo tempo, evitando a busca do programador.
+
+__Evitar codificações__
+Se uma variável ou constante puder ser vista ou utilizada em vários locais num corpo de código, é imperativo dar-lhe um nome fácil de pesquisar. Mais uma vez, compare:
+
+```
+for (int j=0; j<34; j++) {
+s += (t[j]*4)/5;
+}
+```
+para
+```
+int realDaysPerIdealDay = 4;
+const int WORK_DAYS_PER_WEEK = 5;
+int sum = 0;
+for (int j=0; j < NUMBER_OF_TASKS; j++) {
+int realTaskDays = taskEstimate[j] * realDaysPerIdealDay;
+int realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);
+sum +=realTaskWeeks;
+}
+```
+
+Note-se que sum , acima, não é um nome particularmente útil mas, pelo menos, é pesquisável. O código O código intencionalmente nomeado torna a função mais longa, mas considere como será muito mais fácil será encontrar WORK_DAYS_PER_WEEK do que encontrar todos os lugares onde 5 foi usado e filtrar a lista para apenas as instâncias com o significado pretendido.
+
+#### Nomes de classes
+As classes e os objetos devem ter nomes substantivos ou sintagmas nominais, como Customer , WikiPage , Account e AddressParser . Evite palavras como Manager , Processor , Data ou Info no nome de uma classe. O nome de uma classe não deve ser um verbo.
