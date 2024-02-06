@@ -126,4 +126,31 @@ sum +=realTaskWeeks;
 Note-se que sum , acima, não é um nome particularmente útil mas, pelo menos, é pesquisável. O código O código intencionalmente nomeado torna a função mais longa, mas considere como será muito mais fácil será encontrar WORK_DAYS_PER_WEEK do que encontrar todos os lugares onde 5 foi usado e filtrar a lista para apenas as instâncias com o significado pretendido.
 
 #### Nomes de classes
-As classes e os objetos devem ter nomes substantivos ou sintagmas nominais, como Customer , WikiPage , Account e AddressParser . Evite palavras como Manager , Processor , Data ou Info no nome de uma classe. O nome de uma classe não deve ser um verbo.
+As classes e os objetos devem ter nomes substantivos ou sintagmas nominais, como Customer , WikiPage , Account e AddressParser . Evite palavras como Manager , Processor , Data ou Info no nome de uma classe. **O nome de uma classe não deve ser um verbo.**
+
+#### Nomes de métodos
+Os métodos devem ter nomes com verbos ou frases verbais, como postPayment , deletePage ou save . Acessores, mutadores e predicados devem ser nomeados de acordo com seu valor e pré-fixados com get , set e é de acordo com o padrão javabean.
+
+```
+string name = employee.getName();
+customer.setName("mike");
+if (paycheck.isPosted())...
+```
+Quando os construtores estiverem sobrecarregados, use métodos estáticos de fábrica com nomes que descrevam os argumentos. Por exemplo,
+```
+Complex fulcrumPoint = Complex.FromRealNumber(23.0);
+```
+é geralmente melhor que: 
+```
+Complex fulcrumPoint = new Complex(23.0);
+```
+Considere a possibilidade de impor seu uso tornando os construtores correspondentes privados.
+
+## Funções
+
+A primeira regra das funções é que elas devem ser pequenas. As linhas não devem ter 150 caracteres. As funções não devem ter 100 linhas. As funções quase nunca devem ter 20 linhas.
+
+
+
+
+
