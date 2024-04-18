@@ -146,11 +146,42 @@ Complex fulcrumPoint = new Complex(23.0);
 ```
 Considere a possibilidade de impor seu uso tornando os construtores correspondentes privados.
 
-## Funções
+## 3. Funções
 
 A primeira regra das funções é que elas devem ser pequenas. As linhas não devem ter 150 caracteres. As funções não devem ter 100 linhas. As funções quase nunca devem ter 20 linhas.
 
+A razão pela qual escrevemos funções é para decompor um conceito maior (por outras palavras, o nome da função) num conjunto de passos no nível de abstração seguinte.
 
+#### One Level of Abstraction per Function
+Para garantir que as nossas funções estão a fazer "uma coisa", temos de garantir que as instruções dentro da nossa função estão todas ao mesmo nível de abstração.
 
+#### Reading Code from Top to Bottom: The Stepdown Rule
+Queremos que o código seja lido como uma narrativa de cima para baixo. Queremos que cada função seja seguida pelas funções do nível seguinte de abstração, para que possamos ler o programa, descendo um nível de abstração de cada vez, à medida que vamos lendo a lista de funções. Chamo a isto a regra do "step-down".
 
+#### Switch Statements
+É difícil fazer uma declaração switch pequena. Mesmo uma instrução switch com apenas dois casos é maior do que eu gostaria que fosse um único bloco ou função. Também é difícil criar uma instrução switch que faça apenas uma coisa. Por sua natureza, as instruções switch sempre fazem N coisas. Infelizmente, nem sempre podemos evitar instruções switch, mas podemos garantir que cada instrução switch seja enterrada numa classe de baixo nível e nunca seja repetida. Fazemos isso, é claro, com polimorfismo.
 
+Considere a Listagem 3-4. Esta lista mostra apenas uma das operações que podem depender do tipo de empregado.
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/d5b970ac-ccc6-4114-96f5-2a6f0e2d4347)
+
+Há vários problemas com esta função. Em primeiro lugar, é grande e, quando forem acrescentados novos tipos de empregados, irá aumentar. Em segundo lugar, faz claramente mais do que uma coisa.
+Em terceiro lugar, viola o Princípio da Responsabilidade Única (SRP) porque há mais do que uma razão para a sua alteração. Quarto, viola o Princípio Aberto e Fechado (OCP) porque tem de mudar sempre quando são adicionados novos tipos. Mas, possivelmente, o pior problema com esta função é o fato de haver um número ilimitado de outras funções que terão a mesma estrutura. Por exemplo, poderíamos ter:
+```
+isPayday(Employee e, Date date),
+```
+ou
+```
+deliverPay(Employee e, Money pay),
+```
+
+ou uma série de outros. Todos eles teriam a mesma estrutura deletéria.
+
+A solução para esse problema (consulte a Listagem 3-5) é enterrar a instrução switch no porão de uma ABSTRACT FACTORY e nunca deixar que ninguém a veja. A fábrica usará a instrução switch para criar instâncias apropriadas dos derivados de Employee, e as várias funções, como calculatePay, isPayday e deliverPay, serão despachadas polimorficamente por meio da interface Employee. Minha regra geral para declarações switch é que elas podem ser toleradas se aparecerem apenas uma vez, forem usadas para criar objetos polimórficos e estiverem ocultas por trás de uma relação de herança, de modo que o resto do sistema não possa vê-las.
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/8caec9c7-d7db-4f9c-94f0-02cdb9e6354b)
+
+### Function Arguments
+**O número ideal de argumentos para uma função é zero (niládico). Em seguida, vem um (monádico), seguido de perto por dois (diádico). Três argumentos (triádico) devem ser evitados sempre que possível. Mais de três (poliádico) requer uma justificativa muito especial e, de qualquer forma, não deve ser usado.** 
+
+Os argumentos são difíceis. Eles exigem muito poder conceitual. Considere, por exemplo, o StringBuffer do exemplo. Poderíamos tê-lo passado como um argumento em vez de torná-lo uma variável de instância, mas nossos leitores teriam que interpretá-lo cada vez que o vissem. Quando você está lendo a história contada pelo módulo, includeSetupPage() é mais fácil de entender do que includeSetupPageInto(newPageContent). O argumento está em um nível de abstração diferente do nome da função e o obriga a conhecer um detalhe (em outras palavras, StringBuffer) que não é particularmente importante nesse momento.
+
+#### Common Monadic Forms
