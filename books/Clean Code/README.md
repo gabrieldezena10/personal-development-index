@@ -184,4 +184,68 @@ A solução para esse problema (consulte a Listagem 3-5) é enterrar a instruç�
 
 Os argumentos são difíceis. Eles exigem muito poder conceitual. Considere, por exemplo, o StringBuffer do exemplo. Poderíamos tê-lo passado como um argumento em vez de torná-lo uma variável de instância, mas nossos leitores teriam que interpretá-lo cada vez que o vissem. Quando você está lendo a história contada pelo módulo, includeSetupPage() é mais fácil de entender do que includeSetupPageInto(newPageContent). O argumento está em um nível de abstração diferente do nome da função e o obriga a conhecer um detalhe (em outras palavras, StringBuffer) que não é particularmente importante nesse momento.
 
-#### Common Monadic Forms
+#### Funções monódicas (com um argumento)
+Existem duas razões muito comuns para passar um único argumento para uma função. Você pode estar fazendo uma pergunta sobre esse argumento, como em **boolean fileExists("MeuArquivo")**. Ou você pode estar operando esse argumento, transformando-o em algo diferente e retornando-o. Por exemplo, **InputStream fileOpen("MeuArquivo")** transforma uma **String** de nome de arquivo em um valor de retorno **InputStream**. Esses dois usos são o que os leitores esperam ao ver uma função. Você deve escolher nomes que deixem a distinção clara e sempre usar as duas formas em um contexto consistente. (Veja a *Separação de Comando e Consulta* abaixo.)
+
+Uma forma um tanto menos comum, mas ainda muito útil para uma função de único argumento, é um evento. Nesta forma, há um argumento de entrada, mas nenhum argumento de saída. O programa como um todo é destinado a interpretar a chamada de função como um evento e usar o argumento para alterar o estado do sistema, por exemplo, **void passwordAttemptFailedNtimes(int tentativas)**. Use esta forma com cuidado. Deve ser muito claro para o leitor que este é um evento. Escolha nomes e contextos cuidadosamente.
+
+Tente evitar quaisquer funções monádicas que não sigam essas formas, por exemplo, **void includeSetupPageInto(StringBuffer textoDaPagina)**. Usar um argumento de saída em vez de um valor de retorno para uma transformação é confuso. Se uma função vai transformar seu argumento de entrada, a transformação deve aparecer como o valor de retorno. De fato, **StringBuffer transform(StringBuffer in)** é melhor do que **void transform-(StringBuffer out)**, mesmo que a implementação no primeiro caso simplesmente retorne o argumento de entrada. Pelo menos ainda segue a forma de uma transformação.
+
+### Argumentos de Flag
+
+Argumentos de flag são feios. Passar um booleano para uma função é uma prática verdadeiramente terrível. Isso imediatamente complica a assinatura do método, proclamando em voz alta que esta função faz mais de uma coisa. Ela faz uma coisa se a flag for verdadeira e outra se a flag for falsa! No exemplo do Listagem 3-7, não tivemos escolha porque os chamadores já estavam passando essa flag, e eu queria limitar o escopo da refatoração para a função e abaixo. Ainda assim, a chamada do método **render(true)** é simplesmente confusa para um pobre leitor. Passar o mouse sobre a chamada e ver **render(boolean isSuite)** ajuda um pouco, mas não muito. Deveríamos ter dividido a função em duas: **renderForSuite()** e **renderForSingleTest()**.
+
+### Funções Diádicas (com dois argumentos)
+
+Uma função com dois argumentos é mais difícil de entender do que uma função monádica. Por exemplo, **writeField(name)** é mais fácil de entender do que **writeField(output-Stream, name)**. Embora o significado de ambos seja claro, o primeiro desliza facilmente pelos olhos, depositando facilmente seu significado. O segundo requer uma pequena pausa até aprendermos a ignorar o primeiro parâmetro. E isso, é claro, eventualmente resulta em problemas porque nunca devemos ignorar nenhuma parte do código. As partes que ignoramos são onde os bugs vão se esconder.
+
+Há momentos, é claro, em que dois argumentos são apropriados. Por exemplo, **Point p = new Point(0,0);** é perfeitamente razoável. Pontos cartesianos naturalmente recebem dois argumentos. De fato, ficaríamos muito surpresos em ver **new Point(0)**. No entanto, os dois argumentos neste caso são componentes ordenados de um único valor! Enquanto **outputStream** e **name** não têm nem uma coesão natural, nem uma ordenação natural.
+
+Até funções diádicas óbvias como **assertEquals(esperado, real)** são problemáticas. Quantas vezes você colocou o real onde deveria estar o esperado? Os dois argumentos não têm uma ordenação natural. A ordenação esperada, real é uma convenção que requer prática para aprender.
+
+Díades não são ruins, e certamente você terá que escrevê-las. No entanto, você deve estar ciente de que elas têm um custo e deve aproveitar quais mecanismos podem estar disponíveis para convertê-las em monadas. Por exemplo, você pode tornar o método **writeField** um membro de **outputStream** para que você possa dizer **outputStream.writeField(name)**. Ou você pode tornar o **outputStream** uma variável de membro da classe atual para que não precise passá-lo. Ou você pode extrair uma nova classe como **FieldWriter** que recebe o **outputStream** em seu construtor e tem um método de escrita.
+
+### Triads
+
+Funções que recebem três argumentos são significativamente mais difíceis de entender do que diádicas. As questões de ordenação, pausa e ignorância são mais do que dobradas. Sugiro que você pense muito cuidadosamente antes de criar uma tríade.
+
+Por exemplo, considere a sobrecarga comum do assertEquals que recebe três argumentos: **assertEquals(message, expected, actual)**. Quantas vezes você leu a mensagem e pensou que era o esperado? Já tropecei e pausei sobre essa tríade muitas vezes. Na verdade, toda vez que a vejo, dou uma segunda olhada e depois aprendo a ignorar a mensagem.
+
+Por outro lado, aqui está uma tríade que não é tão insidiosa: **assertEquals(1.0, amount, .001)**. Embora isso ainda exija uma segunda olhada, é uma que vale a pena dar. É sempre bom ser lembrado de que a igualdade de valores de ponto flutuante é uma coisa relativa.
+
+### Objetos de Argumento
+
+Quando uma função parece precisar de mais de dois ou três argumentos, é provável que alguns desses argumentos devam ser envolvidos em uma classe própria. Considere, por exemplo, a diferença entre as duas declarações a seguir:
+
+```java
+Circle makeCircle(double x, double y, double radius);
+Circle makeCircle(Point center, double radius);
+```
+
+Reduzir o número de argumentos criando objetos a partir deles pode parecer trapaça, mas não é. Quando grupos de variáveis são passados juntos, como x e y no exemplo acima, eles provavelmente fazem parte de um conceito que merece um nome próprio.
+
+### DRY - Don't Repeat Yourself - Não Repita a Si Mesmo
+
+A duplicação pode ser a raiz de todos os males no software. Muitos princípios e práticas foram criados com o propósito de controlá-la ou eliminá-la. Considere, por exemplo, que todas as formas normais de banco de dados de Codd servem para eliminar a duplicação de dados. Considere também como a programação orientada a objetos serve para concentrar o código em classes base que de outra forma seriam redundantes. Programação estruturada, Programação Orientada a Aspectos, Programação Orientada a Componentes, todas são, em parte, estratégias para eliminar a duplicação. Parece que desde a invenção da sub-rotina, as inovações no desenvolvimento de software têm sido uma tentativa contínua de eliminar a duplicação de nosso código-fonte.
+
+
+## 4. Comentários
+
+
+### Nada pode ser tão útil quanto um comentário bem colocado. Nada pode bagunçar mais um módulo do que comentários dogmáticos frívolos. Nada pode ser tão prejudicial quanto um comentário velho e desleixado que propaga mentiras e desinformação.
+
+Comentários não são como a Lista de Schindler. Eles não são "puro bem". De fato, os comentários são, no máximo, um mal necessário. Se nossas linguagens de programação fossem expressivas o suficiente, ou se tivéssemos o talento para utilizar essas linguagens de forma sutil para expressar nossa intenção, não precisaríamos de comentários muito - talvez nem um pouco.
+
+O uso adequado de comentários é compensar nossa incapacidade de nos expressarmos em código. Note que usei a palavra incapacidade. Eu quis dizer isso. Comentários são sempre falhas. Devemos tê-los porque nem sempre conseguimos descobrir como nos expressar sem eles, mas seu uso não é motivo de comemoração.
+
+Então, quando você se encontrar em uma posição em que precise escrever um comentário, pense sobre isso e veja se não há alguma maneira de virar o jogo e se expressar em código. Toda vez que você se expressar em código, deve se parabenizar. Toda vez que você escrever um comentário, deve fazer uma careta e sentir a falha de sua capacidade de expressão.
+
+Por que estou tão desanimado com comentários? Porque eles mentem. Nem sempre, e não intencionalmente, mas com muita frequência. Quanto mais antigo um comentário é e quanto mais longe ele está do código que descreve, mais provável é que esteja completamente errado. O motivo é simples. Programadores não podem realisticamente mantê-los.
+
+O código muda e evolui. Partes dele se movem daqui para lá. Essas partes se bifurcam, se reproduzem e se reúnem novamente para formar quimeras. Infelizmente, os comentários nem sempre os acompanham - não podem sempre acompanhá-los. E com muita frequência os comentários se separam do código que descrevem e se tornam trechos órfãos de precisão cada vez menor.
+
+### Comentários Não Compensam um Código Ruim
+
+Uma das motivações mais comuns para escrever comentários é o código ruim. Escrevemos um módulo e sabemos que é confuso e desorganizado. Sabemos que é uma bagunça. Então dizemos para nós mesmos: "Ooh, melhor comentar isso!" Não! Você deve limpar isso!
+
+Código claro e expressivo com poucos comentários é muito superior a código bagunçado e complexo com muitos comentários. Em vez de gastar seu tempo escrevendo os comentários que explicam a bagunça que você fez, gaste-o limpando essa bagunça.
