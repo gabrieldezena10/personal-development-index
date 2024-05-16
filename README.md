@@ -209,14 +209,29 @@ This is a simple document that aims to list and index evidences of personal deve
   <li>
     <details>
       <summary>
-              <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/clean-code/books/Clean%20Code#clean-code---a-handbook-of-agile-software-craftsmanship">[Book] Clean Code </a> (5%) 
+              <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/clean-code/books/Clean%20Code#clean-code---a-handbook-of-agile-software-craftsmanship">[Book] Clean Code </a>: Capítulos 1, 2, 3 e 4 (100%) ✔️
       </summary>
       <ul>
         <li>
-          Started: 04/01/2024
+          Started: 04/02/2024
         </li>
         <li>
-          Finished:
+          Finished: 16/05/2024
+        </li>
+      </ul>
+    </details>
+  </li>
+    <li>
+    <details>
+      <summary>
+            [Course] Rocketseat: Formação NodeJs (25%) 
+      </summary>
+      <ul>
+        <li>
+          Started: 03/03/2024
+        </li>
+        <li>
+          Finished: 
         </li>
       </ul>
     </details>
