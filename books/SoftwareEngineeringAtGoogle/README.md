@@ -1,3 +1,65 @@
+## Chapter 1 - What is Software Engineering?
+
+### Differences Between Programming and Software Engineering
+
+We see three critical differences between programming and software engineering: **time**, **scale**, and the **trade-offs** at play.
+
+### Time
+On a software engineering project, engineers need to be more concerned with the passage of time and the eventual need for change.
+
+### Scale
+In a software engineering organization, there is a greater focus on scale and efficiency, both for the software produced and the organization producing it.
+
+### Trade-offs
+Software engineers are required to make more complex decisions with higher-stakes outcomes, often based on imprecise estimates of time and growth.
+
+### Software Engineering at Google
+Within Google, we sometimes say, “Software engineering is programming integrated over time.” Programming is a significant part of software engineering as it is how new software is generated. However, software engineering encompasses more than just development, it includes development, modification, and maintenance. The addition of time introduces a crucial new dimension to programming. Just as cubes aren’t squares and distance isn’t velocity, software engineering isn’t just programming.
+
+
+## Definition of Sustainability
+Sustainability in software means your project can react to valuable changes over its expected lifespan, whether for technical or business reasons. This capability is crucial—even if you choose not to upgrade due to lack of value or other priorities. Inability to adapt to changes in technology or product direction is a high-risk bet, safe for short-term projects but risky over decades.
+
+## Scale in Software Engineering
+Scale is a key aspect of software engineering:
+- **Team Involvement**: Software engineering involves many people collaborating on development and maintenance over time, unlike programming which is often an individual effort.
+- **Team Collaboration**: This presents new challenges but also more potential for valuable systems than any single programmer could achieve.
+
+An early definition of software engineering highlights this: “The multiperson development of multiversion programs,” emphasizing the importance of both time and people.
+
+## Team Organization and Project Composition
+The complexity of software engineering is influenced by:
+- **Team Organization**: How teams are structured and collaborate.
+- **Project Composition**: The makeup of projects.
+- **Policies and Practices**: How policies and workflows impact efficiency as the organization and projects grow.
+
+## Scale Issues
+- **Efficiency**: As organizations and projects grow, does efficiency in producing software increase?
+- **Workflow Efficiency**: Do development workflows improve, or do version control policies and testing strategies become costlier?
+- **Communication and Human Scaling**: These issues, discussed since the early days of software engineering (e.g., the Mythical Man Month), are often policy-related and fundamental to software sustainability.
+
+The key question of software sustainability is how much it will cost to repeatedly do necessary tasks.
+
+## Complexity of Decisions
+Software engineering involves more complex decisions than programming. Engineers often need to evaluate trade-offs between multiple paths forward, dealing with high stakes and imperfect value metrics.
+
+## Role of Software Engineers
+The role of a software engineer or a software engineering leader includes:
+- **Aiming for Sustainability**: Ensuring long-term viability of the product and processes.
+- **Managing Scaling Costs**: Balancing the costs of scaling the organization, the product, and the development workflow.
+
+## Evaluating Trade-offs
+When making decisions, consider the following:
+- **Inputs**: Organizational needs, product requirements, and workflow efficiency.
+- **Rational Decision-Making**: Evaluate trade-offs with a clear understanding of deferred costs.
+
+## Deferred Maintenance and Policies
+Sometimes, it is necessary to:
+- **Defer Maintenance Changes**: Postpone updates with a plan to address them later.
+- **Embrace Non-Scalable Policies**: Implement temporary solutions with the knowledge that they will need revisiting.
+
+...
+
 # Tests
 ## Chapter 11 - Testing Overview
 
