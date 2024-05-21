@@ -1,6 +1,5 @@
-## Chapter 1 - What is Software Engineering?
-
-### Differences Between Programming and Software Engineering
+# Chapter 1 - What is Software Engineering?
+## Differences Between Programming and Software Engineering
 
 We see three critical differences between programming and software engineering: **time**, **scale**, and the **trade-offs** at play.
 
@@ -92,7 +91,7 @@ For projects that did not plan for upgrades from the start, this transition can 
 - **Importance of Planning**: Sustainability requires careful planning and managing the impact of necessary changes.
 - **Google's Approach**: At Google, achieving this sustainability has often been a result of trial and error.
 
-## Hyrum’s Law
+### Hyrum’s Law
 If you are maintaining a  project that is used by  other engineers, the most important lesson about “it works” versus “it is maintainable” is what we’ve come to call Hyrum’s Law:
 
 **With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.**
@@ -117,18 +116,118 @@ If you are maintaining a  project that is used by  other engineers, the most imp
 
 ## Scale and Efficiency
 
+### Complexity of Google's System
+**Scale and Complexity**: Google's production system is one of the most complex machines ever created.
+**Expert Effort**: Building and maintaining this system requires extensive thought, discussion, and redesign by experts globally.
+
+### Focus on Organizational Scale
+- **Codebase Sustainability**: Defined as the ability to safely change everything that needs changing over the codebase's life.
+
+### Costs and Scalability
+- **Cost Considerations**: Capability discussions involve costs; high costs lead to deferred changes.
+- **Non-Scalable Operations**: If costs grow superlinearly, the operation isn't scalable.
+- **Handling Growth**: As the project scope doubles, necessary tasks should not become proportionally more labor-intensive.
+
+### Scaling Resources
+- **Finite Resources**: Human resources and other finite resources need to scale effectively.
+- **Software Scalability**: Software must scale with traditional resources like compute, memory, storage, and bandwidth.
+- **Development Scalability**: The development process must scale with human time involvement and the compute resources powering the workflow.
+- **Codebase Scalability**: Finally, the most precious asset of a software organization—the codebase itself—also needs to scale.  If your build system or version control system scales superlinearly over time, perhaps as a result of growth and increasing changelog history, a point might come at which you simply cannot proceed.
+
+### Factors that affect the flexibility of the codebase
+
+- Expertise: if you have enough experts(willing to answer any questions), you have an army of expert developers working on the project.
+- Stability: Adapt to newer releases frequently so that you won’t run into any breaking changes in future upgrades.
+- Conformity: As the code has been upgraded frequently, there is less code that hasn’t been through upgrade already.
+- Familiarity: As we start to do this frequently, we can spot the redundancies and attempt to automate.
+- Policy: Ensure that we have automated tests in the CI pipeline so that we don’t need to worry about the unknown usage of the code.
+
+### Shifting Left in the Developer Workflow
+
+**Early Problem Detection**
+- **Cost Reduction**: Finding problems earlier in the developer workflow usually reduces costs.
+- **Workflow Timeline**: Features progress from conception and design, through implementation, review, testing, commit, canary, and production deployment.
+
+**Shifting Left**
+- **Early Detection**: Detecting problems earlier on the timeline (shifting left) makes them cheaper to fix.
+- **Origin of Term**: The concept originated from the argument that security should not be deferred until the end of the development process, advocating to "shift left on security."
+
+**Cost Implications**
+- **Production Issues**: Security problems found after production deployment are very expensive.
+- **Pre-Production Fixes**: Catching issues before production deployment is cheaper, though still potentially labor-intensive.
+- **Pre-Commit Fixes**: Detecting problems before the original developer commits the flaw to version control is the cheapest. The developer can fix it more easily since they understand the feature and can revise it according to new constraints, avoiding the need for others to triage and fix it.
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/499bcdd3-ee9e-4b34-8dd5-2e6b70a5ded5)
+
+## Trade-offs and Costs
+
+### Decision-Making Culture at Google
+- **Avoiding "Because I Said So"**: There is a strong distaste for decisions made without reason.
+- **Decider and Escalation Paths**: It is important to have a decider for any topic and clear escalation paths for disagreements.
+- **Consensus Over Unanimity**: The goal is consensus, not unanimity. Acceptance of different viewpoints is expected.
+- **Reasoned Decisions**: Decisions should be based on clear reasoning, avoiding "just because," "because I said so," or "because everyone else does it this way," as these are often the roots of bad decisions.
+
+In the end, decisions in an engineering group  should come down to very few things:
+
+- We are doing this because we must (legal requirements, customer requirements).
+- We are doing this because it is the best option (as determined by some appropriate decider) we can see at the time, based on current evidence.
+
+**Decisions should not be “We are doing this because I said so.”**
+
+### Revisiting Decisions and Making Mistakes
+
+- **Admitting Mistakes**: A key benefit of a data-driven culture is the ability and necessity to admit mistakes.
+- **Decision Basis**: Decisions are made based on available data, ideally good data with minimal assumptions.
+
+- **New Data and Changing Contexts**: As new data comes in, contexts change, or assumptions are dispelled, previous decisions may be seen as errors or outdated.
+- **Impact of Time**: Over time, not only technical dependencies and software systems change, but also the data used for decision-making.
+
+- **Data-Informed Decisions**: We strongly believe in using data to inform decisions while recognizing that data evolves.
+- **Revisiting Decisions**: For long-lived projects, the ability to revisit and change decisions is critical.
+- **Admitting Mistakes**: Leaders must have the right to admit mistakes. Admitting mistakes enhances respect rather than diminishing it.
+
+- **Value of Unmeasured Factors**: Be driven by evidence, but recognize that some valuable aspects cannot be measured.
+
+## Software Engineering Versus Programming
+Much of that difference stems from the management of code over time, the impact of time on scale, and decision making in the face of those ideas. Programming is the immediate act of producing code. Software engineering is the set of policies, practices, and tools that are necessary to make that code useful for as long as it needs to be used and allowing collaboration across a team.
+
+#### **Programming**
+Programming is the act of writing code to solve specific problems. It involves tasks such as:
+
+- Writing Code: Implementing algorithms and features in a programming language.
+- Debugging: Finding and fixing bugs in the code.
+- Testing: Ensuring that the code works as expected.
+- Optimization: Improving the efficiency and performance of the code.
+In essence, programming focuses on creating functional pieces of software, often as standalone tasks or features.
+
+#### **Software Engineering**
+Software engineering, on the other hand, encompasses programming but extends beyond it to include the entire process of creating, maintaining, and improving software systems. It involves:
+
+- Designing Systems: Planning and structuring software in a way that meets requirements and is scalable, maintainable, and reliable.
+- Project Management: Coordinating tasks, managing timelines, and ensuring that the project stays on track.
+- Collaboration: Working with other engineers, designers, product managers, and stakeholders to build software.
+- Maintenance: Updating and improving software over time, fixing bugs, and adapting to new requirements.
+- Quality Assurance: Implementing processes to ensure the software meets quality standards, such as code reviews, automated testing, and continuous integration.
+- Documentation: Writing documentation for the software, including design documents, user guides, and API references.
+- Deployment and Monitoring: Releasing software to users and monitoring its performance to ensure it operates smoothly.
+
+##### Key Differences
+- Scope: Programming focuses on writing code for specific tasks, while software engineering involves the entire lifecycle of software development.
+- Collaboration: Software engineering requires more collaboration and communication among team members and stakeholders.
+- Long-term Perspective: Software engineering considers the long-term maintenance and scalability of software, not just immediate functionality.
+- Processes and Tools: Software engineers use a broader range of tools and processes to manage complex projects, ensure quality, and coordinate team efforts.
+
+#### An Analogy
+Think of building a house:
+
+Programming is like constructing a specific part of the house, such as installing the plumbing.
+Software Engineering is like being the architect and project manager who designs the house, oversees its construction, ensures it meets safety standards, and plans for future renovations.
+In summary, while programming is a crucial part of software engineering, software engineering itself is a more comprehensive discipline that includes planning, designing, building, and maintaining software systems.
+
+# Chapter 2 - Culture
+
 ...
 
-
-
-
-
-4o
-
-
-
-# Tests
-## Chapter 11 - Testing Overview
+# Chapter 11 - Testing Overview
 
 ### Overview
 Testing code is an essential practice that brings numerous advantages to developers and organizations. While some may perceive writing tests as time-consuming, it actually enhances productivity and velocity in software development. This document highlights the benefits of investing in software tests, drawing from Google's experience and practices.
@@ -281,7 +380,7 @@ When poorly written, automated tests can make it more difficult to make those ch
 - Once an issue is discovered through exploratory testing, automated tests should be added to prevent future regressions.
 - Automated testing can cover well-understood behaviors, allowing human testers to focus on areas where they can provide the most value and avoid repetitive tasks.
 
- ## Chapter 12 - Unit Testing
+# Chapter 12 - Unit Testing
 **To recap, size refers to the resources consumed by a test and what it is allowed to do, and scope refers to how much code a test is intended to validate.**
 
 Unit tests are usually **small** in size, but this isn’t always the case.  
@@ -467,7 +566,7 @@ Most of the test infrastructure that engineers use comes in the form of well-kno
 - Careless use of unit testing can result in a system that requires much more effort to maintain and doesn't actually improve confidence in the system.
 <br>
 
-## Chapter 13. Test Doubles
+# Chapter 13. Test Doubles
 
 __Test doubles are essential objects or functions used in place of actual implementations during testing. They are useful when real implementations would introduce complexity or unpredictability, such as in scenarios involving external servers or databases.__
 
@@ -776,7 +875,7 @@ State testing, where you validate the output or system state, is preferred over 
 - While test doubles are useful for handling difficult dependencies in tests, larger-scope testing should also be considered to maximize code confidence.
 - Choosing between real implementations and test doubles, as well as selecting the appropriate test double technique, may require trade-offs based on specific use cases.
 
-## Chapter 14. Larger Testing
+# Chapter 14. Larger Testing
 
 #### Test Size at Google
 - Small tests: Restricted to one thread, one process, one machine.
