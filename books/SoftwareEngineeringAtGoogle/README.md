@@ -17,48 +17,115 @@ Software engineers are required to make more complex decisions with higher-stake
 Within Google, we sometimes say, “Software engineering is programming integrated over time.” Programming is a significant part of software engineering as it is how new software is generated. However, software engineering encompasses more than just development, it includes development, modification, and maintenance. The addition of time introduces a crucial new dimension to programming. Just as cubes aren’t squares and distance isn’t velocity, software engineering isn’t just programming.
 
 
-## Definition of Sustainability
+### Definition of Sustainability
 Sustainability in software means your project can react to valuable changes over its expected lifespan, whether for technical or business reasons. This capability is crucial—even if you choose not to upgrade due to lack of value or other priorities. Inability to adapt to changes in technology or product direction is a high-risk bet, safe for short-term projects but risky over decades.
 
-## Scale in Software Engineering
+### Scale in Software Engineering
 Scale is a key aspect of software engineering:
 - **Team Involvement**: Software engineering involves many people collaborating on development and maintenance over time, unlike programming which is often an individual effort.
 - **Team Collaboration**: This presents new challenges but also more potential for valuable systems than any single programmer could achieve.
 
 An early definition of software engineering highlights this: “The multiperson development of multiversion programs,” emphasizing the importance of both time and people.
 
-## Team Organization and Project Composition
+### Team Organization and Project Composition
 The complexity of software engineering is influenced by:
 - **Team Organization**: How teams are structured and collaborate.
 - **Project Composition**: The makeup of projects.
 - **Policies and Practices**: How policies and workflows impact efficiency as the organization and projects grow.
 
-## Scale Issues
+### Scale Issues
 - **Efficiency**: As organizations and projects grow, does efficiency in producing software increase?
 - **Workflow Efficiency**: Do development workflows improve, or do version control policies and testing strategies become costlier?
 - **Communication and Human Scaling**: These issues, discussed since the early days of software engineering (e.g., the Mythical Man Month), are often policy-related and fundamental to software sustainability.
 
 The key question of software sustainability is how much it will cost to repeatedly do necessary tasks.
 
-## Complexity of Decisions
+### Complexity of Decisions
 Software engineering involves more complex decisions than programming. Engineers often need to evaluate trade-offs between multiple paths forward, dealing with high stakes and imperfect value metrics.
 
-## Role of Software Engineers
+### Role of Software Engineers
 The role of a software engineer or a software engineering leader includes:
 - **Aiming for Sustainability**: Ensuring long-term viability of the product and processes.
 - **Managing Scaling Costs**: Balancing the costs of scaling the organization, the product, and the development workflow.
 
-## Evaluating Trade-offs
+### Evaluating Trade-offs
 When making decisions, consider the following:
 - **Inputs**: Organizational needs, product requirements, and workflow efficiency.
 - **Rational Decision-Making**: Evaluate trade-offs with a clear understanding of deferred costs.
 
-## Deferred Maintenance and Policies
+### Deferred Maintenance and Policies
 Sometimes, it is necessary to:
 - **Defer Maintenance Changes**: Postpone updates with a plan to address them later.
 - **Embrace Non-Scalable Policies**: Implement temporary solutions with the knowledge that they will need revisiting.
 
+## Time and Change
+
+### Novice Programming
+- **Short Life Span**: Code written by novices typically lasts for hours or days.
+- **Assignments and Exercises**: These are usually write-once, with minimal refactoring and no long-term maintenance.
+- **Limited Use**: Programs are often not rebuilt or executed again after initial production, especially in educational settings.
+
+### Educational Projects
+- **Team Projects and Theses**: In secondary or post-secondary education, team projects or theses may have a longer life span, but usually not beyond a month.
+- **Refactoring**: Students might refactor code in response to changing requirements, but broader environmental changes are rare.
+
+### Maintenance Expectations
+- **Short-Term Tasks**: For tasks with an expected life span of hours, minimal maintenance is expected. For example, if a new OS version is released while working on a one-time Python script, upgrading is unnecessary.
+- **Long-Term Projects**: Conversely, for long-term projects like Google Search, being stuck on an outdated OS version (e.g., from the 1990s) would be problematic.
+
+Considerthe image below, which illustrates two software projects on opposite ends of the “expected life span” spectrum. For short-term tasks, critical upgrades are not necessary. However, for long-term, high-stakes projects, maintaining up-to-date environments is crucial.
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/5d322c68-e5e1-4f07-a710-4f68e9aef9be)
+
+- **Transition Point**: There is a transition between one-off programs and projects that last for decades where a project must start reacting to external changes.
+
+### Challenges of Unplanned Upgrades
+For projects that did not plan for upgrades from the start, this transition can be painful due to:
+1. **Hidden Assumptions**: Performing tasks that haven't been done before for the project can reveal many hidden assumptions.
+2. **Lack of Experience**: Engineers may lack experience in performing such upgrades.
+3. **Large Upgrades**: Upgrades are often larger than usual, encompassing several years' worth of changes instead of incremental updates.
+
+### Achieving Sustainability
+- **First Big Upgrade**: Successfully completing the initial large upgrade is crucial.
+- **Staying Current**: Establishing a reliable process for ongoing upgrades is essential for long-term sustainability.
+
+### Planning for Sustainability
+- **Importance of Planning**: Sustainability requires careful planning and managing the impact of necessary changes.
+- **Google's Approach**: At Google, achieving this sustainability has often been a result of trial and error.
+
+## Hyrum’s Law
+If you are maintaining a  project that is used by  other engineers, the most important lesson about “it works” versus “it is maintainable” is what we’ve come to call Hyrum’s Law:
+
+**With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.**
+
+- **Practical Knowledge**: Despite best intentions, top engineers, and solid code review practices, perfect adherence to published contracts or best practices cannot be assumed.
+- **Flexibility and Freedom**: As an API owner, being clear about interface promises grants some flexibility, but complexity and change difficulty depend on user reliance on observable API behavior.
+
+### Change Management
+- **Impact of Changes**: If users don't depend on certain behaviors, the API is easier to change.
+- **Inevitable Breakages**: Given enough time and users, even minor changes will break something.
+- **Value Analysis**: Evaluate the value of changes by considering the difficulty in investigating, identifying, and resolving breakages.
+
+### Programming vs. Software Engineering
+- **Mentality Differences**: Code written with a “works now” versus a “works indefinitely” mentality shows clear relationships.
+- **Code as an Artifact**: Viewing code with variable lifetime requirements helps categorize programming styles.
+  - **Hacky or Clever Code**: Depends on brittle and unpublished dependency features.
+  - **Clean and Maintainable Code**: Follows best practices and plans for the future.
+
+### Code Style Selection
+- **Purpose-Dependent**: Choose the appropriate style based on the expected lifespan of the code.
+- **Cleverness**: “It’s programming if 'clever' is a compliment, but it’s software engineering if 'clever' is an accusation.”
+
+## Scale and Efficiency
+
 ...
+
+
+
+
+
+4o
+
+
 
 # Tests
 ## Chapter 11 - Testing Overview
