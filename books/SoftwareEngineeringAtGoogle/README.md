@@ -277,8 +277,48 @@ In a professional software engineering environment, criticism is almost never pe
 - **Self-Worth**: Your self-worth should not be tied to the code you write or any creative project you build.
 - **Perspective**: Remember, you are not your code.
 
+### Blameless Post-Mortem Culture
+
+#### Learning from Mistakes
+- **Documenting Failures**: Perform a root-cause analysis and write a "postmortem" to document failures.
+- **Purpose of Postmortem**: Avoid creating a document full of apologies, excuses, or finger-pointing. **The goal is to explain what was learned and what will change as a result.**
+
+#### Effective Postmortem Practices
+- **Accessibility and Follow-Through**: Ensure the postmortem is accessible and that the team follows through on proposed changes.
+- **Historical Reference**: Proper documentation helps others understand what happened and avoid repeating mistakes. Illuminate your tracks for others like a runway.
+
+#### Components of a Good Postmortem
+1. **Event Summary**: Provide a brief summary of the event.
+2. **Event Timeline**: Detail the timeline from discovery through investigation to resolution.
+3. **Primary Cause**: Identify the primary cause of the event.
+4. **Impact Assessment**: Assess the impact and damage.
+5. **Immediate Action Items**: List action items (with owners) to fix the problem immediately.
+6. **Preventive Action Items**: List action items to prevent recurrence.
+7. **Lessons Learned**: Summarize the lessons learned from the event.
+
+### Learn patience
+- Pair programming with different aproached: identify the bug, and then split up and attack the problem from two directions at once (top-down - wants to get the full lay of the land and dive into the implementation of almost every method on the call stack before proceeding to tackle the bug - and bottom-up -dive into the muck and dig my way out by trying a lot of things quickly and skimming over the details -) before coming back together with our findings.
+
+### Be open to influence
+-  it’s OK for someone else to change your mind
+
+### Being Googley
+
+“Googleyness”  is defined as a set of attributes and behaviors that we look for that represent strong leadership and exemplify “humility, respect, and trust”:
+
+- **Thrives in ambiguity**: Can deal with conflicting messages or directions, build consensus, and make progress against a problem, even when the environment is constantly shifting.
+- **Values feedback**: Has humility to both receive and give feedback gracefully and understands how valuable feedback is for personal (and team) development.
+- **Challenges status quo**: Is able to set ambitious goals and pursue them even when there might be resistance or inertia from others.
+- **Puts the user first**: Has empathy and respect for users of Google’s products and pursues actions that are in their best interests.
+- **Cares about the team**: Has empathy and respect for coworkers and actively works to help them without being asked, improving team cohesion.
+- **Does the right thing**: Has a strong sense of ethics about everything they do; willing to make difficult or inconvenient decisions to protect the integrity of the team and product.
+
+
+# Chapter 3 - Knowledge Sharing
 
 ...
+
+
 
 # Chapter 11 - Testing Overview
 
