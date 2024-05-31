@@ -375,22 +375,47 @@ Software engineering is the multiperson development of multiversion programs. Pe
 - **Definition**: The gap between individual knowledge and documented knowledge.
 - **Importance**: Human experts hold unwritten knowledge that can be documented to benefit a wider audience.
 
-## Complementary Nature of Knowledge Types
+### Complementary Nature of Knowledge Types
 - Written knowledge and human expertise complement each other. Perfect documentation doesn't eliminate the need for human consultation. Experts can synthesize knowledge, assess applicability, and navigate documentation better than automated systems.
 
-## Evolution of Institutional Knowledge
+### Evolution of Institutional Knowledge
 - **Adaptability**: Knowledge-sharing methods must adapt over time as the organization grows.
 - **Training and Growth**: Focus on learning, growth, and building a team of experts; more engineering expertise is always beneficial.
 
-## Setting the Stage: Psychological Safety
+### Setting the Stage: Psychological Safety
 
 Psychological  safety is critical to  promoting a learning environment. To learn, you must first acknowledge that there are things you don’t understand. An enormous part of learning is being able to try things and feeling safe to fail. In a healthy environment, people feel comfortable asking questions, being wrong, and learning new things. 
 
 ## Growing Your Knowledge
 
- ...
+- **Ask questions**: Embrace not knowing things as an area of opportunity rather than one to fear. It doesn’t matter whether you’re new to a team or a senior leader: you should always be in an environment in which there’s something to learn. On the receiving end, patience and kindness when answering questions fosters an environment in which people feel safe looking for help.  Making it easier to overcome the initial hesitation to ask a question sets the tone early: reach out to solicit questions, and make it easy for even “trivial” questions to get an answer.
+  
+- **Understand Context**: Learning is not just about understanding new things; it also includes developing an understanding of the decisions behind the design and implementation of existing things. For example, you are working in legacy codebase, the code is difficult to understand. It can be tempting to rewrite from scratch rather than spend time learning the existing code. But instead of thinking “I don’t get it” and ending your thoughts there, dive deeper: what questions should you be asking? **Before removing or changing something, first understand why it’s there.**
 
+## Scaling Your Questions: You Always Have Something to Teach
 
+- Teaching is not limited to experts, nor is expertise a binary state in which you are either a novice or an expert. Google engineers teach others in a variety of ways, such as office hours, giving tech talks, teaching classes, writing documentation, and reviewing code.
+
+### Office Hours
+- Office hours are a regularly scheduled (typically weekly) event during which one or more people make themselves available to answer questions about a particular topic.They are not the preferred method for knowledge sharing due to delays in getting urgent answers and the time and effort required to host and promote them.
+
+### Tech Talks and Classes
+- Tech talks typically consist of a speaker presenting directly to an audience.
+- Classes, on the other hand, can have a lecture component but often center on in-class exercises and therefore require more active participation from attendees. As a result, instructor-led classes are typically more demanding and expensive to create and maintain than tech talks and are reserved for the most important or difficult topics.
+
+### Documentation
+- Documentation is written knowledge whose primary goal is to help its readers learn something. 
+
+#### Updating documentation
+- The first time you learn something is the best time to see ways that the existing documentation and training materials can be improved.  By the time you’ve absorbed and understood a new process or system, you might have forgotten what was difficult or what simple steps were missing from the “Getting Started” documentation. At this stage, if you find a mistake or omission in the documentation, fix it! 
+#### Creating documentation
+- As your proficiency grows, write your own documentation and update existing docs.  For example, if you set up a new development flow, document the steps. You can then make it easier for others to follow in your path by pointing them to your document. Even better, make it easier for people to find the document themselves. Any sufficiently undiscoverable or unsearchable documentation might as well not exist.
+#### Promoting documentation
+- Traditionally, encouraging engineers to document their work can be difficult. Writing documentation takes time and effort that could be spent on coding, and the benefits that result from  that work are not immediate and are mostly reaped by others. Asymmetrical trade-offs like these are good for the organization as a whole given that many people can benefit from the time investment of a few, but without good incentives.
+
+## Scaling Your Organization’s Knowledge
+
+...
 
 # Chapter 11 - Testing Overview
 
