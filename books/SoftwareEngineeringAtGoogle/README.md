@@ -1,5 +1,429 @@
-# Tests
-## Chapter 11 - Testing Overview
+# Chapter 1 - What is Software Engineering?
+## Differences Between Programming and Software Engineering
+
+We see three critical differences between programming and software engineering: **time**, **scale**, and the **trade-offs** at play.
+
+### Time
+On a software engineering project, engineers need to be more concerned with the passage of time and the eventual need for change.
+
+### Scale
+In a software engineering organization, there is a greater focus on scale and efficiency, both for the software produced and the organization producing it.
+
+### Trade-offs
+Software engineers are required to make more complex decisions with higher-stakes outcomes, often based on imprecise estimates of time and growth.
+
+### Software Engineering at Google
+Within Google, we sometimes say, “Software engineering is programming integrated over time.” Programming is a significant part of software engineering as it is how new software is generated. However, software engineering encompasses more than just development, it includes development, modification, and maintenance. The addition of time introduces a crucial new dimension to programming. Just as cubes aren’t squares and distance isn’t velocity, software engineering isn’t just programming.
+
+
+### Definition of Sustainability
+Sustainability in software means your project can react to valuable changes over its expected lifespan, whether for technical or business reasons. This capability is crucial—even if you choose not to upgrade due to lack of value or other priorities. Inability to adapt to changes in technology or product direction is a high-risk bet, safe for short-term projects but risky over decades.
+
+### Scale in Software Engineering
+Scale is a key aspect of software engineering:
+- **Team Involvement**: Software engineering involves many people collaborating on development and maintenance over time, unlike programming which is often an individual effort.
+- **Team Collaboration**: This presents new challenges but also more potential for valuable systems than any single programmer could achieve.
+
+An early definition of software engineering highlights this: “The multiperson development of multiversion programs,” emphasizing the importance of both time and people.
+
+### Team Organization and Project Composition
+The complexity of software engineering is influenced by:
+- **Team Organization**: How teams are structured and collaborate.
+- **Project Composition**: The makeup of projects.
+- **Policies and Practices**: How policies and workflows impact efficiency as the organization and projects grow.
+
+### Scale Issues
+- **Efficiency**: As organizations and projects grow, does efficiency in producing software increase?
+- **Workflow Efficiency**: Do development workflows improve, or do version control policies and testing strategies become costlier?
+- **Communication and Human Scaling**: These issues, discussed since the early days of software engineering (e.g., the Mythical Man Month), are often policy-related and fundamental to software sustainability.
+
+The key question of software sustainability is how much it will cost to repeatedly do necessary tasks.
+
+### Complexity of Decisions
+Software engineering involves more complex decisions than programming. Engineers often need to evaluate trade-offs between multiple paths forward, dealing with high stakes and imperfect value metrics.
+
+### Role of Software Engineers
+The role of a software engineer or a software engineering leader includes:
+- **Aiming for Sustainability**: Ensuring long-term viability of the product and processes.
+- **Managing Scaling Costs**: Balancing the costs of scaling the organization, the product, and the development workflow.
+
+### Evaluating Trade-offs
+When making decisions, consider the following:
+- **Inputs**: Organizational needs, product requirements, and workflow efficiency.
+- **Rational Decision-Making**: Evaluate trade-offs with a clear understanding of deferred costs.
+
+### Deferred Maintenance and Policies
+Sometimes, it is necessary to:
+- **Defer Maintenance Changes**: Postpone updates with a plan to address them later.
+- **Embrace Non-Scalable Policies**: Implement temporary solutions with the knowledge that they will need revisiting.
+
+## Time and Change
+
+### Novice Programming
+- **Short Life Span**: Code written by novices typically lasts for hours or days.
+- **Assignments and Exercises**: These are usually write-once, with minimal refactoring and no long-term maintenance.
+- **Limited Use**: Programs are often not rebuilt or executed again after initial production, especially in educational settings.
+
+### Educational Projects
+- **Team Projects and Theses**: In secondary or post-secondary education, team projects or theses may have a longer life span, but usually not beyond a month.
+- **Refactoring**: Students might refactor code in response to changing requirements, but broader environmental changes are rare.
+
+### Maintenance Expectations
+- **Short-Term Tasks**: For tasks with an expected life span of hours, minimal maintenance is expected. For example, if a new OS version is released while working on a one-time Python script, upgrading is unnecessary.
+- **Long-Term Projects**: Conversely, for long-term projects like Google Search, being stuck on an outdated OS version (e.g., from the 1990s) would be problematic.
+
+Considerthe image below, which illustrates two software projects on opposite ends of the “expected life span” spectrum. For short-term tasks, critical upgrades are not necessary. However, for long-term, high-stakes projects, maintaining up-to-date environments is crucial.
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/5d322c68-e5e1-4f07-a710-4f68e9aef9be)
+
+- **Transition Point**: There is a transition between one-off programs and projects that last for decades where a project must start reacting to external changes.
+
+### Challenges of Unplanned Upgrades
+For projects that did not plan for upgrades from the start, this transition can be painful due to:
+1. **Hidden Assumptions**: Performing tasks that haven't been done before for the project can reveal many hidden assumptions.
+2. **Lack of Experience**: Engineers may lack experience in performing such upgrades.
+3. **Large Upgrades**: Upgrades are often larger than usual, encompassing several years' worth of changes instead of incremental updates.
+
+### Achieving Sustainability
+- **First Big Upgrade**: Successfully completing the initial large upgrade is crucial.
+- **Staying Current**: Establishing a reliable process for ongoing upgrades is essential for long-term sustainability.
+
+### Planning for Sustainability
+- **Importance of Planning**: Sustainability requires careful planning and managing the impact of necessary changes.
+- **Google's Approach**: At Google, achieving this sustainability has often been a result of trial and error.
+
+### Hyrum’s Law
+If you are maintaining a  project that is used by  other engineers, the most important lesson about “it works” versus “it is maintainable” is what we’ve come to call Hyrum’s Law:
+
+**With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.**
+
+- **Practical Knowledge**: Despite best intentions, top engineers, and solid code review practices, perfect adherence to published contracts or best practices cannot be assumed.
+- **Flexibility and Freedom**: As an API owner, being clear about interface promises grants some flexibility, but complexity and change difficulty depend on user reliance on observable API behavior.
+
+### Change Management
+- **Impact of Changes**: If users don't depend on certain behaviors, the API is easier to change.
+- **Inevitable Breakages**: Given enough time and users, even minor changes will break something.
+- **Value Analysis**: Evaluate the value of changes by considering the difficulty in investigating, identifying, and resolving breakages.
+
+### Programming vs. Software Engineering
+- **Mentality Differences**: Code written with a “works now” versus a “works indefinitely” mentality shows clear relationships.
+- **Code as an Artifact**: Viewing code with variable lifetime requirements helps categorize programming styles.
+  - **Hacky or Clever Code**: Depends on brittle and unpublished dependency features.
+  - **Clean and Maintainable Code**: Follows best practices and plans for the future.
+
+### Code Style Selection
+- **Purpose-Dependent**: Choose the appropriate style based on the expected lifespan of the code.
+- **Cleverness**: “It’s programming if 'clever' is a compliment, but it’s software engineering if 'clever' is an accusation.”
+
+## Scale and Efficiency
+
+### Complexity of Google's System
+**Scale and Complexity**: Google's production system is one of the most complex machines ever created.
+**Expert Effort**: Building and maintaining this system requires extensive thought, discussion, and redesign by experts globally.
+
+### Focus on Organizational Scale
+- **Codebase Sustainability**: Defined as the ability to safely change everything that needs changing over the codebase's life.
+
+### Costs and Scalability
+- **Cost Considerations**: Capability discussions involve costs; high costs lead to deferred changes.
+- **Non-Scalable Operations**: If costs grow superlinearly, the operation isn't scalable.
+- **Handling Growth**: As the project scope doubles, necessary tasks should not become proportionally more labor-intensive.
+
+### Scaling Resources
+- **Finite Resources**: Human resources and other finite resources need to scale effectively.
+- **Software Scalability**: Software must scale with traditional resources like compute, memory, storage, and bandwidth.
+- **Development Scalability**: The development process must scale with human time involvement and the compute resources powering the workflow.
+- **Codebase Scalability**: Finally, the most precious asset of a software organization—the codebase itself—also needs to scale.  If your build system or version control system scales superlinearly over time, perhaps as a result of growth and increasing changelog history, a point might come at which you simply cannot proceed.
+
+### Factors that affect the flexibility of the codebase
+
+- Expertise: if you have enough experts(willing to answer any questions), you have an army of expert developers working on the project.
+- Stability: Adapt to newer releases frequently so that you won’t run into any breaking changes in future upgrades.
+- Conformity: As the code has been upgraded frequently, there is less code that hasn’t been through upgrade already.
+- Familiarity: As we start to do this frequently, we can spot the redundancies and attempt to automate.
+- Policy: Ensure that we have automated tests in the CI pipeline so that we don’t need to worry about the unknown usage of the code.
+
+### Shifting Left in the Developer Workflow
+
+**Early Problem Detection**
+- **Cost Reduction**: Finding problems earlier in the developer workflow usually reduces costs.
+- **Workflow Timeline**: Features progress from conception and design, through implementation, review, testing, commit, canary, and production deployment.
+
+**Shifting Left**
+- **Early Detection**: Detecting problems earlier on the timeline (shifting left) makes them cheaper to fix.
+- **Origin of Term**: The concept originated from the argument that security should not be deferred until the end of the development process, advocating to "shift left on security."
+
+**Cost Implications**
+- **Production Issues**: Security problems found after production deployment are very expensive.
+- **Pre-Production Fixes**: Catching issues before production deployment is cheaper, though still potentially labor-intensive.
+- **Pre-Commit Fixes**: Detecting problems before the original developer commits the flaw to version control is the cheapest. The developer can fix it more easily since they understand the feature and can revise it according to new constraints, avoiding the need for others to triage and fix it.
+![image](https://github.com/gabrieldezena10/personal-development-index/assets/86879421/499bcdd3-ee9e-4b34-8dd5-2e6b70a5ded5)
+
+## Trade-offs and Costs
+
+### Decision-Making Culture at Google
+- **Avoiding "Because I Said So"**: There is a strong distaste for decisions made without reason.
+- **Decider and Escalation Paths**: It is important to have a decider for any topic and clear escalation paths for disagreements.
+- **Consensus Over Unanimity**: The goal is consensus, not unanimity. Acceptance of different viewpoints is expected.
+- **Reasoned Decisions**: Decisions should be based on clear reasoning, avoiding "just because," "because I said so," or "because everyone else does it this way," as these are often the roots of bad decisions.
+
+In the end, decisions in an engineering group  should come down to very few things:
+
+- We are doing this because we must (legal requirements, customer requirements).
+- We are doing this because it is the best option (as determined by some appropriate decider) we can see at the time, based on current evidence.
+
+**Decisions should not be “We are doing this because I said so.”**
+
+### Revisiting Decisions and Making Mistakes
+
+- **Admitting Mistakes**: A key benefit of a data-driven culture is the ability and necessity to admit mistakes.
+- **Decision Basis**: Decisions are made based on available data, ideally good data with minimal assumptions.
+
+- **New Data and Changing Contexts**: As new data comes in, contexts change, or assumptions are dispelled, previous decisions may be seen as errors or outdated.
+- **Impact of Time**: Over time, not only technical dependencies and software systems change, but also the data used for decision-making.
+
+- **Data-Informed Decisions**: We strongly believe in using data to inform decisions while recognizing that data evolves.
+- **Revisiting Decisions**: For long-lived projects, the ability to revisit and change decisions is critical.
+- **Admitting Mistakes**: Leaders must have the right to admit mistakes. Admitting mistakes enhances respect rather than diminishing it.
+
+- **Value of Unmeasured Factors**: Be driven by evidence, but recognize that some valuable aspects cannot be measured.
+
+## Software Engineering Versus Programming
+Much of that difference stems from the management of code over time, the impact of time on scale, and decision making in the face of those ideas. Programming is the immediate act of producing code. Software engineering is the set of policies, practices, and tools that are necessary to make that code useful for as long as it needs to be used and allowing collaboration across a team.
+
+#### **Programming**
+Programming is the act of writing code to solve specific problems. It involves tasks such as:
+
+- Writing Code: Implementing algorithms and features in a programming language.
+- Debugging: Finding and fixing bugs in the code.
+- Testing: Ensuring that the code works as expected.
+- Optimization: Improving the efficiency and performance of the code.
+In essence, programming focuses on creating functional pieces of software, often as standalone tasks or features.
+
+#### **Software Engineering**
+Software engineering, on the other hand, encompasses programming but extends beyond it to include the entire process of creating, maintaining, and improving software systems. It involves:
+
+- Designing Systems: Planning and structuring software in a way that meets requirements and is scalable, maintainable, and reliable.
+- Project Management: Coordinating tasks, managing timelines, and ensuring that the project stays on track.
+- Collaboration: Working with other engineers, designers, product managers, and stakeholders to build software.
+- Maintenance: Updating and improving software over time, fixing bugs, and adapting to new requirements.
+- Quality Assurance: Implementing processes to ensure the software meets quality standards, such as code reviews, automated testing, and continuous integration.
+- Documentation: Writing documentation for the software, including design documents, user guides, and API references.
+- Deployment and Monitoring: Releasing software to users and monitoring its performance to ensure it operates smoothly.
+
+##### Key Differences
+- Scope: Programming focuses on writing code for specific tasks, while software engineering involves the entire lifecycle of software development.
+- Collaboration: Software engineering requires more collaboration and communication among team members and stakeholders.
+- Long-term Perspective: Software engineering considers the long-term maintenance and scalability of software, not just immediate functionality.
+- Processes and Tools: Software engineers use a broader range of tools and processes to manage complex projects, ensure quality, and coordinate team efforts.
+
+#### An Analogy
+Think of building a house:
+
+Programming is like constructing a specific part of the house, such as installing the plumbing.
+Software Engineering is like being the architect and project manager who designs the house, oversees its construction, ensures it meets safety standards, and plans for future renovations.
+In summary, while programming is a crucial part of software engineering, software engineering itself is a more comprehensive discipline that includes planning, designing, building, and maintaining software systems.
+
+# Chapter 2 - How to Work Well on Teams
+
+## Overcoming Insecurity in Software Development
+
+### Fear of Judgment
+- **Human Nature**: People fear others seeing and judging their work in progress. Insecurity stems from the dislike of criticism, especially for unfinished work.
+- **Larger Problem**: This insecurity points to a broader issue within software development.
+
+### Hiding Considered Harmful
+- **Risk of Failure**: Working alone increases the risk of unnecessary failure and limits potential growth.
+- **Balance**: Software development requires deep concentration and alone time, but this must be balanced with the value and necessity of collaboration and review.
+
+### Early Detection
+- **Hidden Ideas**: Keeping great ideas hidden until they are polished is risky.
+- **Design Mistakes**: Fundamental design mistakes are easy to make early on.
+- **Collaboration Benefits**: Hiding work forfeits collaboration benefits and risks reinventing the wheel.
+- **Feedback Importance**: Soliciting feedback early lowers the risk of early missteps. The more feedback you get early, the lower the risk.
+
+## It’s All About the Team
+
+### Software engineering is a team endeavor.
+
+This concept directly contradicts the inner Genius Programmer fantasy so many of us hold, but it’s not enough to be brilliant when you’re alone. You’re not going to change the world by hiding and preparing your secret invention. You need to work with other people. Share your vision. Divide the labor. Learn from others. Create a brilliant team.
+
+- **Teamwork**: Essential for producing great software.
+- **Building a Great Team**: To achieve effective collaboration, embrace the three pillars of social skills.
+- 
+### The Three Pillars of Social Interaction
+
+1. **Humility**
+   - **Self-Perception**: Recognize that you are not the center of the universe, nor is your code.
+   - **Fallibility**: Accept that you are neither omniscient nor infallible.
+   - **Openness**: Be open to self-improvement.
+   
+2. **Respect**
+   - **Genuine Care**: Care about the people you work with.
+   - **Kindness**: Treat colleagues kindly and appreciate their abilities and accomplishments.
+
+3. **Trust**
+   - **Belief in Competence**: Trust that others are competent and will do the right thing.
+   - **Delegation**: Be comfortable letting others take the lead when appropriate.
+
+### Learn to give and take criticism
+In a professional software engineering environment, criticism is almost never personal—it’s usually just part of the process of making a better project. Learn to respect your peers and give constructive criticism politely. If you truly respect someone, you’ll be motivated to choose tactful, helpful phrasing—a skill acquired with much practice. 
+
+- **Humility and Trust**: Accepting criticism involves being humble about your skills and trusting that others have your best interests and the project's interests at heart.
+- **Positive Intent**: Believe that feedback is not a personal attack and that your peers do not think poorly of you.
+
+- **Programming Practice**: Programming, like any other skill, improves with practice.
+- **Constructive Feedback**: View feedback as a way to improve, similar to how you would accept tips to improve at other skills like juggling.
+
+- **Self-Worth**: Your self-worth should not be tied to the code you write or any creative project you build.
+- **Perspective**: Remember, you are not your code.
+
+### Blameless Post-Mortem Culture
+
+#### Learning from Mistakes
+- **Documenting Failures**: Perform a root-cause analysis and write a "postmortem" to document failures.
+- **Purpose of Postmortem**: Avoid creating a document full of apologies, excuses, or finger-pointing. **The goal is to explain what was learned and what will change as a result.**
+
+#### Effective Postmortem Practices
+- **Accessibility and Follow-Through**: Ensure the postmortem is accessible and that the team follows through on proposed changes.
+- **Historical Reference**: Proper documentation helps others understand what happened and avoid repeating mistakes. Illuminate your tracks for others like a runway.
+
+#### Components of a Good Postmortem
+1. **Event Summary**: Provide a brief summary of the event.
+2. **Event Timeline**: Detail the timeline from discovery through investigation to resolution.
+3. **Primary Cause**: Identify the primary cause of the event.
+4. **Impact Assessment**: Assess the impact and damage.
+5. **Immediate Action Items**: List action items (with owners) to fix the problem immediately.
+6. **Preventive Action Items**: List action items to prevent recurrence.
+7. **Lessons Learned**: Summarize the lessons learned from the event.
+
+### Learn patience
+- Pair programming with different aproached: identify the bug, and then split up and attack the problem from two directions at once (top-down - wants to get the full lay of the land and dive into the implementation of almost every method on the call stack before proceeding to tackle the bug - and bottom-up -dive into the muck and dig my way out by trying a lot of things quickly and skimming over the details -) before coming back together with our findings.
+
+### Be open to influence
+-  it’s OK for someone else to change your mind
+
+### Being Googley
+
+“Googleyness”  is defined as a set of attributes and behaviors that we look for that represent strong leadership and exemplify “humility, respect, and trust”:
+
+- **Thrives in ambiguity**: Can deal with conflicting messages or directions, build consensus, and make progress against a problem, even when the environment is constantly shifting.
+- **Values feedback**: Has humility to both receive and give feedback gracefully and understands how valuable feedback is for personal (and team) development.
+- **Challenges status quo**: Is able to set ambitious goals and pursue them even when there might be resistance or inertia from others.
+- **Puts the user first**: Has empathy and respect for users of Google’s products and pursues actions that are in their best interests.
+- **Cares about the team**: Has empathy and respect for coworkers and actively works to help them without being asked, improving team cohesion.
+- **Does the right thing**: Has a strong sense of ethics about everything they do; willing to make difficult or inconvenient decisions to protect the integrity of the team and product.
+
+
+# Chapter 3 - Knowledge Sharing
+
+## Challenges to Learning
+
+### Expertise Sharing Difficulties
+- **Organizational Learning**: Sharing expertise across an organization is challenging, particularly without a strong culture of learning. Google has faced several challenges as the company has scaled.
+
+## Identified Challenges
+
+### Lack of Psychological Safety
+- **Risk Aversion**: An environment where people fear taking risks or making mistakes due to potential punishment.
+- **Transparency Avoidance**: Manifests as a culture of fear, leading to a tendency to avoid transparency.
+
+### Information Islands
+- **Knowledge Fragmentation**: Occurs when different parts of an organization do not communicate or use shared resources, leading to isolated knowledge pools.
+
+#### Consequences of Information Islands
+1. **Information Fragmentation**
+   - **Incomplete Picture**: Each island has an incomplete understanding of the bigger whole.
+
+2. **Information Duplication**
+   - **Reinvention**: Each island develops its own way of doing things, leading to redundant efforts.
+
+3. **Information Skew**
+   - **Conflicting Methods**: Different islands might develop conflicting methods for the same tasks.
+
+### Single Point of Failure (SPOF)
+- **Critical Bottleneck**: Occurs when essential information is held by only one person, creating a dependency.
+
+#### SPOFs Arising from Good Intentions
+- **Short-Term Efficiency**: The habit of "Let me take care of that for you" optimizes for immediate efficiency but hampers long-term scalability and team learning.
+
+### All-or-Nothing Expertise
+- **Expertise Disparity**: A division between those who know everything and novices, with little middle ground.
+- **Self-Reinforcing Problem**: Experts doing everything themselves without mentoring, leading to a persistent gap in expertise.
+
+### Parroting
+- **Mindless Mimicry**: Copying patterns or code without understanding their purpose, often assuming the code is necessary for unknown reasons.
+
+### Haunted Graveyards
+- **Fear-Induced Avoidance**: Areas in code or projects that people avoid because they fear something might go wrong.
+- **Superstition**: Unlike parroting, this is characterized by avoidance due to fear and superstition.
+
+## Philosophy
+Software engineering is the multiperson development of multiversion programs. People are central to software engineering; code is just one part of product development.
+
+### Importance of Growing Expertise
+- **Novice to Expert**: Every expert was once a novice; organizational success relies on nurturing and investing in its people.
+
+### Personalized Advice vs. Documentation
+- **One-to-One Expertise**: Personalized advice from experts is invaluable but not scalable. The best expert to consult can vary depending on the question.
+- **Scalability Issue**: If an expert is unavailable, the team may struggle.
+
+### Benefits of Documented Knowledge
+- **Scalability**: Documented knowledge can scale to the entire organization through mechanisms like a team wiki.
+- **Trade-Offs**: Documentation may be more generalized, less applicable to individual situations, and requires maintenance to stay relevant.
+
+### Tribal Knowledge
+- **Definition**: The gap between individual knowledge and documented knowledge.
+- **Importance**: Human experts hold unwritten knowledge that can be documented to benefit a wider audience.
+
+### Complementary Nature of Knowledge Types
+- Written knowledge and human expertise complement each other. Perfect documentation doesn't eliminate the need for human consultation. Experts can synthesize knowledge, assess applicability, and navigate documentation better than automated systems.
+
+### Evolution of Institutional Knowledge
+- **Adaptability**: Knowledge-sharing methods must adapt over time as the organization grows.
+- **Training and Growth**: Focus on learning, growth, and building a team of experts; more engineering expertise is always beneficial.
+
+### Setting the Stage: Psychological Safety
+
+Psychological  safety is critical to  promoting a learning environment. To learn, you must first acknowledge that there are things you don’t understand. An enormous part of learning is being able to try things and feeling safe to fail. In a healthy environment, people feel comfortable asking questions, being wrong, and learning new things. 
+
+## Growing Your Knowledge
+
+- **Ask questions**: Embrace not knowing things as an area of opportunity rather than one to fear. It doesn’t matter whether you’re new to a team or a senior leader: you should always be in an environment in which there’s something to learn. On the receiving end, patience and kindness when answering questions fosters an environment in which people feel safe looking for help.  Making it easier to overcome the initial hesitation to ask a question sets the tone early: reach out to solicit questions, and make it easy for even “trivial” questions to get an answer.
+  
+- **Understand Context**: Learning is not just about understanding new things; it also includes developing an understanding of the decisions behind the design and implementation of existing things. For example, you are working in legacy codebase, the code is difficult to understand. It can be tempting to rewrite from scratch rather than spend time learning the existing code. But instead of thinking “I don’t get it” and ending your thoughts there, dive deeper: what questions should you be asking? **Before removing or changing something, first understand why it’s there.**
+
+## Scaling Your Questions: You Always Have Something to Teach
+
+- Teaching is not limited to experts, nor is expertise a binary state in which you are either a novice or an expert. Google engineers teach others in a variety of ways, such as office hours, giving tech talks, teaching classes, writing documentation, and reviewing code.
+
+### Office Hours
+- Office hours are a regularly scheduled (typically weekly) event during which one or more people make themselves available to answer questions about a particular topic.They are not the preferred method for knowledge sharing due to delays in getting urgent answers and the time and effort required to host and promote them.
+
+### Tech Talks and Classes
+- Tech talks typically consist of a speaker presenting directly to an audience.
+- Classes, on the other hand, can have a lecture component but often center on in-class exercises and therefore require more active participation from attendees. As a result, instructor-led classes are typically more demanding and expensive to create and maintain than tech talks and are reserved for the most important or difficult topics.
+
+### Documentation
+- Documentation is written knowledge whose primary goal is to help its readers learn something. 
+
+#### Updating documentation
+- The first time you learn something is the best time to see ways that the existing documentation and training materials can be improved.  By the time you’ve absorbed and understood a new process or system, you might have forgotten what was difficult or what simple steps were missing from the “Getting Started” documentation. At this stage, if you find a mistake or omission in the documentation, fix it! 
+#### Creating documentation
+- As your proficiency grows, write your own documentation and update existing docs.  For example, if you set up a new development flow, document the steps. You can then make it easier for others to follow in your path by pointing them to your document. Even better, make it easier for people to find the document themselves. Any sufficiently undiscoverable or unsearchable documentation might as well not exist.
+#### Promoting documentation
+- Traditionally, encouraging engineers to document their work can be difficult. Writing documentation takes time and effort that could be spent on coding, and the benefits that result from  that work are not immediate and are mostly reaped by others. Asymmetrical trade-offs like these are good for the organization as a whole given that many people can benefit from the time investment of a few, but without good incentives.
+
+## Scaling Your Organization’s Knowledge
+
+The bad behavior of just a few individuals can make an entire team or community unwelcoming. In such an environment,  novices learn to take their questions elsewhere, and potential new experts stop trying and don’t have room to grow. In the worst cases, the group reduces to its most toxic members. It can be difficult to recover from this state.
+
+Knowledge sharing can and should be done with kindness and respect.  In tech, tolerance—or worse, reverence—of the “brilliant jerk” is both  pervasive and harmful, but being an expert and being kind are not mutually exclusive.
+
+## Readability: Standardized Mentorship Through Code Review
+
+At Google, “readability” refers to more than just code  readability; it is a standardized,    Google-wide mentorship process for disseminating programming language best practices. Readability covers a wide breadth of expertise, including but not limited to language idioms, code structure, API design, appropriate use of common libraries, documentation, and test coverage.
+
+# Chapter 11 - Testing Overview
 
 ### Overview
 Testing code is an essential practice that brings numerous advantages to developers and organizations. While some may perceive writing tests as time-consuming, it actually enhances productivity and velocity in software development. This document highlights the benefits of investing in software tests, drawing from Google's experience and practices.
@@ -152,7 +576,7 @@ When poorly written, automated tests can make it more difficult to make those ch
 - Once an issue is discovered through exploratory testing, automated tests should be added to prevent future regressions.
 - Automated testing can cover well-understood behaviors, allowing human testers to focus on areas where they can provide the most value and avoid repetitive tasks.
 
- ## Chapter 12 - Unit Testing
+# Chapter 12 - Unit Testing
 **To recap, size refers to the resources consumed by a test and what it is allowed to do, and scope refers to how much code a test is intended to validate.**
 
 Unit tests are usually **small** in size, but this isn’t always the case.  
@@ -338,7 +762,7 @@ Most of the test infrastructure that engineers use comes in the form of well-kno
 - Careless use of unit testing can result in a system that requires much more effort to maintain and doesn't actually improve confidence in the system.
 <br>
 
-## Chapter 13. Test Doubles
+# Chapter 13. Test Doubles
 
 __Test doubles are essential objects or functions used in place of actual implementations during testing. They are useful when real implementations would introduce complexity or unpredictability, such as in scenarios involving external servers or databases.__
 
@@ -647,7 +1071,7 @@ State testing, where you validate the output or system state, is preferred over 
 - While test doubles are useful for handling difficult dependencies in tests, larger-scope testing should also be considered to maximize code confidence.
 - Choosing between real implementations and test doubles, as well as selecting the appropriate test double technique, may require trade-offs based on specific use cases.
 
-## Chapter 14. Larger Testing
+# Chapter 14. Larger Testing
 
 #### Test Size at Google
 - Small tests: Restricted to one thread, one process, one machine.
