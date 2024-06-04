@@ -225,14 +225,14 @@ This is a simple document that aims to list and index evidences of personal deve
    <li>
     <details> 
       <summary>
-        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> : Capítulos 1, 2 e 3 (33%)
+        <a href="https://github.com/gabrieldezena10/personal-development-index/tree/book/software-engineering-at-google/books/SoftwareEngineeringAtGoogle"> [Book] Software Egineering at Google (O'Reilly)</a> : Capítulos 1, 2 e 3 (100%) ✔️
       </summary>
       <ul>
         <li>
           Started: 20/05/2024
         </li>
         <li>
-          Finished: 
+          Finished: 04/06/2024
         </li>
       </ul>
       </details>
