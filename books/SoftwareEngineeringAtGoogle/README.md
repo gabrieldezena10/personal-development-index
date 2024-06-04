@@ -415,7 +415,13 @@ Psychological  safety is critical to  promoting a learning environment. To learn
 
 ## Scaling Your Organization’s Knowledge
 
-...
+The bad behavior of just a few individuals can make an entire team or community unwelcoming. In such an environment,  novices learn to take their questions elsewhere, and potential new experts stop trying and don’t have room to grow. In the worst cases, the group reduces to its most toxic members. It can be difficult to recover from this state.
+
+Knowledge sharing can and should be done with kindness and respect.  In tech, tolerance—or worse, reverence—of the “brilliant jerk” is both  pervasive and harmful, but being an expert and being kind are not mutually exclusive.
+
+## Readability: Standardized Mentorship Through Code Review
+
+At Google, “readability” refers to more than just code  readability; it is a standardized,    Google-wide mentorship process for disseminating programming language best practices. Readability covers a wide breadth of expertise, including but not limited to language idioms, code structure, API design, appropriate use of common libraries, documentation, and test coverage.
 
 # Chapter 11 - Testing Overview
 
